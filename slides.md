@@ -1,637 +1,332 @@
 ---
-# try also 'default' to start simple
-theme: seriph
-# random image from a curated Unsplash collection by Anthony
-# like them? see https://unsplash.com/collections/94734566/slidev
-background: https://cover.sli.dev
+theme: academic
+coverDate: "2026"
 # some information about your slides (markdown enabled)
-title: Welcome to Slidev
-info: |
-  ## Slidev Starter Template
-  Presentation slides for developers.
+title: Programmazione assistita dall'Intelligenza Artificiale
 
-  Learn more at [Sli.dev](https://sli.dev)
-# apply UnoCSS classes to the current slide
 class: text-center
-# https://sli.dev/features/drawing
+download: false
 drawings:
-  persist: false
-# slide transition: https://sli.dev/guide/animations.html#slide-transitions
+  persist: true
+  enabled: dev
+  syncAll: false
 transition: slide-left
-# enable MDC Syntax: https://sli.dev/features/mdc
 mdc: true
-# duration of the presentation
-duration: 35min
----
-
-# Welcome to Slidev
-
-Presentation slides for developers
-
-<div @click="$slidev.nav.next" class="mt-12 py-1" hover:bg="white op-10">
-  Press Space for next page <carbon:arrow-right />
-</div>
-
-<div class="abs-br m-6 text-xl">
-  <button @click="$slidev.nav.openInEditor()" title="Open in Editor" class="slidev-icon-btn">
-    <carbon:edit />
-  </button>
-  <a href="https://github.com/slidevjs/slidev" target="_blank" class="slidev-icon-btn">
-    <carbon:logo-github />
-  </a>
-</div>
-
-<!--
-The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
--->
+themeConfig:
+  paginationX: r
+  paginationY: b
+  paginationPagesDisabled: "1"
+lineNumbers: true
 
 ---
-transition: fade-out
----
 
-# What is Slidev?
+# Programmazione assistita dall'Intelligenza Artificiale
 
-Slidev is a slides maker and presenter designed for developers, consist of the following features
-
-- 📝 **Text-based** - focus on the content with Markdown, and then style them later
-- 🎨 **Themable** - themes can be shared and re-used as npm packages
-- 🧑‍💻 **Developer Friendly** - code highlighting, live coding with autocompletion
-- 🤹 **Interactive** - embed Vue components to enhance your expressions
-- 🎥 **Recording** - built-in recording and camera view
-- 📤 **Portable** - export to PDF, PPTX, PNGs, or even a hostable SPA
-- 🛠 **Hackable** - virtually anything that's possible on a webpage is possible in Slidev
-<br>
-<br>
-
-Read more about [Why Slidev?](https://sli.dev/guide/why)
-
-<!--
-You can have `style` tag in markdown to override the style for the current page.
-Learn more: https://sli.dev/features/slide-scope-style
--->
-
-<style>
-h1 {
-  background-color: #2B90B6;
-  background-image: linear-gradient(45deg, #4EC5D4 10%, #146b8c 20%);
-  background-size: 100%;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-text-fill-color: transparent;
-}
-</style>
-
-<!--
-Here is another comment.
--->
+Ing. Giancarlo Degani
 
 ---
-transition: slide-up
-level: 2
----
 
-# Navigation
+## Programma e tempi (10 ore)
 
-Hover on the bottom-left corner to see the navigation's controls panel, [learn more](https://sli.dev/guide/ui#navigation-bar)
-
-## Keyboard Shortcuts
-
-|                                                     |                             |
-| --------------------------------------------------- | --------------------------- |
-| <kbd>right</kbd> / <kbd>space</kbd>                 | next animation or slide     |
-| <kbd>left</kbd>  / <kbd>shift</kbd><kbd>space</kbd> | previous animation or slide |
-| <kbd>up</kbd>                                       | previous slide              |
-| <kbd>down</kbd>                                     | next slide                  |
-
-<!-- https://sli.dev/guide/animations.html#click-animation -->
-<img
-  v-click
-  class="absolute -bottom-9 -left-7 w-80 opacity-50"
-  src="https://sli.dev/assets/arrow-bottom-left.svg"
-  alt=""
-/>
-<p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">Here!</p>
+- 1: Introduzione, obiettivi, configurazione ambiente
+- 2: Assistenti di sviluppo e casi d'uso
+- 3: Prompt design di base
+- 4: Generazione di codice C guidata
+- 5: Debug assistito e lettura errori
+- 6: Refactoring e documentazione
+- 7: Test e validazione dei risultati
+- 8: Workflow in team con Git e AI
+- 9: Laboratorio guidato in CLion
+- 10: Test finale (60 minuti)
 
 ---
-layout: two-cols
-layoutClass: gap-16
+
+## Obiettivi del corso
+
+- Integrare un assistente AI nel ciclo di sviluppo C
+- Scrivere prompt efficaci e controllare gli output
+- Usare CLion con AI per generazione, debug e refactoring
+- Validare e testare il codice generato
+- Operare in team mantenendo qualità e tracciabilità
+
 ---
 
-# Table of contents
+## Concetti base
 
-You can use the `Toc` component to generate a table of contents for your slides:
+- Modello: rete neurale addestrata a prevedere la parola/token successivo
+- Contesto: finestra limitata di testo che guida la risposta
+- Prompt: istruzioni testuali usate per ottenere un comportamento desiderato
+- Agent: sistema che combina il modello con strumenti esterni e loop di ragionamento
 
-```html
-<Toc minDepth="1" maxDepth="1" />
+---
+
+## Cos'è un LLM
+
+- Rete neurale generativa addestrata su testi eterogenei
+- Produce testo token per token in base al prompt e al contesto
+- Limiti: allucinazioni, sensibilità alla formulazione, finestra di contesto finita
+- Buone pratiche: specificare vincoli, chiedere output brevi e verificabili, iterare
+
+---
+
+## Prompt: come formularlo
+
+- Dichiarare ruolo e obiettivo: cosa deve produrre il modello
+- Fornire contesto minimo sufficiente (linguaggio C, standard, file coinvolti)
+- Definire vincoli: formato output, lunghezza, evitare librerie non permesse
+- Chiedere passi espliciti se serve ragionamento, altrimenti solo il codice
+
+---
+
+## Agent: modello + strumenti
+
+- Il modello decide quali azioni compiere (es. chiamare un comando, leggere un file)
+- Usa loop osserva→decide→agisci con feedback dal contesto
+- Utile per: generare patch, eseguire test, riassumere log
+- Richiede istruzioni chiare su strumenti disponibili e limiti di sicurezza
+
+---
+
+## Perché usare agent AI nello sviluppo C
+
+- Ridurre tempo di boilerplate (init, parsing, test) mantenendo focus sulla logica
+- Ottenere spiegazioni rapide di warning e bug prima del debug manuale
+- Esplorare alternative di design senza riscrivere tutto a mano
+- Mantenere coerenza di stile e naming in team
+
+---
+
+## GitHub Copilot in breve
+
+- Suggerimenti inline mentre si scrive in CLion (C, CMake, markdown)
+- Copilot Chat per spiegazioni, refactoring, generazione test e fix mirati
+- Non esegue il codice: serve sempre compilare/testare e fare review umana
+- Può proporre codice non sicuro o incompleto: verificare input, error handling, limiti
+
+---
+
+## Configurare CLion con GitHub Copilot
+
+- CLion > Settings/Preferences > Plugins > Marketplace: installa "GitHub Copilot" e "GitHub Copilot Chat"
+- Riavvia CLion, poi login GitHub quando richiesto (Authorize nel browser)
+- Settings > Tools > GitHub Copilot: abilita completamenti inline e scegli la keymap preferita
+- Settings > Tools > GitHub Copilot Chat: abilita la chat e assegna uno shortcut
+- Facoltativo: limita telemetria e riduci suggerimenti per file di grandi dimensioni
+
+---
+
+## Copilot in CLion: uso quotidiano
+
+- Inline: scrivi il commento della funzione, attendi il suggerimento grigio, accetta o rigenera
+- Chat: seleziona un blocco e chiedi refactoring, test, spiegazione warning
+- Code actions: tasto destro > Copilot per documentazione o correzioni
+- Mantieni le richieste brevi e locali: un file o una funzione alla volta
+
+---
+
+## Prompt efficaci per agent e Copilot
+
+- Specifica standard e vincoli: "usa C99, niente librerie esterne, input validato"
+- Fornisci interfacce: firme funzioni, strutture dati attese, range input
+- Chiedi output in un formato: "solo codice", "spiega in 3 bullet", "mostra patch"
+- Includi esempi minimi: input atteso, comportamento edge
+
+---
+
+## Strategie di verifica
+
+- Compila sempre dopo ogni suggerimento accettato
+- Aggiungi assert e controlli su input/null pointer prima di fidarti
+- Confronta la patch proposta con un diff piccolo e leggibile
+- Esegui test su casi limite (array vuoti, overflow, indici out-of-range)
+
+---
+
+## Esempi di richieste veloci
+
+- "Scrivi una funzione C99 che normalizza un valore int in [0,1], senza float"
+- "Spiega questo warning di clang e proponi fix minimale"
+- "Genera test per questa funzione che calcola mediana, includi casi dispari/paria"
+- "Separa questo file in .h/.c mantenendo le firme"
+
+---
+
+## Prerequisiti
+
+- Conoscenze di base del C (tipi, funzioni, array, puntatori semplici)
+- Esperienza iniziale con CLion: creazione progetto, build, run, debugger
+- Uso elementare di Git (clone, commit, push)
+- Ambiente pronto con compilatore C (gcc/clang) e CLion installato
+
+---
+
+## Strumenti di lavoro
+
+- CLion con toolchain C configurata
+- Terminale e Git per controllo versione
+- Assistente AI testuale (es. Copilot Chat) integrato nell'IDE o nel browser
+- Risorse progetto: repository, task tracker, documentazione
+
+---
+
+## Uso responsabile e limiti
+
+- Verificare sempre il codice generato: compilazione, test, lettura manuale
+- Non condividere dati sensibili nei prompt
+- Citare la fonte AI quando si riutilizzano frammenti significativi
+- Preferire piccoli passi iterativi per mantenere il controllo
+- Conservare decisioni e motivazioni nei messaggi di commit
+
+---
+
+## Flusso di lavoro assistito (pattern)
+
+- Definisci il contesto: obiettivo, vincoli, file coinvolti
+- Chiedi un output piccolo e verificabile
+- Esegui e osserva errori o warning
+- Condividi log e snippet minimi nell'IDE/chat
+- Itera fino a un risultato compilabile e leggibile
+
+---
+
+## Strutturare i prompt
+
+- Contesto: cosa fa il programma, vincoli (C99, senza librerie extra)
+- Compito: cosa vuoi ottenere (funzione, test, refactoring)
+- Vincoli: lunghezza, stile, interfacce esistenti
+- Output: formato atteso (solo codice, spiegazione breve, passi)
+
+---
+
+## Prompt di esempio (generazione)
+
+Testo da dare all'assistente:
+
+```
+Ho un programma C su CLion. Scrivi una funzione C99 che calcola la media di un array di int.
+Non usare librerie extra. Mantieni i parametri const ove possibile. Aggiungi un breve commento.
+Restituisci solo il codice della funzione.
 ```
 
-The title will be inferred from your slide content, or you can override it with `title` and `level` in your frontmatter.
-
-::right::
-
-<Toc text-sm minDepth="1" maxDepth="2" />
-
----
-layout: image-right
-image: https://cover.sli.dev
 ---
 
-# Code
+## Esempio di codice generato
 
-Use code snippets and get the highlighting directly, and even types hover!
+```c
+#include <stddef.h>
 
-```ts [filename-example.ts] {all|4|6|6-7|9|all} twoslash
-// TwoSlash enables TypeScript hover information
-// and errors in markdown code blocks
-// More at https://shiki.style/packages/twoslash
-import { computed, ref } from 'vue'
-
-const count = ref(0)
-const doubled = computed(() => count.value * 2)
-
-doubled.value = 2
-```
-
-<arrow v-click="[4, 5]" x1="350" y1="310" x2="195" y2="342" color="#953" width="2" arrowSize="1" />
-
-<!-- This allow you to embed external code blocks -->
-<<< @/snippets/external.ts#snippet
-
-<!-- Footer -->
-
-[Learn more](https://sli.dev/features/line-highlighting)
-
-<!-- Inline style -->
-<style>
-.footnotes-sep {
-  @apply mt-5 opacity-10;
-}
-.footnotes {
-  @apply text-sm opacity-75;
-}
-.footnote-backref {
-  display: none;
-}
-</style>
-
-<!--
-Notes can also sync with clicks
-
-[click] This will be highlighted after the first click
-
-[click] Highlighted with `count = ref(0)`
-
-[click:3] Last click (skip two clicks)
--->
-
----
-level: 2
----
-
-# Shiki Magic Move
-
-Powered by [shiki-magic-move](https://shiki-magic-move.netlify.app/), Slidev supports animations across multiple code snippets.
-
-Add multiple code blocks and wrap them with <code>````md magic-move</code> (four backticks) to enable the magic move. For example:
-
-````md magic-move {lines: true}
-```ts {*|2|*}
-// step 1
-const author = reactive({
-  name: 'John Doe',
-  books: [
-    'Vue 2 - Advanced Guide',
-    'Vue 3 - Basic Guide',
-    'Vue 4 - The Mystery'
-  ]
-})
-```
-
-```ts {*|1-2|3-4|3-4,8}
-// step 2
-export default {
-  data() {
-    return {
-      author: {
-        name: 'John Doe',
-        books: [
-          'Vue 2 - Advanced Guide',
-          'Vue 3 - Basic Guide',
-          'Vue 4 - The Mystery'
-        ]
-      }
+double mean_ints(const int *values, size_t count) {
+    if (values == NULL || count == 0) {
+        return 0.0; // defend against invalid input
     }
-  }
-}
-```
 
-```ts
-// step 3
-export default {
-  data: () => ({
-    author: {
-      name: 'John Doe',
-      books: [
-        'Vue 2 - Advanced Guide',
-        'Vue 3 - Basic Guide',
-        'Vue 4 - The Mystery'
-      ]
+    long sum = 0;
+    for (size_t i = 0; i < count; ++i) {
+        sum += values[i];
     }
-  })
+
+    return (double)sum / (double)count;
 }
 ```
 
-Non-code blocks are ignored.
+---
 
-```vue
-<!-- step 4 -->
-<script setup>
-const author = {
-  name: 'John Doe',
-  books: [
-    'Vue 2 - Advanced Guide',
-    'Vue 3 - Basic Guide',
-    'Vue 4 - The Mystery'
-  ]
-}
-</script>
+## Debug assistito
+
+- Fornisci messaggi di errore completi (compilatore o runtime)
+- Invia solo la funzione o il file minimo riproducibile
+- Chiedi spiegazioni passo-passo: cosa significa l'errore, dove guardare
+
+Esempio di prompt per un `segmentation fault`:
+
 ```
-````
+Ho un segmentation fault in questa funzione C. Ecco la funzione e l'input che lo causa.
+Spiega la causa probabile e proponi una correzione minimale.
+```
 
 ---
 
-# Components
+## Snippet per il debug
 
-<div grid="~ cols-2 gap-4">
-<div>
+```c
+#include <stdio.h>
 
-You can use Vue components directly inside your slides.
-
-We have provided a few built-in components like `<Tweet/>` and `<Youtube/>` that you can use directly. And adding your custom components is also super easy.
-
-```html
-<Counter :count="10" />
-```
-
-<!-- ./components/Counter.vue -->
-<Counter :count="10" m="t-4" />
-
-Check out [the guides](https://sli.dev/builtin/components.html) for more.
-
-</div>
-<div>
-
-```html
-<Tweet id="1390115482657726468" />
-```
-
-<Tweet id="1390115482657726468" scale="0.65" />
-
-</div>
-</div>
-
-<!--
-Presenter note with **bold**, *italic*, and ~~striked~~ text.
-
-Also, HTML elements are valid:
-<div class="flex w-full">
-  <span style="flex-grow: 1;">Left content</span>
-  <span>Right content</span>
-</div>
--->
-
----
-class: px-20
----
-
-# Themes
-
-Slidev comes with powerful theming support. Themes can provide styles, layouts, components, or even configurations for tools. Switching between themes by just **one edit** in your frontmatter:
-
-<div grid="~ cols-2 gap-2" m="t-2">
-
-```yaml
----
-theme: default
----
-```
-
-```yaml
----
-theme: seriph
----
-```
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-default/01.png?raw=true" alt="">
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-seriph/01.png?raw=true" alt="">
-
-</div>
-
-Read more about [How to use a theme](https://sli.dev/guide/theme-addon#use-theme) and
-check out the [Awesome Themes Gallery](https://sli.dev/resources/theme-gallery).
-
----
-
-# Clicks Animations
-
-You can add `v-click` to elements to add a click animation.
-
-<div v-click>
-
-This shows up when you click the slide:
-
-```html
-<div v-click>This shows up when you click the slide.</div>
-```
-
-</div>
-
-<br>
-
-<v-click>
-
-The <span v-mark.red="3"><code>v-mark</code> directive</span>
-also allows you to add
-<span v-mark.circle.orange="4">inline marks</span>
-, powered by [Rough Notation](https://roughnotation.com/):
-
-```html
-<span v-mark.underline.orange>inline markers</span>
-```
-
-</v-click>
-
-<div mt-20 v-click>
-
-[Learn more](https://sli.dev/guide/animations#click-animation)
-
-</div>
-
----
-
-# Motions
-
-Motion animations are powered by [@vueuse/motion](https://motion.vueuse.org/), triggered by `v-motion` directive.
-
-```html
-<div
-  v-motion
-  :initial="{ x: -80 }"
-  :enter="{ x: 0 }"
-  :click-3="{ x: 80 }"
-  :leave="{ x: 1000 }"
->
-  Slidev
-</div>
-```
-
-<div class="w-60 relative">
-  <div class="relative w-40 h-40">
-    <img
-      v-motion
-      :initial="{ x: 800, y: -100, scale: 1.5, rotate: -50 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-square.png"
-      alt=""
-    />
-    <img
-      v-motion
-      :initial="{ y: 500, x: -100, scale: 2 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-circle.png"
-      alt=""
-    />
-    <img
-      v-motion
-      :initial="{ x: 600, y: 400, scale: 2, rotate: 100 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-triangle.png"
-      alt=""
-    />
-  </div>
-
-  <div
-    class="text-5xl absolute top-14 left-40 text-[#2B90B6] -z-1"
-    v-motion
-    :initial="{ x: -80, opacity: 0}"
-    :enter="{ x: 0, opacity: 1, transition: { delay: 2000, duration: 1000 } }">
-    Slidev
-  </div>
-</div>
-
-<!-- vue script setup scripts can be directly used in markdown, and will only affects current page -->
-<script setup lang="ts">
-const final = {
-  x: 0,
-  y: 0,
-  rotate: 0,
-  scale: 1,
-  transition: {
-    type: 'spring',
-    damping: 10,
-    stiffness: 20,
-    mass: 2
-  }
-}
-</script>
-
-<div
-  v-motion
-  :initial="{ x:35, y: 30, opacity: 0}"
-  :enter="{ y: 0, opacity: 1, transition: { delay: 3500 } }">
-
-[Learn more](https://sli.dev/guide/animations.html#motion)
-
-</div>
-
----
-
-# $\LaTeX$
-
-$\LaTeX$ is supported out-of-box. Powered by [$\KaTeX$](https://katex.org/).
-
-<div h-3 />
-
-Inline $\sqrt{3x-1}+(1+x)^2$
-
-Block
-$$ {1|3|all}
-\begin{aligned}
-\nabla \cdot \vec{E} &= \frac{\rho}{\varepsilon_0} \\
-\nabla \cdot \vec{B} &= 0 \\
-\nabla \times \vec{E} &= -\frac{\partial\vec{B}}{\partial t} \\
-\nabla \times \vec{B} &= \mu_0\vec{J} + \mu_0\varepsilon_0\frac{\partial\vec{E}}{\partial t}
-\end{aligned}
-$$
-
-[Learn more](https://sli.dev/features/latex)
-
----
-
-# Diagrams
-
-You can create diagrams / graphs from textual descriptions, directly in your Markdown.
-
-<div class="grid grid-cols-4 gap-5 pt-4 -mb-6">
-
-```mermaid {scale: 0.5, alt: 'A simple sequence diagram'}
-sequenceDiagram
-    Alice->John: Hello John, how are you?
-    Note over Alice,John: A typical interaction
-```
-
-```mermaid {theme: 'neutral', scale: 0.8}
-graph TD
-B[Text] --> C{Decision}
-C -->|One| D[Result 1]
-C -->|Two| E[Result 2]
-```
-
-```mermaid
-mindmap
-  root((mindmap))
-    Origins
-      Long history
-      ::icon(fa fa-book)
-      Popularisation
-        British popular psychology author Tony Buzan
-    Research
-      On effectiveness<br/>and features
-      On Automatic creation
-        Uses
-            Creative techniques
-            Strategic planning
-            Argument mapping
-    Tools
-      Pen and paper
-      Mermaid
-```
-
-```plantuml {scale: 0.7}
-@startuml
-
-package "Some Group" {
-  HTTP - [First Component]
-  [Another Component]
+int read_value(const int *buffer, size_t length, size_t index) {
+    if (buffer == NULL || index >= length) {
+        return -1; // invalid access avoided
+    }
+    return buffer[index];
 }
 
-node "Other Groups" {
-  FTP - [Second Component]
-  [First Component] --> FTP
+int main(void) {
+    int data[] = {3, 5, 7};
+    printf("%d\n", read_value(data, 3, 5));
+    return 0;
 }
-
-cloud {
-  [Example 1]
-}
-
-database "MySql" {
-  folder "This is my folder" {
-    [Folder 3]
-  }
-  frame "Foo" {
-    [Frame 4]
-  }
-}
-
-[Another Component] --> [Example 1]
-[Example 1] --> [Folder 3]
-[Folder 3] --> [Frame 4]
-
-@enduml
 ```
 
-</div>
-
-Learn more: [Mermaid Diagrams](https://sli.dev/features/mermaid) and [PlantUML Diagrams](https://sli.dev/features/plantuml)
-
----
-foo: bar
-dragPos:
-  square: 691,32,167,_,-16
----
-
-# Draggable Elements
-
-Double-click on the draggable elements to edit their positions.
-
-<br>
-
-###### Directive Usage
-
-```md
-<img v-drag="'square'" src="https://sli.dev/logo.png">
-```
-
-<br>
-
-###### Component Usage
-
-```md
-<v-drag text-3xl>
-  <div class="i-carbon:arrow-up" />
-  Use the `v-drag` component to have a draggable container!
-</v-drag>
-```
-
-<v-drag pos="663,206,261,_,-15">
-  <div text-center text-3xl border border-main rounded>
-    Double-click me!
-  </div>
-</v-drag>
-
-<img v-drag="'square'" src="https://sli.dev/logo.png">
-
-###### Draggable Arrow
-
-```md
-<v-drag-arrow two-way />
-```
-
-<v-drag-arrow pos="67,452,253,46" two-way op70 />
-
----
-src: ./pages/imported-slides.md
-hide: false
----
+- L'assistente può evidenziare l'accesso fuori limite (`index >= length`)
+- Dopo la correzione, ricompila e riesegui il test
 
 ---
 
-# Monaco Editor
+## Refactoring con AI
 
-Slidev provides built-in Monaco Editor support.
-
-Add `{monaco}` to the code block to turn it into an editor:
-
-```ts {monaco}
-import { ref } from 'vue'
-import { emptyArray } from './external'
-
-const arr = ref(emptyArray(10))
-```
-
-Use `{monaco-run}` to create an editor that can execute the code directly in the slide:
-
-```ts {monaco-run}
-import { version } from 'vue'
-import { emptyArray, sayHello } from './external'
-
-sayHello()
-console.log(`vue ${version}`)
-console.log(emptyArray<number>(10).reduce(fib => [...fib, fib.at(-1)! + fib.at(-2)!], [1, 1]))
-```
+- Chiedi di rinominare funzioni/variabili mantenendo l'API
+- Richiedi separazione in file `.c` e `.h` indicando le firme
+- Domanda tipica: "Proponi un refactoring che migliori la leggibilità senza cambiare il comportamento"
+- Verifica con diff ridotti e compilazione
 
 ---
-layout: center
-class: text-center
+
+## Documentazione e commenti
+
+- Domanda tipica: "Aggiungi commenti essenziali e brevi a questo file"
+- Mantieni commenti in inglese per il codice C del corso
+- Evita commenti ridondanti; privilegia il perché rispetto al cosa
+
 ---
 
-# Learn More
+## Testing e validazione
 
-[Documentation](https://sli.dev) · [GitHub](https://github.com/slidevjs/slidev) · [Showcases](https://sli.dev/resources/showcases)
+- Genera casi di test piccoli e mirati (input validi e edge case)
+- Automatizza dove possibile con script di build/test
+- Confronta l'output atteso con quello osservato; condividi le differenze nell'IDE
 
-<PoweredBySlidev mt-10 />
+---
+
+## CLion + AI: flusso pratico
+
+- Crea un nuovo progetto C eseguibile
+- Scrivi la funzione con l'assistente in un file `.c`
+- Usa il debugger per ispezionare variabili e stack
+- Chiedi all'assistente di interpretare un backtrace o un warning
+- Integra correzioni e ripeti il ciclo build-run-debug
+
+---
+
+## Git e collaborazione con AI
+
+- Usa branch dedicati per le iterazioni assistite
+- Chiedi suggerimenti per messaggi di commit chiari
+- Fai review del codice AI come se fosse di un collega
+- Conserva le decisioni nel README o nei commenti dei commit
+
+---
+
+## Esercitazioni proposte (ore 8-9)
+
+- Usa Copilot per generare una funzione che normalizza un int in [0,1] senza float; poi aggiungi a mano controlli su overflow e input negativi
+- Chiedi a Copilot di separare un file unico in .h/.c mantenendo le firme; verifica con clang che non ci siano warning
+- Fornisci a Copilot un warning reale di clang e chiedi spiegazione + patch; applica solo se il diff è minimo e leggibile
+- Genera con Copilot test per edge case (array vuoti, indici fuori limite) per una funzione di lettura da array, poi esegui e valida l'output
+- Bonus: chiedi a Copilot di scrivere un CMakeLists.txt minimale per buildare i file creati e integrare i test
+
+---
+
+## Test finale (ora 10)
+
+- Durata: 60 minuti, individuale
+- Consegna: repository o archivio con codice e breve README
+- Valutazione: correttezza, chiarezza del codice, capacità di usare l'AI in modo controllato
+- Suggerimento: preparare snippet e prompt riutilizzabili durante il corso

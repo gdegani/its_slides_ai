@@ -1,0 +1,37 @@
+/* style.css */
+.slidev-layout h1 {
+  color: #710403;
+  /* Replace with your desired color */
+  text-transform: uppercase;
+}
+
+.slidev-layout h2 {
+  color: black;
+  /* Replace with your desired color */
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-top: 0.5em;
+}
+
+.slidev-layout td {
+  font-size: 1.1rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  /*Modifica la dimensione del testo  */
+}
+
+.slidev-layout p {
+  font-size: 1.3rem;
+  /*Modifica la dimensione del testo */
+  line-height: 1.2;
+  /*Aggiungi spaziatura tra le righe */
+}
+
+.slidev-layout ul {
+  font-size: 1.25rem;
+  /* Modifica la dimensione del testo */
+  line-height: 1.2;
+  /*Aggiungi spaziatura tra le righe */
+}
+
