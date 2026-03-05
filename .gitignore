@@ -54,3 +54,6 @@ lib-cov
 .idea/
 *.iml
 cmake-build-*/
+
+
+/reference

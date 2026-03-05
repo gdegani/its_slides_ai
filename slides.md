@@ -26,74 +26,256 @@ Ing. Giancarlo Degani
 
 ---
 
-# Programma e tempi (10 ore)
+# Argomenti del corso
 
-- 1: Introduzione, obiettivi, configurazione ambiente
-- 2: Assistenti di sviluppo e casi d'uso
-- 3: Prompt design di base
-- 4: Generazione di codice C guidata
-- 5: Debug assistito e lettura errori
-- 6: Refactoring e documentazione
-- 7: Test e validazione dei risultati
-- 8: Workflow in team con AI
-- 9: Laboratorio guidato in CLion
-- 10: Test finale (60 minuti)
+- Introduzione alla Programmazione Assistita da AI
+- Il Ruolo dell'Al come Assistente Intelligente
+- L'Arte del Prompt Efficace
+- Iterazione e Ottimizzazione dei Prompt
 
 ---
 
-# Obiettivi del corso
+# Terminologia
 
-- Integrare un assistente AI nel ciclo di sviluppo C
-- Scrivere prompt efficaci e controllare gli output
-- Usare CLion con AI per generazione, debug e refactoring
-- Validare e testare il codice generato
-- Operare in team mantenendo qualità e tracciabilità
+- **Modello**: rete neurale addestrata a prevedere la parola/token successivo
+- **Contesto**: finestra limitata di testo che guida la risposta
+- **Prompt**: istruzioni testuali usate per ottenere un comportamento desiderato
+- **Agent**: sistema che combina il modello con strumenti esterni e loop di ragionamento
 
 ---
 
-# Concetti base
+# Machine Learning e Deep Learning
 
-- Modello: rete neurale addestrata a prevedere la parola/token successivo
-- Contesto: finestra limitata di testo che guida la risposta
-- Prompt: istruzioni testuali usate per ottenere un comportamento desiderato
-- Agent: sistema che combina il modello con strumenti esterni e loop di ragionamento
+## Machine Learning (ML)
+
+Sottocampo dell'AI dove i sistemi **imparano dai dati** senza essere programmati esplicitamente.
+
+## Deep Learning (DL)
+
+Sottocampo del ML che usa **reti neurali artificiali profonde** (molti livelli) per apprendere rappresentazioni complesse.
+
+## Relazione gerarchica
+
+```mermaid
+graph TD
+    A[Intelligenza Artificiale] --> B[Machine Learning]
+    B --> C[Deep Learning]
+    C --> D[Large Language Models]
+```
 
 ---
 
 # Cos'è un LLM
 
-- Rete neurale generativa addestrata su testi eterogenei
-- Produce testo token per token in base al prompt e al contesto
-- Limiti: allucinazioni, sensibilità alla formulazione, finestra di contesto finita
-- Buone pratiche: specificare vincoli, chiedere output brevi e verificabili, iterare
+**Large Language Model** (LLM): modello linguistico di grandi dimensioni basato su reti neurali.
+
+## Caratteristiche principali
+
+- Miliardi di parametri (pesi neurali)
+- Addestrato su enormi quantità di testo da Internet
+- Capace di comprendere e generare linguaggio naturale
+- Capace di generare codice in molti linguaggi di programmazione
+
+## Esempi
+
+GPT-4, Claude, Gemini, Llama, DeepSeek
 
 ---
 
-# Introduzione ai foundational models
+# Architettura Transformer
 
-- Modelli di base addestrati su dataset molto ampi e generici (testo, codice, talvolta immagini)
-- Servono come "fondazione" per task diversi senza riaddestrare da zero
-- Adattamento: prompting, fine-tuning leggero o adapter per domini specifici
-- Trade-off: capacità generali vs. controllo; necessaria verifica umana
-- Per noi: usare il modello via prompt chiari per ottenere codice C verificabile
+Gli LLM moderni si basano sull'architettura **Transformer** (2017), che usa meccanismi di **attenzione** per elaborare il linguaggio.
 
----
+## Meccanismo di attenzione
 
-# Prompt: come formularlo
+Permette al modello di "concentrarsi" su parti rilevanti del contesto quando genera ogni token.
 
-- Dichiarare ruolo e obiettivo: cosa deve produrre il modello
-- Fornire contesto minimo sufficiente (linguaggio C, standard, file coinvolti)
-- Definire vincoli: formato output, lunghezza, evitare librerie non permesse
-- Chiedere passi espliciti se serve ragionamento, altrimenti solo il codice
+## Vantaggi rispetto a architetture precedenti
+
+- Elaborazione parallela (più veloce)
+- Cattura relazioni a lungo raggio nel testo
+- Scala efficacemente con dati e potenza di calcolo
 
 ---
 
-# Agent: modello + strumenti
+# Come funzionano gli LLM: processo di generazione
 
-- Il modello decide quali azioni compiere (es. chiamare un comando, leggere un file)
-- Usa loop osserva→decide→agisci con feedback dal contesto
-- Utile per: generare patch, eseguire test, riassumere log
-- Richiede istruzioni chiare su strumenti disponibili e limiti di sicurezza
+## Processo passo-passo
+
+1. **Tokenizzazione**: il testo viene diviso in token (pezzi di parole)
+   - Esempio: `"printf"` → `["print", "f"]`
+2. **Embedding**: ogni token diventa un vettore numerico
+   - Rappresentazione matematica del significato
+3. **Elaborazione**: passaggio attraverso molti layer di trasformazione
+   - Centinaia di miliardi di operazioni matematiche
+4. **Predizione**: il modello predice il token successivo più probabile
+   - Calcola probabilità per tutti i possibili token
+
+Il processo si ripete token per token fino a generare la risposta completa.
+
+---
+
+# LLM come strumenti probabilistici
+
+## Concetto fondamentale ⚠️
+
+Gli LLM **non comprendono** il linguaggio come gli umani.
+
+Sono modelli statistici che predicono la sequenza di parole più probabile.
+
+## Come funziona la predizione
+
+- Dato un contesto (prompt), il modello calcola la probabilità di ogni possibile token successivo
+- Sceglie il token con probabilità più alta (o campiona dalla distribuzione)
+- Ripete il processo per generare testo completo
+
+## Esempio
+
+Input: `"Il sole sorge a..."`
+
+- `"est"` → 85%
+- `"oriente"` → 10%
+- `"ovest"` → 2%
+
+---
+
+# Implicazioni della natura probabilistica
+
+## Vantaggi
+
+- Output fluido e naturale
+- Creatività e variabilità nelle risposte
+- Capacità di gestire input imperfetti
+
+## Limiti
+
+- **Allucinazioni**: generazione di informazioni false ma plausibili
+- **Inconsistenza**: output diversi per stesso input
+- **Mancanza di ragionamento logico** vero
+- **Nessuna garanzia** di correttezza
+
+## Regola d'oro ⚠️
+
+**Valida sempre l'output** - compila, testa, verifica la logica del codice generato
+
+---
+
+# Temperature e casualità
+
+Gli LLM permettono di controllare la casualità dell'output tramite il parametro **temperature**.
+
+## Temperature bassa (0.0 - 0.3)
+
+- Output deterministico e prevedibile
+- Sceglie sempre il token più probabile
+- **Uso**: codice, traduzioni, task tecnici
+
+## Temperature media (0.5 - 0.7)
+
+- Bilanciamento tra prevedibilità e creatività
+- **Uso**: scrittura generale, assistenza
+
+## Temperature alta (0.8 - 1.0+)
+
+- Output creativo e vario
+- Maggiore casualità nella selezione
+- **Uso**: brainstorming, scrittura creativa
+
+---
+
+# Context window: concetti base
+
+## Cos'è il Context Window
+
+Quantità massima di testo che un LLM può "vedere" contemporaneamente (input + output).
+
+È come la **memoria a breve termine** del modello.
+
+## Misurazione in token
+
+Il context window si misura in **token**, non in parole:
+
+- 1 token ≈ 0.75 parole in inglese
+- 1 token ≈ 0.5-0.7 parole in italiano
+
+Esempio: `"printf(\"Hello\");"` = circa 5-6 token
+
+---
+
+# Context window: limiti pratici
+
+## Esempi di limiti nei modelli attuali
+
+- **GPT-3.5**: 4K-16K token (~3K-12K parole)
+- **GPT-4**: 8K-128K token (~6K-96K parole)
+- **Claude 3**: fino a 200K token (~150K parole)
+
+## Implicazioni pratiche per lo sviluppo
+
+- **Conversazioni lunghe** "dimenticano" l'inizio
+- **Documenti troppo lunghi** vanno divisi in parti
+- **Necessità di riassumere** periodicamente il contesto
+- **File di codice grandi** potrebbero non entrare completamente
+- Strategia: fornire solo il codice rilevante al task corrente
+
+---
+
+# Cos'è una Chat AI
+
+Una **Chat AI** (o chatbot AI) è un'interfaccia conversazionale che permette di interagire con un LLM tramite dialogo in linguaggio naturale.
+
+## Componenti principali
+
+- **LLM sottostante**: il modello che genera risposte
+- **Interfaccia utente**: dove si scrive e si legge
+- **Memoria conversazionale**: mantiene il contesto del dialogo
+- **System prompt**: istruzioni che definiscono il comportamento
+
+## Esempi
+
+ChatGPT, Claude, Gemini, Perplexity, GitHub Copilot Chat
+
+---
+
+# Cos'è un AI Agent
+
+Un **AI Agent** è un sistema AI più avanzato che può:
+
+- Pianificare sequenze di azioni
+- Usare strumenti esterni (API, database, esecuzione codice)
+- Prendere decisioni autonome
+- Eseguire task complessi multi-step
+
+## Esempio pratico
+
+Sistema che cerca informazioni su web, legge documenti, scrive un report e lo invia via email.
+
+---
+
+# Chat AI vs AI Agent: differenze
+
+## Confronto delle caratteristiche
+
+| Aspetto | Chat AI | AI Agent |
+|---------|---------|----------|
+| Interazione | Risponde a domande | Esegue azioni |
+| Autonomia | Limitata | Elevata |
+| Strumenti | Solo LLM | LLM + tool esterni |
+| Complessità | Singolo scambio | Multi-step planning |
+
+## Quando usare cosa
+
+- **Chat AI**: per spiegazioni, suggerimenti, completamento codice
+- **AI Agent**: per task complessi che richiedono più passi e uso di strumenti
+
+---
+
+# LM Studio: eseguire LLM in locale
+
+LM Studio permette di scaricare ed eseguire modelli LLM sul proprio computer.
+
+
+**Vantaggi**: privacy, nessun costo API, lavoro offline
 
 ---
 
@@ -220,7 +402,7 @@ Ing. Giancarlo Degani
 
 Testo da dare all'assistente:
 
-```
+```text
 Ho un programma C su CLion. Scrivi una funzione C99 che calcola la media di un array di int.
 Non usare librerie extra. Mantieni i parametri const ove possibile. Aggiungi un breve commento.
 Restituisci solo il codice della funzione.
@@ -257,7 +439,7 @@ double mean_ints(const int *values, size_t count) {
 
 Esempio di prompt per un `segmentation fault`:
 
-```
+```text
 Ho un segmentation fault in questa funzione C. Ecco la funzione e l'input che lo causa.
 Spiega la causa probabile e proponi una correzione minimale.
 ```
@@ -514,7 +696,7 @@ double normalize_int(int value, int min, int max) {
 
 # Ora 3 - Template: generazione funzione
 
-```
+```text
 Contesto: programma C per gestione array di int.
 Compito: scrivi funzione C99 che trova il massimo.
 Vincoli: niente librerie extra, gestisci array vuoto.
@@ -525,7 +707,7 @@ Output: solo codice della funzione, con breve commento.
 
 # Ora 3 - Template: debug
 
-```
+```text
 Ho questo warning di clang: ...
 Ecco la funzione minima: ...
 Spiega la causa probabile e proponi una patch minima.
@@ -669,7 +851,7 @@ int find_item(const Item *items, size_t count, const char *name) {
 
 # Ora 5 - Debug: schema di prompt
 
-```
+```text
 Ho questo warning: ...
 Ecco la funzione minima: ...
 Che cosa significa e come correggerlo con minima modifica?
@@ -1028,7 +1210,7 @@ int main(void) {
 
 # Prompt per refactoring sicuro
 
-```
+```text
 Ecco questa funzione C. Migliora leggibilità senza cambiare output.
 Non introdurre malloc. Mantieni i nomi pubblici.
 Restituisci solo il codice modificato.
