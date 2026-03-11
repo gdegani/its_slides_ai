@@ -1,4 +1,16 @@
 
+# 🎯 Attività di apertura (Miro)
+
+Prima di iniziare, rispondi su Miro con un post-it:
+
+- **Cosa sai già dell'AI?** (giallo)
+- **Dove l'hai usata?** (verde)
+- **Cosa speri di imparare oggi?** (blu)
+
+⏱️ 5 minuti — poi confronto rapido con il gruppo
+
+---
+
 # Argomenti del corso
 
 - Introduzione alla Programmazione Assistita da AI
@@ -8,7 +20,22 @@
 
 ---
 
-# Terminologia
+# Terminologia — Matching Game (Miro)
+
+Collega ogni termine alla sua definizione su Miro:
+
+| Termine | Definizione |
+|---------|-------------|
+| Modello | ? |
+| Contesto | ? |
+| Prompt | ? |
+| Agent | ? |
+
+⏱️ 3 minuti in coppia, poi verifica insieme
+
+---
+
+# Terminologia — Soluzioni
 
 - **Modello**: rete neurale addestrata a prevedere la parola/token successivo
 - **Contesto**: finestra limitata di testo che guida la risposta
@@ -16,8 +43,12 @@
 - **Agent**: sistema che combina il modello con strumenti esterni e loop di ragionamento
 
 ---
+layout: two-cols
+---
 
 # Machine Learning e Deep Learning
+
+::left::
 
 ## Machine Learning (ML)
 
@@ -27,14 +58,24 @@ Sottocampo dell'AI dove i sistemi **imparano dai dati** senza essere programmati
 
 Sottocampo del ML che usa **reti neurali artificiali profonde** (molti livelli) per apprendere rappresentazioni complesse.
 
+::right::
+
 ## Relazione gerarchica
 
-```mermaid
-graph TD
-    A[Intelligenza Artificiale] --> B[Machine Learning]
-    B --> C[Deep Learning]
-    C --> D[Large Language Models]
-```
+<div class="flex items-center justify-center mt-4">
+  <div class="relative flex items-center justify-center rounded-full border-2 border-blue-400 bg-blue-50" style="width:260px;height:260px">
+    <span class="absolute top-3 text-blue-600 font-semibold text-xs">🧠 Intelligenza Artificiale</span>
+    <div class="relative flex items-center justify-center rounded-full border-2 border-green-400 bg-green-50" style="width:190px;height:190px">
+      <span class="absolute top-3 text-green-600 font-semibold text-xs">📊 Machine Learning</span>
+      <div class="relative flex items-center justify-center rounded-full border-2 border-yellow-400 bg-yellow-50" style="width:128px;height:128px">
+        <span class="absolute top-2 text-yellow-600 font-semibold text-xs">🔬 Deep Learning</span>
+        <div class="flex items-center justify-center rounded-full border-2 border-red-400 bg-red-50" style="width:72px;height:72px">
+          <span class="text-red-600 font-semibold text-center leading-tight" style="font-size:0.6rem">📝 LLM</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 ---
 
@@ -73,16 +114,19 @@ Permette al modello di "concentrarsi" su parti rilevanti del contesto quando gen
 
 # Come funzionano gli LLM: processo di generazione
 
-## Processo passo-passo
+```mermaid
+flowchart LR
+    A["📝 Testo"] --> B["🔤 Token"]
+    B --> C["🔢 Embedding"]
+    C --> D["⚙️ Transformer"]
+    D --> E["🎯 Predizione"]
+    E -->|"ripeti"| B
+```
 
-1. **Tokenizzazione**: il testo viene diviso in token (pezzi di parole)
-   - Esempio: `"printf"` → `["print", "f"]`
+1. **Tokenizzazione**: il testo viene diviso in token — es. `"printf"` → `["print", "f"]`
 2. **Embedding**: ogni token diventa un vettore numerico
-   - Rappresentazione matematica del significato
-3. **Elaborazione**: passaggio attraverso molti layer di trasformazione
-   - Centinaia di miliardi di operazioni matematiche
+3. **Elaborazione**: passaggio attraverso molti layer Transformer
 4. **Predizione**: il modello predice il token successivo più probabile
-   - Calcola probabilità per tutti i possibili token
 
 Il processo si ripete token per token fino a generare la risposta completa.
 
@@ -212,9 +256,15 @@ ChatGPT, Claude, Gemini, Perplexity, GitHub Copilot Chat
 
 # Cos'è un AI Agent
 
-Un **AI Agent** è un sistema AI più avanzato che può:
+Un **AI Agent** è un sistema AI più avanzato che può pianificare, agire e osservare in un loop continuo:
 
-- Pianificare sequenze di azioni
+```mermaid
+flowchart LR
+    A["🤔 Pianifica"] --> B["🔧 Agisci"]
+    B --> C["👀 Osserva"]
+    C --> A
+```
+
 - Usare strumenti esterni (API, database, esecuzione codice)
 - Prendere decisioni autonome
 - Eseguire task complessi multi-step
@@ -247,7 +297,15 @@ Sistema che cerca informazioni su web, legge documenti, scrive un report e lo in
 
 LM Studio permette di scaricare ed eseguire modelli LLM sul proprio computer.
 
+![LM Studio](/images/lmstudio1.png)
+
 **Vantaggi**: privacy, nessun costo API, lavoro offline
+
+## Come provarlo
+
+1. Scarica da lmstudio.ai
+2. Cerca un modello (es. Llama, Mistral)
+3. Scarica e avvia una chat locale
 
 ---
 
@@ -277,6 +335,69 @@ LM Studio permette di scaricare ed eseguire modelli LLM sul proprio computer.
 
 ---
 
+# Setup dell'ambiente: CLion + LM Studio
+
+Per usare un modello locale con **LM Studio** in CLion, configura **AI Assistant** con l'API OpenAI-compatible esposta dal server locale.
+
+- LM Studio espone modelli locali (es. Llama) come endpoint compatibile OpenAI
+- Integrabile nativamente in CLion tramite **AI Assistant**
+- Tutto gira in locale: massima privacy, nessun dato inviato al cloud
+
+> Ref: [JetBrains AI Assistant – Custom Models](https://www.jetbrains.com/help/ai-assistant/use-custom-models.html)
+
+---
+
+# Setup LM Studio
+
+- Avvia LM Studio > tab **Developer** > carica un modello (**Discover** → Download → Load)
+- Clic **Start Server** (default: `http://localhost:1234/v1`; annota la porta se cambia)
+- Testa il server dal terminale:
+
+```bash
+curl http://localhost:1234/v1/models
+```
+
+- La risposta JSON elenca i modelli caricati e pronti
+
+---
+
+# Config CLion AI Assistant
+
+- CLion > **Settings** (`Cmd+,`) > **Tools › AI Assistant**
+- **Third-party AI providers** › seleziona **LM Studio**
+- **Base URL**: `http://localhost:1234/v1` (aggiungi `/v1` se mancante)
+- **Model**: nome del modello dal server (es. `llama-3.1-8b`)
+- No API Key richiesta — inserisci `not-needed`
+- Clic **Test Connection** › Apply
+
+---
+
+# Uso in CLion con LM Studio
+
+- **Chat AI**: `Alt+Shift+A` oppure sidebar AI → chiedi codice, spiegazioni, debug
+- **Completions inline**: scrivi codice, l'AI suggerisce completamenti (accetta con `Tab`)
+- **Context-aware**: analizza file e repository per risposte più precise
+
+```text
+LM Studio → CLion
+├── Load model → Start Server (localhost:1234)
+├── Settings > AI > LM Studio > URL + Test Connection
+├── Usa: Chat (Alt+Shift+A), suggerimenti inline
+└── Verifica: curl http://localhost:1234/v1/models
+```
+
+---
+
+# Best Practices (LM Studio locale)
+
+- **Modello consigliato**: GGUF Q4/Q5, 7–13B parametri (4–8 GB VRAM)
+- **GPU**: abilita `nGPU layers` in LM Studio al massimo per il tuo hardware
+- **Privacy**: tutto locale e offline, nessun dato trasmesso
+- **Licenza AI Assistant**: prova gratuita 30 gg; verifica student pack JetBrains
+- Punto di partenza consigliato: **Llama 3.1 8B** (equilibrio velocità/qualità)
+
+---
+
 # Strumenti di lavoro
 
 - CLion con toolchain C configurata
@@ -297,6 +418,15 @@ LM Studio permette di scaricare ed eseguire modelli LLM sul proprio computer.
 ---
 
 # Flusso di lavoro assistito (pattern)
+
+```mermaid
+flowchart LR
+    A["📋 Definisci\ncontesto"] --> B["💬 Chiedi\noutput piccolo"]
+    B --> C["▶️ Compila\ne testa"]
+    C --> D["🔍 Verifica\nrisultato"]
+    D -->|"OK"| E["✅ Accetta"]
+    D -->|"Errori"| B
+```
 
 - Definisci il contesto: obiettivo, vincoli, file coinvolti
 - Chiedi un output piccolo e verificabile
@@ -348,135 +478,110 @@ double mean_ints(const int *values, size_t count) {
 
 ---
 
-# Ora 1 - Cosa vedrai
+# ⏰ Ora 1 — Panoramica e primo contatto
 
-- Ruolo dell'AI nello sviluppo C
-- Obiettivi pratici del corso e modalità d'uso in CLion
-- Aspettative: suggerimenti, non magia
+## Obiettivi
 
----
+- Ruolo dell'AI nello sviluppo C: suggerimenti, non magia
+- Setup: CLion + toolchain C (gcc/clang) + Copilot Chat
 
-# Ora 1 - Setup minimo
-
-- CLion installato con toolchain C (gcc/clang)
-- Progetto C vuoto per provare i prompt
-- Copilot Chat attivo per domande e correzioni rapide
-
----
-
-# Ora 1 - Perché usare AI ora
-
-- Ridurre tempo su boilerplate e ricerca API
-- Ottenere spiegazioni immediate di warning
-- Generare alternative e confrontarle rapidamente
-
----
-
-# Ora 1 - Rischi comuni
+## Rischi da conoscere subito
 
 - Accettare codice senza verifiche
-- Prompt vaghi che producono output inutili
+- Prompt vaghi → output inutili
 - Dipendenza dall'assistente per concetti base
 
----
+## Metriche di successo
 
-# Ora 1 - Metriche di successo
-
-- Compila al primo tentativo dopo piccole correzioni
-- Patch piccole e leggibili
-- Test eseguiti su casi limite
+- Compila dopo piccole correzioni — patch piccole e leggibili
 
 ---
 
-# Ora 1 - Terminologia rapida
+# ⏰ Ora 1 — Mini esercizio (CLion)
 
-- Token: unità di testo che il modello predice
-- Context window: quante istruzioni può ricordare
-- Temperature: quanto variazione negli output (bassa = più deterministica)
-
----
-
-# Ora 1 - Mini esercizio
-
-- Chiedi all'assistente: "Spiega in 3 bullet cosa fa un compilatore C"
-- Verifica sintesi e chiarezza
-- Nota come risponde a prompt brevi
+1. Apri Copilot Chat in CLion
+2. Chiedi: *"Spiega in 3 bullet cosa fa un compilatore C"*
+3. Verifica sintesi e chiarezza
+4. Nota come risponde a prompt brevi
 
 ---
 
-# Ora 2 - Tipi di assistenti
+# ⏰ Ora 2 — Connection: Teach-back
 
-- Suggerimenti inline (completamento token)
-- Chat contestuale su selezione di codice
-- Agent che leggono file, eseguono test, propongono patch
+In coppia, spiega al compagno in 30 secondi:
 
----
+- **Cos'è un token?**
+- **Cosa cambia tra temperature 0.1 e 0.9?**
 
-# Ora 2 - Casi d'uso rapidi
-
-- Generare scheletro di funzioni
-- Spiegare warning del compilatore
-- Proporre test per un input edge
+⏱️ 2 minuti totali, poi confronto rapido
 
 ---
 
-# Ora 2 - Quando non usarlo
+# ⏰ Ora 2 — Tipi di assistenti AI
 
-- Codice che gestisce dati sensibili
+| Tipo | Come funziona | Esempio |
+|------|--------------|----------|
+| Inline | Completa token mentre scrivi | Suggerimento grigio in CLion |
+| Chat | Rispondi a domande su selezione di codice | Copilot Chat |
+| Agent | Legge file, esegue test, propone patch | Copilot Agent mode |
+
+## Quando **non** usarlo
+
+- Codice con dati sensibili
 - Parti del progetto non comprese a fondo
 - Urgenze senza tempo per verifiche
 
 ---
 
-# Ora 2 - Manuale vs assistito
+# ⏰ Ora 2 — Mini workflow (CLion)
 
-- Manuale: controllo totale ma più lento
-- Assistito: velocità maggiore, richiede verifica
-- Obiettivo: combinare velocità e controllo
-
----
-
-# Ora 2 - Mini workflow
-
-- Scrivi commento della funzione
-- Genera con Copilot, accetta o rigenera
-- Compila subito e osserva warning
+1. Scrivi un commento che descrive la funzione desiderata
+2. Genera con Copilot, accetta o rigenera
+3. Compila subito e osserva warning
+4. Salva i prompt efficaci in un file riutilizzabile
 
 ---
 
-# Ora 2 - Salva le richieste efficaci
+# ⏰ Ora 2 — Esercizio (CLion)
 
-- Mantieni un file di prompt riutilizzabili
-- Annota il contesto e il risultato ottenuto
-- Riutilizza con piccole modifiche
+1. Chiedi a Copilot: *"Genera funzione C che somma array di int e gestisce null"*
+2. Compila e misura quanto devi correggere
+3. Aggiorna il prompt per ridurre le correzioni
+4. Confronta il tuo risultato con il compagno
 
----
-
-# Ora 2 - Esercizio
-
-- Chiedi: "Genera funzione C che somma array di int e gestisce null"
-- Compila e misura quanto devi correggere
-- Aggiorna il prompt per ridurre le correzioni
+⏱️ 15 minuti
 
 ---
 
-# Ora 3 - Antipattern di prompt
+# ⏰ Ora 3 — Connection: Prompt Buono vs Cattivo (Miro)
 
-- Prompt troppo generici: output inutilizzabile
-- Richieste doppie o contraddittorie
-- Incollare troppo codice irrilevante
+Guarda questi 2 prompt. Quale funziona meglio? Vota su Miro!
 
----
+**Prompt A**: *"Scrivi codice C"*
 
-# Ora 3 - Refinement iterativo
+**Prompt B**: *"Scrivi funzione C99 che trova il massimo in un array di int. Gestisci array vuoto. Solo codice con breve commento."*
 
-- Step 1: chiedi versione breve
-- Step 2: aggiungi vincoli (C99, niente allocazioni dinamiche)
-- Step 3: chiedi solo codice finale
+⏱️ 3 minuti — poi discussione
 
 ---
 
-# Ora 3 - Template: generazione funzione
+# ⏰ Ora 3 — Antipattern di prompt
+
+- ❌ Troppo generici → output inutilizzabile
+- ❌ Richieste doppie o contraddittorie
+- ❌ Incollare troppo codice irrilevante
+
+## Refinement iterativo
+
+1. Chiedi versione breve
+2. Aggiungi vincoli (C99, niente allocazioni dinamiche)
+3. Chiedi solo codice finale
+
+---
+
+# ⏰ Ora 3 — Template pronti
+
+## Generazione funzione
 
 ```text
 Contesto: programma C per gestione array di int.
@@ -485,9 +590,7 @@ Vincoli: niente librerie extra, gestisci array vuoto.
 Output: solo codice della funzione, con breve commento.
 ```
 
----
-
-# Ora 3 - Template: debug
+## Debug
 
 ```text
 Ho questo warning di clang: ...
@@ -498,38 +601,77 @@ Restituisci solo la funzione corretta.
 
 ---
 
-# Ora 3 - Contesto minimo sufficiente
+# ⏰ Ora 3 — Esercizio: Prompt Duel (CLion)
 
-- Linguaggio e standard (C99)
-- Firma attesa e range input
-- Limiti: niente malloc se non necessario
+In coppia, stesso task: *"funzione C che conta le occorrenze di un valore in un array"*
 
----
+1. Ognuno scrive il proprio prompt
+2. Genera con Copilot
+3. Confrontate: chi ha ottenuto codice migliore?
+4. Discutete le differenze nei prompt
 
-# Ora 3 - Output controllato
-
-- Chiedi "solo codice" o "3 bullet"
-- Evita spiegazioni lunghe se non servono
-- Specifica se vuoi commenti o no
+⏱️ 15 minuti
 
 ---
 
-# Ora 4 - Checklist rapida prima di chiedere
+# ⏰ Ora 4 — Connection: Quiz veloce (Miro)
 
-- Qual è il file o la funzione? incolla solo il necessario
-- Vincoli dichiarati (C99, no librerie esterne, limiti di input)
-- Formato di output richiesto (solo codice, patch, 3 bullet)
-- Test o input di esempio da usare per validare
+Rispondi su Miro — quale template useresti per:
+
+1. Generare una funzione di ordinamento? → **Template ___**
+2. Capire un warning di clang? → **Template ___**
+3. Ottenere test per una funzione? → **Template ___**
+
+⏱️ 3 minuti
 
 ---
 
-# Glossario della Lezione 1
+# ⏰ Ora 4 — Checklist prima di chiedere all'AI
 
-- **Prompt**: istruzione testuale per il modello
-- **Token**: unità minima di testo
-- **Context window**: testo che il modello può considerare
-- **Hallucination**: output plausibile ma errato
-- **LLM**: Large Language Model
+```mermaid
+flowchart TD
+    A["Qual è il file/funzione?"] --> B["Incolla solo il necessario"]
+    B --> C["Dichiara vincoli:\nC99, no librerie, limiti input"]
+    C --> D["Scegli formato output:\nsolo codice / patch / 3 bullet"]
+    D --> E["Hai un test o input\ndi esempio?"]
+    E --> F["✅ Pronto per chiedere"]
+```
+
+---
+
+# ⏰ Ora 4 — Esercizio pratico (CLion)
+
+Metti in pratica la checklist:
+
+1. Scegli un task: *"funzione C che inverte un array in-place"*
+2. Compila la checklist mentalmente
+3. Scrivi il prompt e genera con Copilot
+4. Compila, testa, correggi
+
+⏱️ 15 minuti
+
+---
+
+# 📝 Glossario — Costruiscilo tu! (Miro)
+
+Scrivi su Miro la definizione con parole tue per:
+
+- **Prompt**
+- **Token**
+- **Context window**
+- **Hallucination**
+- **LLM**
+
+⏱️ 5 minuti — confronta con il compagno
+
+---
+
+# 🎫 Biglietto d'uscita — Lezione 1
+
+Scrivi su Miro un post-it con:
+
+- 🟢 **Una cosa che ho imparato oggi**
+- 🔴 **Una domanda che ho ancora**
 
 ---
 

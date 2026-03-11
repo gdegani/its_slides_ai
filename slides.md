@@ -30,7 +30,6 @@ title: Lezione 1 - Fondamenti di AI e LLM (4 ore)
 ---
 
 ---
-
 src: ./pages/slides_lezione2.md
 title: Lezioni 2-3 - Pratica con Copilot e Laboratorio (6 ore)
 

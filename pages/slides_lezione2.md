@@ -1,29 +1,19 @@
----
-theme: academic
-coverDate: "2026"
-title: Programmazione assistita dall'Intelligenza Artificiale - Lezioni 2-3
-
-class: text-center
-download: false
-drawings:
-  persist: true
-  enabled: dev
-  syncAll: false
-transition: slide-left
-mdc: true
-themeConfig:
-  paginationX: r
-  paginationY: b
-  paginationPagesDisabled: "1"
-lineNumbers: true
-
----
-
 # Programmazione assistita dall'Intelligenza Artificiale
 
 ## Lezioni 2 - 3: Pratica con GitHub Copilot
 
 Ing. Giancarlo Degani
+
+---
+
+# 🎯 Attività di apertura (Miro)
+
+Scrivi su Miro:
+
+- 🟢 **Una cosa che ricordo dalla Lezione 1**
+- 🟡 **Una cosa che vorrei approfondire oggi**
+
+⏱️ 3 minuti — poi confronto rapido
 
 ---
 
@@ -46,12 +36,18 @@ Ing. Giancarlo Degani
 
 ---
 
-# Prompt efficaci per agent e Copilot
+# Prompt efficaci: riepilogo dalla Lezione 1
 
 - Specifica standard e vincoli: "usa C99, niente librerie esterne, input validato"
 - Fornisci interfacce: firme funzioni, strutture dati attese, range input
 - Chiedi output in un formato: "solo codice", "spiega in 3 bullet", "mostra patch"
-- Includi esempi minimi: input atteso, comportamento edge
+
+```mermaid
+flowchart LR
+    A["📋 Contesto"] --> B["🎯 Compito"]
+    B --> C["⚠️ Vincoli"]
+    C --> D["📤 Formato output"]
+```
 
 ---
 
@@ -172,6 +168,19 @@ double normalize_int(int value, int min, int max) {
 
 # Ora 4 - Generazione C: I/O di base
 
+## ⏰ Connection: Hello Copilot (CLion)
+
+Crea un progetto C vuoto in CLion e prova:
+1. Scrivi `// function that reads an integer safely`
+2. Attendi il suggerimento grigio di Copilot
+3. Accetta o rigenera
+
+⏱️ 5 minuti
+
+---
+
+# Ora 4 - Generazione C: I/O di base (risultato atteso)
+
 ```c
 #include <stdio.h>
 
@@ -273,6 +282,27 @@ int find_item(const Item *items, size_t count, const char *name) {
 
 # Ora 5 - Warning comuni
 
+## ⏰ Connection: Bug Hunt (Miro)
+
+Trova il bug in ciascun snippet! Scrivi la risposta su Miro.
+
+```c
+// Snippet 1
+int a = 3.14;  // quale warning?
+
+// Snippet 2
+for (int i = 0; i < -1u; i++) {}  // perché loop infinito?
+
+// Snippet 3
+int x; printf("%d", x);  // cosa stampa?
+```
+
+⏱️ 5 minuti — poi verifica con Copilot
+
+---
+
+# Ora 5 - Warning comuni: tipi
+
 - Implicit conversion: perdita di precisione
 - Signed/unsigned mismatch in confronti
 - Variabili non inizializzate
@@ -329,11 +359,46 @@ int divide(int num, int den) {
 
 ---
 
+# Ora 5 - Esercizio: Debug Race (CLion)
+
+In coppia, stessa funzione con bug nascosto:
+
+```c
+int sum_positive(const int *arr, int count) {
+    int sum;
+    for (int i = 0; i <= count; i++) {
+        if (arr[i] > 0) sum += arr[i];
+    }
+    return sum;
+}
+```
+
+1. **Giocatore A**: trova i bug senza AI
+2. **Giocatore B**: usa Copilot Chat
+3. Chi corregge prima? Confrontate i risultati
+
+⏱️ 10 minuti
+
+---
+
 # Ora 6 - Refactoring: obiettivi
 
 - Leggibilità senza cambiare comportamento
 - Ridurre duplicazione
 - Separare interfaccia (.h) da implementazione (.c)
+
+```mermaid
+flowchart LR
+    subgraph Prima
+        A["📄 math_utils.c\ndichiarazioni +\nimplementazione"]
+    end
+    subgraph Dopo
+        B["📋 math_utils.h\ndichiarazioni"]
+        C["📄 math_utils.c\nimplementazione"]
+        B --> C
+    end
+    Prima --> Dopo
+```
 
 ---
 
@@ -383,11 +448,16 @@ int clamp_int(int value, int min, int max) {
 
 ---
 
-# Ora 6 - Esercizio
+# Ora 6 - Esercizio: Refactoring Sprint (CLion)
 
-- Prendi la funzione `find_value`
-- Chiedi all'assistente di estrarre controlli in funzione dedicata
-- Verifica che il comportamento resti invariato
+Sfida a tempo!
+
+1. Prendi la funzione `find_value`
+2. Chiedi a Copilot di estrarre controlli in funzione dedicata
+3. Separa in `.h` e `.c`
+4. Verifica che compili senza warning
+
+⏱️ 10 minuti — chi finisce per primo?
 
 ---
 
@@ -416,15 +486,18 @@ int main(void) {
 }
 ```
 
-- Esegui e correggi se un assert fallisce
-
 ---
 
-# Ora 7 - Test tabellari
+# Ora 7 - Test tabellari: esempio visivo
 
-- Prepara tabella input/output attesi
-- Chiedi all'assistente di generare codice di test
-- Verifica ogni riga della tabella
+| Input | Funzione | Expected | Actual | Pass? |
+|-------|----------|----------|--------|-------|
+| `{1,2,3}`, target=2 | `find_value` | `1` | `1` | ✅ |
+| `NULL`, target=1 | `find_value` | `-1` | `-1` | ✅ |
+| `{}`, count=0, target=1 | `find_value` | `-1` | ? | ❓ |
+| `{5,5,5}`, min/max | `range_min_max` | `5/5` | ? | ❓ |
+
+Chiedi all'assistente di generare il codice di test per ogni riga.
 
 ---
 
@@ -444,15 +517,32 @@ int main(void) {
 
 ---
 
-# Ora 7 - Esercizio
+# Ora 7 - Esercizio: Test Factory (CLion)
 
-- Scrivi test per `range_min_max`
+Sfida: genera il maggior numero di **test validi** per `range_min_max` in 5 minuti!
+
 - Includi array con tutti valori uguali
+- Prova array con un solo elemento
+- Testa con `NULL` e count=0
 - Confronta con una versione proposta dall'assistente
+
+⏱️ 5 minuti — chi produce più test che passano?
 
 ---
 
 # Ora 8 - Workflow in team con AI
+
+## ⏰ Connection: Prompt Gallery (Miro)
+
+Condividi su Miro il tuo **miglior prompt** usato finora.
+
+Vota con 👍 i prompt più efficaci degli altri!
+
+⏱️ 5 minuti
+
+---
+
+# Ora 8 - Lavorare in team con AI
 
 - Condividi prompt efficaci e risultati
 - Definisci standard di stile e naming
@@ -460,11 +550,11 @@ int main(void) {
 
 ---
 
-# Ora 8 - Senza Git: versioni
+# Ora 8 - Lavorare in team con AI
 
-- Usa cartelle per versioni datate (es. src_2026-01-16)
-- Mantieni un changelog testuale
-- Salva patch generate dall'assistente per confronto
+- Condividi prompt efficaci e risultati
+- Definisci standard di stile e naming
+- Fai review reciproca delle proposte AI
 
 ---
 
@@ -473,128 +563,117 @@ int main(void) {
 - Scrivi tu la struttura, fai completare dettagli
 - Chiedi spiegazioni brevi delle scelte
 - Interrompi e riparti se l'output diventa rumoroso
+- L'assistente dimentica se il prompt è lungo: riassumi!
 
 ---
 
-# Ora 8 - Limiti di contesto
+# Ora 8 - Esercizio di gruppo (CLion)
 
-- L'assistente dimentica se il prompt è lungo
-- Riassumi il file o incolla solo la parte rilevante
-- Aggiorna il prompt quando cambi obiettivo
+Progetto collaborativo:
 
----
+1. Dividi un problema in funzioni (es. "programma che legge N interi, trova min/max, e stampa statistiche")
+2. Assegna a ciascuno un prompt per generare la propria parte
+3. Integra e testa insieme in CLion
+4. Verifica con la checklist:
+   - ☐ Codice compila?
+   - ☐ Input invalidi gestiti?
+   - ☐ Commenti essenziali e aggiornati?
 
-# Ora 8 - Esercizio di gruppo
-
-- Dividi un problema in funzioni
-- Assegna a ciascuno un prompt per generare la propria parte
-- Integra e testa insieme in CLion
-
----
-
-# Ora 8 - Checklist di revisione
-
-- Codice compila?
-- Input invalidi gestiti?
-- Commenti essenziali e aggiornati?
+⏱️ 20 minuti
 
 ---
 
-# Ora 9 - Laboratorio guidato: passo 1
+# 🎫 Biglietto d'uscita — Lezione 2 (Miro)
 
-- Crea progetto C in CLion
-- Aggiungi file `main.c`
-- Verifica build senza codice (deve compilare)
+Scrivi su Miro un post-it con:
 
----
-
-# Ora 9 - Laboratorio: passo 2
-
-- Implementa `read_int_safe`
-- Chiedi all'assistente di generare test manuali
-- Esegui e registra output
+- 🟢 **Il mio prompt più efficace di oggi**
+- 🔴 **Cosa mi ha sorpreso dell'AI**
 
 ---
 
-# Ora 9 - Laboratorio: passo 3
+# ⏰ Ora 9 — Sfida aperta di laboratorio (CLion)
 
-- Aggiungi `find_value` e test
-- Indica all'assistente i casi limite che vuoi coprire
-- Consolida in un file di test unico
+## Il tuo mini-progetto
 
----
+Costruisci un programma C con:
 
-# Ora 9 - Laboratorio: passo 4
+- ☐ Almeno **2 funzioni** in file separati (.h/.c)
+- ☐ Almeno **3 test** con assert
+- ☐ Gestione di **input non validi**
+- ☐ Un breve **README** con: funzioni, test eseguiti, problemi aperti
 
-- Refactoring: estrai header `math_utils.h`
-- Verifica inclusioni e guardie multiple
-- Ricompila dopo ogni spostamento
+Usa l'AI come vuoi, ma **documenta ogni interazione** nelle note!
 
----
-
-# Ora 9 - Laboratorio: passo 5
-
-- Aggiungi log temporanei per un bug simulato
-- Chiedi all'assistente di spiegare un warning generato ad hoc
-- Rimuovi log dopo la fix
+⏱️ 50 minuti
 
 ---
 
-# Ora 9 - Laboratorio: passo 6
+# Ora 9 — Suggerimenti per il laboratorio
 
-- Redigi una breve nota (README) con: funzioni, test eseguiti, problemi aperti
-- Chiedi all'assistente di sintetizzare in 3 bullet
-- Conserva note per l'ora 10
+Idee di progetto (scegli una):
+
+1. **Calcolatore statistiche**: leggi N interi, calcola media, min, max
+2. **Gestore rubrica**: array di struct con nome e valore, cerca per nome
+3. **Validatore input**: leggi stringhe numeriche e verifica formato
+
+## Passi consigliati
+
+1. Crea progetto e `main.c` — verifica build
+2. Implementa funzioni con Copilot
+3. Estrai header e separa file
+4. Scrivi test con assert
+5. Redigi README con l'aiuto dell'assistente
 
 ---
 
-# Ora 10 - Preparazione al test
+# ⏰ Ora 10 — Teach-back (15 min)
 
-- Raccogli i prompt che hanno funzionato
-- Prepara snippet riutilizzabili (I/O, test, clamp)
-- Decidi tempo per generazione vs verifica
+Prima del test, consolidamento in coppia:
+
+1. **Insegna al compagno** un concetto chiave del corso (2 min ciascuno)
+2. **Scrivi su Miro** i 3 comandi/pattern più utili che hai scoperto
+3. **Raccogli** i prompt e snippet riutilizzabili
+
+⏱️ 15 minuti
 
 ---
 
-# Ora 10 - Regole d'uso dell'AI
+# ⏰ Ora 10 — Test finale
 
-- Puoi chiedere chiarimenti e snippet
+## Regole
+
+- Durata: **60 minuti**, individuale
+- Puoi usare AI: chiarimenti e snippet
 - Devi verificare compilazione e correttezza
 - Indica nelle note dove hai usato l'assistente
 
----
-
-# Ora 10 - Strategia di tempo
+## Strategia di tempo consigliata
 
 - 10' lettura traccia e pianificazione
 - 30' implementazione con piccoli test
 - 20' verifica e pulizia
 
----
+## Consegna
 
-# Ora 10 - Rubrica di valutazione
-
-- Corretta esecuzione dei requisiti
-- Gestione input non validi
-- Chiarezza di codice e commenti essenziali
-- Uso controllato dell'AI (tracciato nelle note)
+- Repository o archivio con codice e breve README
 
 ---
 
-# Ora 10 - Esempio di nota finale
+# Ora 10 — Rubrica di valutazione
+
+| Criterio | Peso |
+|----------|------|
+| Corretta esecuzione dei requisiti | ⭐⭐⭐ |
+| Gestione input non validi | ⭐⭐ |
+| Chiarezza di codice e commenti | ⭐⭐ |
+| Uso controllato dell'AI (tracciato) | ⭐ |
+
+## Esempio di nota finale
 
 - "Ho usato l'assistente per generare skeleton di `find_value`"
 - "Ho aggiunto io controlli su null e test"
 - "Warning risolto: signed/unsigned mismatch"
-
----
-
-# Ora 10 - Test finale (ore 9-10)
-
-- Durata: 60 minuti (1h), individuale
-- Consegna: repository o archivio con codice e breve README
-- Valutazione: correttezza, chiarezza del codice, capacità di usare l'AI in modo controllato
-- Suggerimento: preparare snippet e prompt riutilizzabili durante il corso
 
 ---
 
@@ -622,12 +701,16 @@ int main(void) {
 
 ---
 
-# Glossario della Lezione 2-3
+# 📝 Glossario — Costruiscilo tu! (Miro)
 
-- **Patch**: frammento di codice per correggere o migliorare
-- **Edge case**: caso limite o condizione eccezionale
-- **Refactoring**: ristrutturazione di codice mantenendo il comportamento
-- **Assert**: controllo di condizione per verifica durante debug
+Scrivi la definizione con parole tue per:
+
+- **Patch**
+- **Edge case**
+- **Refactoring**
+- **Assert**
+
+⏱️ 3 minuti — confronta con il compagno
 
 ---
 
@@ -645,8 +728,18 @@ int main(void) {
 # Risorse consigliate
 
 - Documentazione CLion per C
-- Linee guide Copilot per uso sicuro
-- Esempi di prompt salvati durante il corso
+- Linee guida Copilot per uso sicuro
+- I prompt salvati durante il corso
+
+---
+
+# 🎫 Biglietto d'uscita finale (Miro)
+
+Scrivi su Miro:
+
+- 🟢 **La cosa più utile che ho imparato nel corso**
+- 🟡 **Come userò l'AI nel prossimo progetto**
+- 🔴 **Un consiglio per chi inizia**
 
 ---
 
