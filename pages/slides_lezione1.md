@@ -95,8 +95,25 @@ Sottocampo del ML che usa **reti neurali artificiali profonde** (molti livelli) 
 GPT-4, Claude, Gemini, Llama, DeepSeek
 
 ---
+layout: two-cols
+---
 
 # Architettura Transformer
+
+::left::
+
+```mermaid
+flowchart TD
+    A["📝 Input Tokens"] --> B["🔢 Embedding\n+ Positional Encoding"]
+    B --> C
+    subgraph C ["🔄 Transformer Block × N"]
+        D["👁️ Self-Attention"] --> E["➕ Add & Norm"]
+        E --> F["⚡ Feed-Forward"] --> G["➕ Add & Norm"]
+    end
+    C --> H["🎯 Predizione\nprossimo token"]
+```
+
+::right::
 
 Gli LLM moderni si basano sull'architettura **Transformer** (2017), che usa meccanismi di **attenzione** per elaborare il linguaggio.
 
