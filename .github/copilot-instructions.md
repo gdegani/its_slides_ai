@@ -18,7 +18,9 @@ Slides for the course "Programmazione assistita dall'Intelligenza Artificiale" (
 * Pedagogy: each example should illustrate a single concept; add brief context if the code is not self-explanatory.
 * Use images and diagrams where they can enhance understanding, but ensure they are relevant and not overly complex. Mind maps are welcome. 
 * Use mermaid for diagrams. 
-* Verifica che la slide sia completamente visibile e leggibile, evitando sovrapposizioni o elementi troppo piccoli. Usa un layout a due colonne se necessario per migliorare la leggibilità, in particolare quando ci sono molti punti elenco o codice.
+* Make sure every slide is fully visible and legible, avoiding overlapping or small elements. Use a two-column layout if necessary to improve readability, especially when there are many bullet points or code.
 * For code snippets, ensure they are properly formatted and syntax-highlighted for C, and that they are not too long to fit on a single slide without scrolling. Consider breaking longer code examples into multiple slides if necessary, to maintain readability and focus on key concepts.
 * Use Markdownlint or similar tools to check for formatting issues, and ensure that all slides adhere to the specified guidelines for language, code style, and structure.
+* Alway run markdonlint and a full build of the slides to check for any issues before finalizing the content. This will help catch any formatting errors, broken links, or other issues that could affect the presentation quality.
+* use the documents in the /reference folder as a source of inspiration for content examples, but do not copy them verbatim. Instead, adapt them to fit the specific topics being covered in the course, and ensure that they are simplified and focused on illustrating the key concepts without introducing unnecessary complexity.
 
