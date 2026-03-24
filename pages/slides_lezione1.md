@@ -1,81 +1,54 @@
+---
+layout: two-cols
+transition: slide-left
+---
 
-# 🎯 Attività di apertura (Miro)
+# Rispondi al sondaggio
 
-Prima di iniziare, rispondi su Miro con un post-it:
+Scansiona il QR code con il telefono
 
-- **Cosa sai già dell'AI?** (giallo)
-- **Dove l'hai usata?** (verde)
-- **Cosa speri di imparare oggi?** (blu)
+oppure
 
-⏱️ 5 minuti — poi confronto rapido con il gruppo
+vai su slido.com e inserisci il codice:
+
+## 1468 331
+
+::right::
+
+![QR Code](/images/qr-code-its-1.png)
+
+<!-- https://wall.sli.do/event/4JqN2FQ25AgprK61sixSzx?section=935314ea-1825-4ca1-bd24-50111172a8c6&integration=shared-present-mode&utm_source=slidoadmin -->
 
 ---
 
-# Argomenti del corso
+# Terminologia
 
-- Introduzione alla Programmazione Assistita da AI
-- Il Ruolo dell'Al come Assistente Intelligente
-- L'Arte del Prompt Efficace
-- Iterazione e Ottimizzazione dei Prompt
-
----
-
-# Terminologia — Matching Game (Miro)
-
-Collega ogni termine alla sua definizione su Miro:
+Quale è il significato di questi termini?
 
 | Termine | Definizione |
-|---------|-------------|
+| --- | --- |
 | Modello | ? |
 | Contesto | ? |
 | Prompt | ? |
 | Agent | ? |
 
-⏱️ 3 minuti in coppia, poi verifica insieme
-
 ---
 
-# Terminologia — Soluzioni
+# Terminologia — Tabella completa
 
-- **Modello**: rete neurale addestrata a prevedere la parola/token successivo
-- **Contesto**: finestra limitata di testo che guida la risposta
-- **Prompt**: istruzioni testuali usate per ottenere un comportamento desiderato
-- **Agent**: sistema che combina il modello con strumenti esterni e loop di ragionamento
+| Termine | Definizione |
+| --- | --- |
+| Modello | Rete neurale addestrata a prevedere il token successivo. |
+| Contesto | Finestra limitata di testo che guida la risposta del modello. |
+| Prompt | Istruzioni testuali usate per ottenere un comportamento desiderato. |
+| Agent | Sistema che combina il modello con strumenti esterni e loop di ragionamento. |
 
 ---
-layout: two-cols
+layout: figure
+figureUrl: /images/AI_venn.png
+figureCaption: "Source: Wikipedia - AI, ML, DL, LLM relationship"
+
 ---
-
-# Machine Learning e Deep Learning
-
-::left::
-
-## Machine Learning (ML)
-
-Sottocampo dell'AI dove i sistemi **imparano dai dati** senza essere programmati esplicitamente.
-
-## Deep Learning (DL)
-
-Sottocampo del ML che usa **reti neurali artificiali profonde** (molti livelli) per apprendere rappresentazioni complesse.
-
-::right::
-
-## Relazione gerarchica
-
-<div class="flex items-center justify-center mt-4">
-  <div class="relative flex items-center justify-center rounded-full border-2 border-blue-400 bg-blue-50" style="width:260px;height:260px">
-    <span class="absolute top-3 text-blue-600 font-semibold text-xs">🧠 Intelligenza Artificiale</span>
-    <div class="relative flex items-center justify-center rounded-full border-2 border-green-400 bg-green-50" style="width:190px;height:190px">
-      <span class="absolute top-3 text-green-600 font-semibold text-xs">📊 Machine Learning</span>
-      <div class="relative flex items-center justify-center rounded-full border-2 border-yellow-400 bg-yellow-50" style="width:128px;height:128px">
-        <span class="absolute top-2 text-yellow-600 font-semibold text-xs">🔬 Deep Learning</span>
-        <div class="flex items-center justify-center rounded-full border-2 border-red-400 bg-red-50" style="width:72px;height:72px">
-          <span class="text-red-600 font-semibold text-center leading-tight" style="font-size:0.6rem">📝 LLM</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 ---
 
@@ -96,62 +69,22 @@ GPT-4, Claude, Gemini, Llama, DeepSeek
 
 ---
 layout: two-cols
----
-
-# Architettura Transformer
-
-::left::
-
-```mermaid
-flowchart TD
-    A["📝 Input Tokens"] --> B["🔢 Embedding\n+ Positional Encoding"]
-    B --> C
-    subgraph C ["🔄 Transformer Block × N"]
-        D["👁️ Self-Attention"] --> E["➕ Add & Norm"]
-        E --> F["⚡ Feed-Forward"] --> G["➕ Add & Norm"]
-    end
-    C --> H["🎯 Predizione\nprossimo token"]
-```
-
-::right::
-
-Gli LLM moderni si basano sull'architettura **Transformer** (2017), che usa meccanismi di **attenzione** per elaborare il linguaggio.
-
-## Meccanismo di attenzione
-
-Permette al modello di "concentrarsi" su parti rilevanti del contesto quando genera ogni token.
-
-## Vantaggi rispetto a architetture precedenti
-
-- Elaborazione parallela (più veloce)
-- Cattura relazioni a lungo raggio nel testo
-- Scala efficacemente con dati e potenza di calcolo
-
----
-
-# Come funzionano gli LLM: processo di generazione
-
-```mermaid
-flowchart LR
-    A["📝 Testo"] --> B["🔤 Token"]
-    B --> C["🔢 Embedding"]
-    C --> D["⚙️ Transformer"]
-    D --> E["🎯 Predizione"]
-    E -->|"ripeti"| B
-```
-
-1. **Tokenizzazione**: il testo viene diviso in token — es. `"printf"` → `["print", "f"]`
-2. **Embedding**: ogni token diventa un vettore numerico
-3. **Elaborazione**: passaggio attraverso molti layer Transformer
-4. **Predizione**: il modello predice il token successivo più probabile
-
-Il processo si ripete token per token fino a generare la risposta completa.
 
 ---
 
 # LLM come strumenti probabilistici
 
-## Concetto fondamentale ⚠️
+## Esempio
+
+Input: `"Il sole sorge a..."`
+
+- `"est"` → 85%
+- `"oriente"` → 10%
+- `"ovest"` → 2%
+
+::right::
+
+## Concetto fondamentale
 
 Gli LLM **non comprendono** il linguaggio come gli umani.
 
@@ -162,14 +95,6 @@ Sono modelli statistici che predicono la sequenza di parole più probabile.
 - Dato un contesto (prompt), il modello calcola la probabilità di ogni possibile token successivo
 - Sceglie il token con probabilità più alta (o campiona dalla distribuzione)
 - Ripete il processo per generare testo completo
-
-## Esempio
-
-Input: `"Il sole sorge a..."`
-
-- `"est"` → 85%
-- `"oriente"` → 10%
-- `"ovest"` → 2%
 
 ---
 
@@ -188,7 +113,7 @@ Input: `"Il sole sorge a..."`
 - **Mancanza di ragionamento logico** vero
 - **Nessuna garanzia** di correttezza
 
-## Regola d'oro ⚠️
+## Regola d'oro
 
 **Valida sempre l'output** - compila, testa, verifica la logica del codice generato
 
@@ -217,6 +142,23 @@ Gli LLM permettono di controllare la casualità dell'output tramite il parametro
 
 ---
 
+# Temperature: effetto sulla distribuzione
+
+Prompt: `"Il sole sorge a..."` — come cambia la distribuzione dei token al variare della temperature.
+
+| Token | Temp 0.1 | Temp 0.7 | Temp 1.2 |
+| ------- | ---------- | ---------- | ---------- |
+| est | 95 % | 55 % | 30 % |
+| oriente | 4 % | 20 % | 22 % |
+| mattina | 1 % | 12 % | 18 % |
+| ovest | 0 % | 8 % | 16 % |
+| alba | 0 % | 5 % | 14 % |
+
+- **Bassa**: distribuzione concentrata, scelta quasi deterministica
+- **Alta**: distribuzione più uniforme, maggiore variabilità
+
+---
+
 # Context window: concetti base
 
 ## Cos'è il Context Window
@@ -237,12 +179,6 @@ Esempio: `"printf(\"Hello\");"` = circa 5-6 token
 ---
 
 # Context window: limiti pratici
-
-## Esempi di limiti nei modelli attuali
-
-- **GPT-3.5**: 4K-16K token (~3K-12K parole)
-- **GPT-4**: 8K-128K token (~6K-96K parole)
-- **Claude 3**: fino a 200K token (~150K parole)
 
 ## Implicazioni pratiche per lo sviluppo
 
@@ -277,8 +213,8 @@ Un **AI Agent** è un sistema AI più avanzato che può pianificare, agire e oss
 
 ```mermaid
 flowchart LR
-    A["🤔 Pianifica"] --> B["🔧 Agisci"]
-    B --> C["👀 Osserva"]
+    A["Pianifica"] --> B["Agisci"]
+    B --> C["Osserva"]
     C --> A
 ```
 
@@ -296,7 +232,7 @@ Sistema che cerca informazioni su web, legge documenti, scrive un report e lo in
 
 ## Confronto delle caratteristiche
 
-| Aspetto | Chat AI | AI Agent |
+| Componente | Chat AI | AI Agent |
 | --------- | --------- | ---------- |
 | Interazione | Risponde a domande | Esegue azioni |
 | Autonomia | Limitata | Elevata |
@@ -407,8 +343,12 @@ LM Studio → CLion
 
 # Best Practices (LM Studio locale)
 
-- **Modello consigliato**: GGUF Q4/Q5, 7–13B parametri (4–8 GB VRAM)
+- **Modello consigliato**: formato GGUF con quantizzazione Q4/Q5, 7–13B parametri (4–8 GB di VRAM)
 - **GPU**: abilita `nGPU layers` in LM Studio al massimo per il tuo hardware
+
+> **GGUF**: formato compatto per modelli quantizzati, eseguibili su hardware consumer.  
+> **VRAM**: memoria dedicata della GPU, necessaria per caricare il modello.
+
 - **Privacy**: tutto locale e offline, nessun dato trasmesso
 - **Licenza AI Assistant**: prova gratuita 30 gg; verifica student pack JetBrains
 - Punto di partenza consigliato: **Llama 3.1 8B** (equilibrio velocità/qualità)
@@ -438,10 +378,10 @@ LM Studio → CLion
 
 ```mermaid
 flowchart LR
-    A["📋 Definisci\ncontesto"] --> B["💬 Chiedi\noutput piccolo"]
-    B --> C["▶️ Compila\ne testa"]
-    C --> D["🔍 Verifica\nrisultato"]
-    D -->|"OK"| E["✅ Accetta"]
+    A["Definisci\ncontesto"] --> B["Chiedi\noutput piccolo"]
+    B --> C["Compila\ne testa"]
+    C --> D["Verifica\nrisultato"]
+    D -->|"OK"| E["Accetta"]
     D -->|"Errori"| B
 ```
 
@@ -495,7 +435,7 @@ double mean_ints(const int *values, size_t count) {
 
 ---
 
-# ⏰ Ora 1 — Panoramica e primo contatto
+# Panoramica e primo contatto
 
 ## Obiettivi
 
@@ -514,7 +454,7 @@ double mean_ints(const int *values, size_t count) {
 
 ---
 
-# ⏰ Ora 1 — Mini esercizio (CLion)
+# Mini esercizio (CLion)
 
 1. Apri Copilot Chat in CLion
 2. Chiedi: *"Spiega in 3 bullet cosa fa un compilatore C"*
@@ -523,21 +463,21 @@ double mean_ints(const int *values, size_t count) {
 
 ---
 
-# ⏰ Ora 2 — Connection: Teach-back
+# Connection: Teach-back
 
 In coppia, spiega al compagno in 30 secondi:
 
-- **Cos'è un token?**
-- **Cosa cambia tra temperature 0.1 e 0.9?**
+- **Cosè un token?**
+- **Cos cambia tra temperature 0.1 e 0.9?**
 
 ⏱️ 2 minuti totali, poi confronto rapido
 
 ---
 
-# ⏰ Ora 2 — Tipi di assistenti AI
+# Tipi di assistenti AI
 
 | Tipo | Come funziona | Esempio |
-|------|--------------|----------|
+| ------ | -------------- | ---------- |
 | Inline | Completa token mentre scrivi | Suggerimento grigio in CLion |
 | Chat | Rispondi a domande su selezione di codice | Copilot Chat |
 | Agent | Legge file, esegue test, propone patch | Copilot Agent mode |
@@ -550,7 +490,7 @@ In coppia, spiega al compagno in 30 secondi:
 
 ---
 
-# ⏰ Ora 2 — Mini workflow (CLion)
+# Mini workflow (CLion)
 
 1. Scrivi un commento che descrive la funzione desiderata
 2. Genera con Copilot, accetta o rigenera
@@ -559,7 +499,7 @@ In coppia, spiega al compagno in 30 secondi:
 
 ---
 
-# ⏰ Ora 2 — Esercizio (CLion)
+# Esercizio (CLion)
 
 1. Chiedi a Copilot: *"Genera funzione C che somma array di int e gestisce null"*
 2. Compila e misura quanto devi correggere
@@ -570,7 +510,7 @@ In coppia, spiega al compagno in 30 secondi:
 
 ---
 
-# ⏰ Ora 3 — Connection: Prompt Buono vs Cattivo (Miro)
+# Connection: Prompt Buono vs Cattivo (Miro)
 
 Guarda questi 2 prompt. Quale funziona meglio? Vota su Miro!
 
@@ -582,7 +522,7 @@ Guarda questi 2 prompt. Quale funziona meglio? Vota su Miro!
 
 ---
 
-# ⏰ Ora 3 — Antipattern di prompt
+# Antipattern di prompt
 
 - ❌ Troppo generici → output inutilizzabile
 - ❌ Richieste doppie o contraddittorie
@@ -596,7 +536,7 @@ Guarda questi 2 prompt. Quale funziona meglio? Vota su Miro!
 
 ---
 
-# ⏰ Ora 3 — Template pronti
+# Template pronti
 
 ## Generazione funzione
 
@@ -618,7 +558,7 @@ Restituisci solo la funzione corretta.
 
 ---
 
-# ⏰ Ora 3 — Esercizio: Prompt Duel (CLion)
+# Esercizio: Prompt Duel (CLion)
 
 In coppia, stesso task: *"funzione C che conta le occorrenze di un valore in un array"*
 
@@ -631,7 +571,7 @@ In coppia, stesso task: *"funzione C che conta le occorrenze di un valore in un 
 
 ---
 
-# ⏰ Ora 4 — Connection: Quiz veloce (Miro)
+# Connection: Quiz veloce (Miro)
 
 Rispondi su Miro — quale template useresti per:
 
@@ -643,7 +583,7 @@ Rispondi su Miro — quale template useresti per:
 
 ---
 
-# ⏰ Ora 4 — Checklist prima di chiedere all'AI
+# Checklist prima di chiedere all'AI
 
 ```mermaid
 flowchart TD
@@ -651,12 +591,12 @@ flowchart TD
     B --> C["Dichiara vincoli:\nC99, no librerie, limiti input"]
     C --> D["Scegli formato output:\nsolo codice / patch / 3 bullet"]
     D --> E["Hai un test o input\ndi esempio?"]
-    E --> F["✅ Pronto per chiedere"]
+    E --> F["Pronto per chiedere"]
 ```
 
 ---
 
-# ⏰ Ora 4 — Esercizio pratico (CLion)
+# Esercizio pratico (CLion)
 
 Metti in pratica la checklist:
 

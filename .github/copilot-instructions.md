@@ -23,4 +23,5 @@ Slides for the course "Programmazione assistita dall'Intelligenza Artificiale" (
 * Use Markdownlint or similar tools to check for formatting issues, and ensure that all slides adhere to the specified guidelines for language, code style, and structure.
 * Alway run markdonlint and a full build of the slides to check for any issues before finalizing the content. This will help catch any formatting errors, broken links, or other issues that could affect the presentation quality.
 * use the documents in the /reference folder as a source of inspiration for content examples, but do not copy them verbatim. Instead, adapt them to fit the specific topics being covered in the course, and ensure that they are simplified and focused on illustrating the key concepts without introducing unnecessary complexity.
+* do not suggest using Miro or other external tools for interactive activities, as the course is focused on programming and code examples. Instead, use Slidev's built-in features for interactivity, such as quizzes or polls, to engage students and reinforce learning.
 
