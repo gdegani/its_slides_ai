@@ -474,18 +474,10 @@ Lo stesso obiettivo con prompt diversi produce risultati molto diversi.
 
 Un buon prompt contiene quattro elementi:
 
-```mermaid
-mindmap
-  root((Prompt efficace))
-    Contesto
-      Informazioni di background
-    Obiettivo
-      Cosa vuoi ottenere
-    Vincoli
-      Limitazioni e requisiti
-    Formato
-      Struttura dell output
-```
+- Contesto: informazioni di background per guidare la risposta
+- Obiettivo: cosa vuoi ottenere
+- Vincoli: limitazioni e requisiti
+- Formato: struttura dell'output
 
 Non tutti servono sempre, ma più ne includi più la risposta sarà precisa.
 
@@ -640,6 +632,123 @@ Prova questi esercizi su un chatbot (locale o online):
 > "Fai una cosa con gli array in C"
 
 **Suggerimento**: applica i tre principi (chiarezza, specificità, contesto) e specifica il formato di output.
+
+---
+layout: two-cols
+---
+
+# Cos'è il System Prompt?
+
+Il **system prompt** è un'istruzione nascosta che definisce il **comportamento** dell'assistente AI prima ancora che l'utente scriva qualcosa.
+
+- Viene inviato **prima** del messaggio dell'utente
+- Stabilisce ruolo, tono, vincoli e regole
+- L'utente finale di solito non lo vede
+
+::right::
+
+```mermaid
+flowchart TD
+    A["System Prompt\n(invisibile all'utente)"] --> B["LLM"]
+    C["Prompt utente"] --> B
+    B --> D["Risposta"]
+    style A fill:#e8f4fd,stroke:#000,color:#000
+    style C fill:#fff,stroke:#000,color:#000
+    style B fill:#fdf4e8,stroke:#000,color:#000
+    style D fill:#e8fde8,stroke:#000,color:#000
+```
+
+---
+
+# System Prompt: a cosa serve
+
+## Utilità principali
+
+- **Definire il ruolo**: "Sei un tutor di programmazione C per principianti"
+- **Impostare il tono**: formale, informale, tecnico, didattico
+- **Aggiungere vincoli**: "Rispondi solo in italiano", "Usa solo C99"
+- **Guidare il formato**: "Rispondi con bullet point", "Includi sempre un esempio"
+- **Limitare il perimetro**: "Non rispondere a domande fuori tema"
+
+## Perché è importante
+
+Senza system prompt, il modello risponde in modo generico. Con un system prompt ben scritto, le risposte diventano **coerenti**, **mirate** e **riutilizzabili**.
+
+---
+layout: two-cols
+---
+
+# Esempi di System Prompt
+
+## Esempio 1: Tutor C
+
+```text
+Sei un tutor di programmazione C
+per studenti principianti.
+Rispondi sempre in italiano.
+Usa solo C99 senza librerie esterne.
+Ogni risposta deve includere
+un esempio di codice compilabile.
+Spiega il codice riga per riga.
+```
+
+## Esempio 2: Code reviewer
+
+```text
+Sei un revisore di codice C esperto.
+Analizza il codice fornito e segnala:
+- errori logici
+- problemi di memoria
+- violazioni dello standard C99
+Rispondi in italiano con suggerimenti
+concreti di correzione.
+```
+
+::right::
+
+## Esempio 3: Assistente minimal
+
+```text
+Rispondi solo con codice C.
+Nessuna spiegazione.
+Nessun commento nel codice.
+Se la richiesta non riguarda
+il C, rispondi "Fuori tema".
+```
+
+## Esempio 4: Generatore di esercizi
+
+```text
+Sei un docente di programmazione C.
+Genera esercizi di difficoltà
+crescente per studenti ITS.
+Ogni esercizio deve avere:
+- descrizione del problema
+- input e output attesi
+- suggerimento (nascosto)
+Usa solo concetti base del C.
+```
+
+---
+
+# System Prompt: prova pratica
+
+## Prova su LM Studio o qualsiasi chatbot
+
+La maggior parte dei chatbot permette di impostare un system prompt nelle impostazioni della chat.
+
+## Esercizio guidato
+
+1. Apri un chatbot (LM Studio, ChatGPT, Claude...)
+2. Imposta questo system prompt:
+
+> "Sei un tutor di C per principianti. Rispondi in italiano. Ogni risposta include un esempio compilabile e una spiegazione passo-passo."
+
+3. Chiedi: *"Come funziona un ciclo for?"*
+4. Ora rimuovi il system prompt e rifai la stessa domanda
+5. Confronta le due risposte: quale è più utile?
+
+**Osservazione**: il system prompt rende le risposte più coerenti e adatte al contesto didattico.
 
 ---
 layout: figure-side
