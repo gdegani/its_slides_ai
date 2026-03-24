@@ -8,6 +8,7 @@
     "export": "slidev export"
   },
   "dependencies": {
+    "@fontsource-variable/noto-sans": "^5.2.10",
     "@slidev/cli": "^52.14.1",
     "@slidev/theme-default": "latest",
     "@slidev/theme-seriph": "latest",
@@ -17,7 +18,6 @@
   "version": "1.0.0",
   "description": "To start the slide show:",
   "main": "index.js",
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gdegani/its_slides_ai.git"
