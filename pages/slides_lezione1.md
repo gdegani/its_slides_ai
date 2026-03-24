@@ -267,6 +267,213 @@ Sistema che cerca informazioni su web, legge documenti, scrive un report e lo in
 - **AI Agent**: per task complessi che richiedono più passi e uso di strumenti
 
 ---
+
+# Cos'è un Prompt?
+
+Un **prompt** è l'istruzione testuale che dai a un LLM per ottenere una risposta.
+
+- È l'unico modo per comunicare con il modello
+- La qualità del prompt influenza direttamente la qualità dell'output
+- Scrivere prompt efficaci è una competenza fondamentale nell'era AI
+
+## Esempio minimo
+
+> "Elenca 3 vantaggi del linguaggio C"
+
+Provalo su qualsiasi chatbot: la risposta sarà immediata e coerente.
+
+---
+
+# Perché il Prompt è Importante?
+
+Lo stesso obiettivo con prompt diversi produce risultati molto diversi.
+
+## Prompt vago
+
+> "Parlami del C"
+
+## Prompt mirato
+
+> "Elenca 5 differenze tra C e Python, in formato tabella"
+
+- Il primo genera una risposta generica e lunga
+- Il secondo produce una tabella precisa e confrontabile
+
+**Regola pratica**: più sei preciso nella domanda, più utile sarà la risposta.
+
+---
+
+# Anatomia di un Prompt Efficace
+
+Un buon prompt contiene quattro elementi:
+
+```mermaid
+mindmap
+  root((Prompt efficace))
+    Contesto
+      Informazioni di background
+    Obiettivo
+      Cosa vuoi ottenere
+    Vincoli
+      Limitazioni e requisiti
+    Formato
+      Struttura dell output
+```
+
+Non tutti servono sempre, ma più ne includi più la risposta sarà precisa.
+
+---
+
+# Principio 1: Chiarezza
+
+Usa linguaggio preciso e senza ambiguità.
+
+## Confronto
+
+| | Prompt | Problema |
+| --- | --- | --- |
+| ❌ | "Spiega il sort" | Quale sort? In che linguaggio? |
+| ✅ | "Spiega come funziona il bubble sort su un array di interi, passo per passo" | Chiaro e verificabile |
+
+## Prova tu
+
+> "Spiega il concetto di variabile come se parlassi a uno studente delle superiori"
+
+Testa questo prompt su un chatbot locale: la risposta deve essere semplice e comprensibile.
+
+---
+
+# Principio 2: Specificità
+
+Fornisci dettagli concreti su cosa vuoi.
+
+## Confronto
+
+| | Prompt |
+| --- | --- |
+| ❌ | "Scrivi una funzione" |
+| ✅ | "Scrivi una funzione C che calcola la media di un array di 10 interi e restituisce il risultato come double" |
+
+## Checklist di specificità
+
+- Linguaggio? (C, Python, ...)
+- Tipo di dato? (interi, stringhe, ...)
+- Cosa deve restituire?
+- Come gestire errori o casi particolari?
+
+---
+
+# Principio 3: Contesto
+
+Dai all'LLM le informazioni di background necessarie.
+
+## Senza contesto
+
+> "Come leggo un file?"
+
+## Con contesto
+
+> "In un programma C che gira su Linux, come posso leggere un file di testo riga per riga usando solo la libreria standard?"
+
+Il contesto guida il modello verso la soluzione più adatta alla tua situazione reale.
+
+## Prova tu
+
+> "Sono uno studente che sta imparando il C. Spiegami cosa fa l'operatore % con un esempio numerico"
+
+---
+layout: two-cols
+---
+
+# Tecnica: Ragionamento Passo-Passo
+
+Chiedi all'LLM di ragionare **step-by-step** prima di rispondere.
+
+## Senza step-by-step
+
+> "Quanto fa 17 × 23 + 45?"
+
+## Con step-by-step
+
+> "Calcola 17 × 23 + 45. Mostra ogni passaggio del calcolo"
+
+Il modello commette meno errori quando "ragiona ad alta voce".
+
+::right::
+
+## Prova tu con codice
+
+> "Spiega passo dopo passo cosa stampa questo codice C:"
+>
+> ```c
+> int x = 5;
+> x = x + 3;
+> printf("%d\n", x * 2);
+> ```
+
+Confronta la risposta con e senza "passo dopo passo".
+
+---
+
+# Tecnica: Fornire Esempi (Few-Shot)
+
+Mostra al modello **il formato che vuoi** tramite un esempio.
+
+## Prompt senza esempio
+
+> "Converti queste temperature da Celsius a Fahrenheit: 0, 25, 100"
+
+## Prompt con esempio (few-shot)
+
+> "Converti temperature da Celsius a Fahrenheit.
+> Esempio: 0°C → 32°F.
+> Converti: 25°C, 100°C"
+
+Il modello capisce lo stile e il formato desiderato dall'esempio fornito.
+
+## Prova tu
+
+> "Traduci in inglese le seguenti frasi.
+> Esempio: 'Il gatto dorme' → 'The cat sleeps'.
+> Traduci: 'La macchina è rossa', 'Il libro è sul tavolo'"
+
+---
+
+# Errori Comuni nei Prompt
+
+| Errore | Esempio | Correzione |
+| --- | --- | --- |
+| Troppo vago | "Aiutami col codice" | "Correggi l'errore in questa funzione C: ..." |
+| Troppo lungo | Un prompt di 20 righe con 5 richieste diverse | Una richiesta per prompt |
+| Nessun contesto | "Perché non funziona?" | "Questa funzione C restituisce -1 invece di 0 quando..." |
+| Aspettative irrealistiche | "Scrivi un intero gestionale" | Scomponere in sotto-task piccoli |
+
+## Regola d'oro
+
+> Un **buon prompt** = una richiesta chiara + contesto sufficiente + formato desiderato
+
+---
+
+# Esercizio: Costruisci il Tuo Prompt
+
+Prova questi esercizi su un chatbot (locale o online):
+
+## Livello 1 – Base
+
+> Scrivi un prompt che chieda di spiegare la differenza tra `=` e `==` in C
+
+## Livello 2 – Specifico
+
+> Scrivi un prompt che chieda di generare una funzione C per contare quante volte un carattere appare in una stringa
+
+## Livello 3 – Avanzato
+
+> Riscrivi questo prompt vago in modo efficace:
+> "Fai una cosa con gli array in C"
+
+**Suggerimento**: applica i tre principi (chiarezza, specificità, contesto) e specifica il formato di output.
+
+---
 layout: figure-side
 figureUrl: /images/lmstudio1.png
 figureCaption: "LM Studio: eseguire LLM in locale"
