@@ -434,6 +434,79 @@ Sistema che cerca informazioni su web, legge documenti, scrive un report e lo in
 - **AI Agent**: per task complessi che richiedono più passi e uso di strumenti
 
 ---
+layout: figure-side
+figureUrl: /images/lmstudio1.png
+figureCaption: "LM Studio: eseguire LLM in locale"
+
+---
+
+# LM Studio: eseguire LLM in locale (DEMO)
+
+LM Studio permette di scaricare ed eseguire modelli LLM sul proprio computer.
+
+**Vantaggi**: privacy, nessun costo API, lavoro offline
+
+## Come provarlo
+
+1. Scarica da lmstudio.ai
+2. Cerca un modello (es. Llama, Mistral)
+3. Scarica e avvia una chat locale
+
+---
+
+# Installazione di LM Studio
+
+## Requisiti minimi
+
+- Sistema operativo: Windows 10+, macOS 13+, Linux (Ubuntu 22.04+)
+- RAM: almeno 8 GB (16 GB consigliati)
+- Spazio disco: almeno 10 GB liberi per il software + modello
+
+## Procedura
+
+1. Vai su **lmstudio.ai** e scarica il programma per il tuo sistema operativo
+2. Apri il file scaricato e segui l'installazione guidata
+3. Al primo avvio LM Studio mostra la schermata **Home**
+
+---
+
+# Scaricare il modello Llama 3.1 8B
+
+## Trovare il modello
+
+1. Apri LM Studio e vai nella sezione **Discover** (icona lente/bussola)
+2. Nella barra di ricerca digita: **Llama 3.1 8B Instruct**
+3. Cerca la versione **Q4_K_M** (buon compromesso qualità/dimensione, circa 4.9 GB)
+
+## Avviare il download
+
+4. Clicca il pulsante **Download** accanto alla variante Q4
+5. Attendi il completamento (dipende dalla velocità della connessione)
+6. A download finito il modello appare nella sezione **My Models**
+
+> **Q4** indica una quantizzazione a 4 bit: riduce la dimensione del modello mantenendo buona qualità nelle risposte.
+
+---
+
+# Primo test: chat con il modello locale
+
+## Avviare una conversazione
+
+1. Vai nella sezione **Chat** (icona fumetto)
+2. In alto seleziona il modello scaricato: **Llama-3.1-8B-Instruct-Q4_K_M**
+3. Scrivi un messaggio di prova nella chat:
+
+> "Elenca 3 vantaggi del linguaggio C in modo conciso"
+
+4. Verifica che la risposta arrivi in pochi secondi
+
+## Cosa osservare
+
+- La velocità dipende dal tuo hardware (CPU o GPU)
+- Tutto gira offline: puoi scollegare la rete e continuare a usarlo
+- Se il modello è troppo lento, prova a chiudere altre applicazioni pesanti
+
+---
 
 # Cos'è un Prompt?
 
@@ -474,18 +547,10 @@ Lo stesso obiettivo con prompt diversi produce risultati molto diversi.
 
 Un buon prompt contiene quattro elementi:
 
-```mermaid
-mindmap
-  root((Prompt efficace))
-    Contesto
-      Informazioni di background
-    Obiettivo
-      Cosa vuoi ottenere
-    Vincoli
-      Limitazioni e requisiti
-    Formato
-      Struttura dell output
-```
+- Contesto: informazioni di background per guidare la risposta
+- Obiettivo: cosa vuoi ottenere
+- Vincoli: limitazioni e requisiti
+- Formato: struttura dell'output
 
 Non tutti servono sempre, ma più ne includi più la risposta sarà precisa.
 
@@ -642,77 +707,123 @@ Prova questi esercizi su un chatbot (locale o online):
 **Suggerimento**: applica i tre principi (chiarezza, specificità, contesto) e specifica il formato di output.
 
 ---
-layout: figure-side
-figureUrl: /images/lmstudio1.png
-figureCaption: "LM Studio: eseguire LLM in locale"
+layout: two-cols
 
 ---
 
-# LM Studio: eseguire LLM in locale (DEMO)
+# Cos'è il System Prompt?
 
-LM Studio permette di scaricare ed eseguire modelli LLM sul proprio computer.
+Il **system prompt** è un'istruzione nascosta che definisce il **comportamento** dell'assistente AI prima ancora che l'utente scriva qualcosa.
 
-**Vantaggi**: privacy, nessun costo API, lavoro offline
+- Viene inviato **prima** del messaggio dell'utente
+- Stabilisce ruolo, tono, vincoli e regole
+- L'utente finale di solito non lo vede
 
-## Come provarlo
+::right::
 
-1. Scarica da lmstudio.ai
-2. Cerca un modello (es. Llama, Mistral)
-3. Scarica e avvia una chat locale
-
----
-
-# Installazione di LM Studio
-
-## Requisiti minimi
-
-- Sistema operativo: Windows 10+, macOS 13+, Linux (Ubuntu 22.04+)
-- RAM: almeno 8 GB (16 GB consigliati)
-- Spazio disco: almeno 10 GB liberi per il software + modello
-
-## Procedura
-
-1. Vai su **lmstudio.ai** e scarica il programma per il tuo sistema operativo
-2. Apri il file scaricato e segui l'installazione guidata
-3. Al primo avvio LM Studio mostra la schermata **Home**
+```mermaid
+flowchart TD
+    A["System Prompt\n(invisibile all'utente)"] --> B["LLM"]
+    C["Prompt utente"] --> B
+    B --> D["Risposta"]
+    style A fill:#e8f4fd,stroke:#000,color:#000
+    style C fill:#fff,stroke:#000,color:#000
+    style B fill:#fdf4e8,stroke:#000,color:#000
+    style D fill:#e8fde8,stroke:#000,color:#000
+```
 
 ---
 
-# Scaricare il modello Llama 3.1 8B
+# System Prompt: a cosa serve
 
-## Trovare il modello
+## Utilità principali
 
-1. Apri LM Studio e vai nella sezione **Discover** (icona lente/bussola)
-2. Nella barra di ricerca digita: **Llama 3.1 8B Instruct**
-3. Cerca la versione **Q4_K_M** (buon compromesso qualità/dimensione, circa 4.9 GB)
+- **Definire il ruolo**: "Sei un tutor di programmazione C per principianti"
+- **Impostare il tono**: formale, informale, tecnico, didattico
+- **Aggiungere vincoli**: "Rispondi solo in italiano", "Usa solo C99"
+- **Guidare il formato**: "Rispondi con bullet point", "Includi sempre un esempio"
+- **Limitare il perimetro**: "Non rispondere a domande fuori tema"
 
-## Avviare il download
+## Perché è importante
 
-4. Clicca il pulsante **Download** accanto alla variante Q4
-5. Attendi il completamento (dipende dalla velocità della connessione)
-6. A download finito il modello appare nella sezione **My Models**
+Senza system prompt, il modello risponde in modo generico. Con un system prompt ben scritto, le risposte diventano **coerenti**, **mirate** e **riutilizzabili**.
 
-> **Q4** indica una quantizzazione a 4 bit: riduce la dimensione del modello mantenendo buona qualità nelle risposte.
+---
+layout: two-cols
 
 ---
 
-# Primo test: chat con il modello locale
+# Esempi di System Prompt
 
-## Avviare una conversazione
+## Esempio 1: Tutor C
 
-1. Vai nella sezione **Chat** (icona fumetto)
-2. In alto seleziona il modello scaricato: **Llama-3.1-8B-Instruct-Q4_K_M**
-3. Scrivi un messaggio di prova nella chat:
+```text
+Sei un tutor di programmazione C
+per studenti principianti.
+Rispondi sempre in italiano.
+Usa solo C99 senza librerie esterne.
+Ogni risposta deve includere
+un esempio di codice compilabile.
+Spiega il codice riga per riga.
+```
 
-> "Elenca 3 vantaggi del linguaggio C in modo conciso"
+## Esempio 2: Code reviewer
 
-4. Verifica che la risposta arrivi in pochi secondi
+```text
+Sei un revisore di codice C esperto.
+Analizza il codice fornito e segnala:
+- errori logici
+- problemi di memoria
+- violazioni dello standard C99
+Rispondi in italiano con suggerimenti
+concreti di correzione.
+```
 
-## Cosa osservare
+::right::
 
-- La velocità dipende dal tuo hardware (CPU o GPU)
-- Tutto gira offline: puoi scollegare la rete e continuare a usarlo
-- Se il modello è troppo lento, prova a chiudere altre applicazioni pesanti
+## Esempio 3: Assistente minimal
+
+```text
+Rispondi solo con codice C.
+Nessuna spiegazione.
+Nessun commento nel codice.
+Se la richiesta non riguarda
+il C, rispondi "Fuori tema".
+```
+
+## Esempio 4: Generatore di esercizi
+
+```text
+Sei un docente di programmazione C.
+Genera esercizi di difficoltà
+crescente per studenti ITS.
+Ogni esercizio deve avere:
+- descrizione del problema
+- input e output attesi
+- suggerimento (nascosto)
+Usa solo concetti base del C.
+```
+
+---
+
+# System Prompt: prova pratica
+
+## Prova su LM Studio o qualsiasi chatbot
+
+La maggior parte dei chatbot permette di impostare un system prompt nelle impostazioni della chat.
+
+## Esercizio guidato
+
+1. Apri un chatbot (LM Studio, ChatGPT, Claude...)
+2. Imposta questo system prompt:
+
+> "Sei un tutor di C per principianti. Rispondi in italiano. Ogni risposta include un esempio compilabile e una spiegazione passo-passo."
+
+3. Chiedi: *"Come funziona un ciclo for?"*
+4. Ora rimuovi il system prompt e rifai la stessa domanda
+5. Confronta le due risposte: quale è più utile?
+
+**Osservazione**: il system prompt rende le risposte più coerenti e adatte al contesto didattico.
 
 ---
 
@@ -758,6 +869,96 @@ curl http://localhost:1234/v1/models
 - Ottenere spiegazioni rapide di warning e bug prima del debug manuale
 - Esplorare alternative di design senza riscrivere tutto a mano
 - Mantenere coerenza di stile e naming in team
+
+---
+
+# Creare un account GitHub
+
+Per usare **GitHub Copilot** serve un account GitHub attivo.
+
+## Passaggi
+
+1. Vai su **github.com** e clicca **Sign up**
+2. Inserisci email, password e username
+3. Conferma l'email ricevuta
+4. Attiva il piano **GitHub Copilot**:
+   - Gratuito per studenti tramite **GitHub Education** (github.com/education)
+   - Oppure prova gratuita 30 giorni con piano Pro
+
+## GitHub Education (consigliato)
+
+- Vai su **github.com/education** → **Join Global Campus**
+- Usa la tua email istituzionale (es. @its...)
+- Dopo l'approvazione, Copilot è incluso gratuitamente
+
+---
+
+# Installare GitHub Copilot in CLion
+
+## Passaggi
+
+1. Apri CLion → **Settings** (`Cmd+,` su Mac, `Ctrl+Alt+S` su Windows/Linux)
+2. Vai su **Plugins** → tab **Marketplace**
+3. Cerca **"GitHub Copilot"**
+4. Clicca **Install** → **Restart IDE**
+
+## Primo accesso
+
+1. Dopo il riavvio, compare la notifica **"Sign in to GitHub"**
+2. Clicca **Sign in** → si apre il browser
+3. Autorizza l'accesso con il tuo account GitHub
+4. Torna in CLion: compare il messaggio **"Copilot is ready"**
+
+## Verifica
+
+- Apri un file `.c` e inizia a scrivere: i suggerimenti appaiono in grigio
+- Premi `Tab` per accettare, `Esc` per rifiutare
+
+---
+
+# Installare JetBrains AI Assistant in CLion
+
+## Passaggi
+
+1. Apri CLion → **Settings** → **Plugins** → **Marketplace**
+2. Cerca **"AI Assistant"** (di JetBrains)
+3. Clicca **Install** → **Restart IDE**
+
+## Primo accesso
+
+1. Dopo il riavvio, clicca sull'icona **AI** nella sidebar a destra
+2. Effettua il login con il tuo account **JetBrains**
+3. Se non hai un account, crealo su **account.jetbrains.com**
+
+## Licenza
+
+- Prova gratuita di **30 giorni** inclusa
+- Studenti: verifica se il tuo **JetBrains Student Pack** include AI Assistant
+- Dopo la prova, necessario un abbonamento a pagamento
+
+---
+layout: two-cols
+
+---
+
+# Copilot vs AI Assistant: quale usare?
+
+| | **GitHub Copilot** | **AI Assistant** |
+| --- | --- | --- |
+| Produttore | GitHub/Microsoft | JetBrains |
+| Completamento inline | Sì | Sì |
+| Chat integrata | Sì | Sì |
+| Modelli locali (LM Studio) | No | Sì |
+| Costo studenti | Gratuito (Education) | Prova 30 gg |
+
+::right::
+
+## Consiglio pratico
+
+- **Copilot**: ottimo per completamento e chat, gratis con GitHub Education
+- **AI Assistant**: necessario per collegare **LM Studio** e modelli locali
+- Si possono installare **entrambi** senza conflitti
+- Nel corso useremo entrambi a seconda del contesto
 
 ---
 
