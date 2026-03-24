@@ -434,6 +434,79 @@ Sistema che cerca informazioni su web, legge documenti, scrive un report e lo in
 - **AI Agent**: per task complessi che richiedono più passi e uso di strumenti
 
 ---
+layout: figure-side
+figureUrl: /images/lmstudio1.png
+figureCaption: "LM Studio: eseguire LLM in locale"
+
+---
+
+# LM Studio: eseguire LLM in locale (DEMO)
+
+LM Studio permette di scaricare ed eseguire modelli LLM sul proprio computer.
+
+**Vantaggi**: privacy, nessun costo API, lavoro offline
+
+## Come provarlo
+
+1. Scarica da lmstudio.ai
+2. Cerca un modello (es. Llama, Mistral)
+3. Scarica e avvia una chat locale
+
+---
+
+# Installazione di LM Studio
+
+## Requisiti minimi
+
+- Sistema operativo: Windows 10+, macOS 13+, Linux (Ubuntu 22.04+)
+- RAM: almeno 8 GB (16 GB consigliati)
+- Spazio disco: almeno 10 GB liberi per il software + modello
+
+## Procedura
+
+1. Vai su **lmstudio.ai** e scarica il programma per il tuo sistema operativo
+2. Apri il file scaricato e segui l'installazione guidata
+3. Al primo avvio LM Studio mostra la schermata **Home**
+
+---
+
+# Scaricare il modello Llama 3.1 8B
+
+## Trovare il modello
+
+1. Apri LM Studio e vai nella sezione **Discover** (icona lente/bussola)
+2. Nella barra di ricerca digita: **Llama 3.1 8B Instruct**
+3. Cerca la versione **Q4_K_M** (buon compromesso qualità/dimensione, circa 4.9 GB)
+
+## Avviare il download
+
+4. Clicca il pulsante **Download** accanto alla variante Q4
+5. Attendi il completamento (dipende dalla velocità della connessione)
+6. A download finito il modello appare nella sezione **My Models**
+
+> **Q4** indica una quantizzazione a 4 bit: riduce la dimensione del modello mantenendo buona qualità nelle risposte.
+
+---
+
+# Primo test: chat con il modello locale
+
+## Avviare una conversazione
+
+1. Vai nella sezione **Chat** (icona fumetto)
+2. In alto seleziona il modello scaricato: **Llama-3.1-8B-Instruct-Q4_K_M**
+3. Scrivi un messaggio di prova nella chat:
+
+> "Elenca 3 vantaggi del linguaggio C in modo conciso"
+
+4. Verifica che la risposta arrivi in pochi secondi
+
+## Cosa osservare
+
+- La velocità dipende dal tuo hardware (CPU o GPU)
+- Tutto gira offline: puoi scollegare la rete e continuare a usarlo
+- Se il modello è troppo lento, prova a chiudere altre applicazioni pesanti
+
+---
 
 # Cos'è un Prompt?
 
@@ -635,6 +708,7 @@ Prova questi esercizi su un chatbot (locale o online):
 
 ---
 layout: two-cols
+
 ---
 
 # Cos'è il System Prompt?
@@ -676,6 +750,7 @@ Senza system prompt, il modello risponde in modo generico. Con un system prompt 
 
 ---
 layout: two-cols
+
 ---
 
 # Esempi di System Prompt
@@ -751,79 +826,6 @@ La maggior parte dei chatbot permette di impostare un system prompt nelle impost
 **Osservazione**: il system prompt rende le risposte più coerenti e adatte al contesto didattico.
 
 ---
-layout: figure-side
-figureUrl: /images/lmstudio1.png
-figureCaption: "LM Studio: eseguire LLM in locale"
-
----
-
-# LM Studio: eseguire LLM in locale (DEMO)
-
-LM Studio permette di scaricare ed eseguire modelli LLM sul proprio computer.
-
-**Vantaggi**: privacy, nessun costo API, lavoro offline
-
-## Come provarlo
-
-1. Scarica da lmstudio.ai
-2. Cerca un modello (es. Llama, Mistral)
-3. Scarica e avvia una chat locale
-
----
-
-# Installazione di LM Studio
-
-## Requisiti minimi
-
-- Sistema operativo: Windows 10+, macOS 13+, Linux (Ubuntu 22.04+)
-- RAM: almeno 8 GB (16 GB consigliati)
-- Spazio disco: almeno 10 GB liberi per il software + modello
-
-## Procedura
-
-1. Vai su **lmstudio.ai** e scarica il programma per il tuo sistema operativo
-2. Apri il file scaricato e segui l'installazione guidata
-3. Al primo avvio LM Studio mostra la schermata **Home**
-
----
-
-# Scaricare il modello Llama 3.1 8B
-
-## Trovare il modello
-
-1. Apri LM Studio e vai nella sezione **Discover** (icona lente/bussola)
-2. Nella barra di ricerca digita: **Llama 3.1 8B Instruct**
-3. Cerca la versione **Q4_K_M** (buon compromesso qualità/dimensione, circa 4.9 GB)
-
-## Avviare il download
-
-4. Clicca il pulsante **Download** accanto alla variante Q4
-5. Attendi il completamento (dipende dalla velocità della connessione)
-6. A download finito il modello appare nella sezione **My Models**
-
-> **Q4** indica una quantizzazione a 4 bit: riduce la dimensione del modello mantenendo buona qualità nelle risposte.
-
----
-
-# Primo test: chat con il modello locale
-
-## Avviare una conversazione
-
-1. Vai nella sezione **Chat** (icona fumetto)
-2. In alto seleziona il modello scaricato: **Llama-3.1-8B-Instruct-Q4_K_M**
-3. Scrivi un messaggio di prova nella chat:
-
-> "Elenca 3 vantaggi del linguaggio C in modo conciso"
-
-4. Verifica che la risposta arrivi in pochi secondi
-
-## Cosa osservare
-
-- La velocità dipende dal tuo hardware (CPU o GPU)
-- Tutto gira offline: puoi scollegare la rete e continuare a usarlo
-- Se il modello è troppo lento, prova a chiudere altre applicazioni pesanti
-
----
 
 # Avviare il server locale per CLion
 
@@ -867,6 +869,95 @@ curl http://localhost:1234/v1/models
 - Ottenere spiegazioni rapide di warning e bug prima del debug manuale
 - Esplorare alternative di design senza riscrivere tutto a mano
 - Mantenere coerenza di stile e naming in team
+
+---
+
+# Creare un account GitHub
+
+Per usare **GitHub Copilot** serve un account GitHub attivo.
+
+## Passaggi
+
+1. Vai su **github.com** e clicca **Sign up**
+2. Inserisci email, password e username
+3. Conferma l'email ricevuta
+4. Attiva il piano **GitHub Copilot**:
+   - Gratuito per studenti tramite **GitHub Education** (github.com/education)
+   - Oppure prova gratuita 30 giorni con piano Pro
+
+## GitHub Education (consigliato)
+
+- Vai su **github.com/education** → **Join Global Campus**
+- Usa la tua email istituzionale (es. @its...)
+- Dopo l'approvazione, Copilot è incluso gratuitamente
+
+---
+
+# Installare GitHub Copilot in CLion
+
+## Passaggi
+
+1. Apri CLion → **Settings** (`Cmd+,` su Mac, `Ctrl+Alt+S` su Windows/Linux)
+2. Vai su **Plugins** → tab **Marketplace**
+3. Cerca **"GitHub Copilot"**
+4. Clicca **Install** → **Restart IDE**
+
+## Primo accesso
+
+1. Dopo il riavvio, compare la notifica **"Sign in to GitHub"**
+2. Clicca **Sign in** → si apre il browser
+3. Autorizza l'accesso con il tuo account GitHub
+4. Torna in CLion: compare il messaggio **"Copilot is ready"**
+
+## Verifica
+
+- Apri un file `.c` e inizia a scrivere: i suggerimenti appaiono in grigio
+- Premi `Tab` per accettare, `Esc` per rifiutare
+
+---
+
+# Installare JetBrains AI Assistant in CLion
+
+## Passaggi
+
+1. Apri CLion → **Settings** → **Plugins** → **Marketplace**
+2. Cerca **"AI Assistant"** (di JetBrains)
+3. Clicca **Install** → **Restart IDE**
+
+## Primo accesso
+
+1. Dopo il riavvio, clicca sull'icona **AI** nella sidebar a destra
+2. Effettua il login con il tuo account **JetBrains**
+3. Se non hai un account, crealo su **account.jetbrains.com**
+
+## Licenza
+
+- Prova gratuita di **30 giorni** inclusa
+- Studenti: verifica se il tuo **JetBrains Student Pack** include AI Assistant
+- Dopo la prova, necessario un abbonamento a pagamento
+
+---
+layout: two-cols
+---
+
+# Copilot vs AI Assistant: quale usare?
+
+| | **GitHub Copilot** | **AI Assistant** |
+| --- | --- | --- |
+| Produttore | GitHub/Microsoft | JetBrains |
+| Completamento inline | Sì | Sì |
+| Chat integrata | Sì | Sì |
+| Modelli locali (LM Studio) | No | Sì |
+| Costo studenti | Gratuito (Education) | Prova 30 gg |
+
+::right::
+
+## Consiglio pratico
+
+- **Copilot**: ottimo per completamento e chat, gratis con GitHub Education
+- **AI Assistant**: necessario per collegare **LM Studio** e modelli locali
+- Si possono installare **entrambi** senza conflitti
+- Nel corso useremo entrambi a seconda del contesto
 
 ---
 
