@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="640" viewBox="0 0 960 640" role="img" aria-labelledby="title desc">
+  <title id="title">Context Window di un LLM</title>
+  <desc id="desc">Schema della finestra di contesto con token visibili e token fuori finestra.</desc>
+
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f8fafc" />
+      <stop offset="100%" stop-color="#e2e8f0" />
+    </linearGradient>
+    <linearGradient id="window" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0ea5e9" stop-opacity="0.20" />
+      <stop offset="100%" stop-color="#0ea5e9" stop-opacity="0.08" />
+    </linearGradient>
+    <style>
+      .t1 { font: 700 34px 'Noto Sans', Arial, sans-serif; fill: #0f172a; }
+      .t2 { font: 600 22px 'Noto Sans', Arial, sans-serif; fill: #0f172a; }
+      .t3 { font: 500 18px 'Noto Sans', Arial, sans-serif; fill: #334155; }
+      .tok { font: 600 16px 'Noto Sans', Arial, sans-serif; fill: #0f172a; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="960" height="640" fill="url(#bg)" rx="20" />
+
+  <text x="50" y="68" class="t1">Context Window</text>
+  <text x="50" y="102" class="t3">Solo una porzione del testo e visibile al modello in ogni momento.</text>
+
+  <rect x="50" y="150" width="860" height="84" rx="16" fill="#ffffff" stroke="#94a3b8" stroke-width="2" />
+  <text x="70" y="200" class="t2">Prompt + cronologia + output devono stare nella stessa finestra</text>
+
+  <rect x="50" y="270" width="860" height="280" rx="20" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" />
+
+  <rect x="300" y="288" width="410" height="244" rx="16" fill="url(#window)" stroke="#0284c7" stroke-width="3" />
+  <text x="380" y="320" class="t2">Finestra attiva</text>
+
+  <g>
+    <rect x="80" y="360" width="90" height="56" rx="10" fill="#e2e8f0" />
+    <rect x="185" y="360" width="90" height="56" rx="10" fill="#e2e8f0" />
+    <rect x="300" y="360" width="90" height="56" rx="10" fill="#bae6fd" />
+    <rect x="405" y="360" width="90" height="56" rx="10" fill="#bae6fd" />
+    <rect x="510" y="360" width="90" height="56" rx="10" fill="#7dd3fc" />
+    <rect x="615" y="360" width="90" height="56" rx="10" fill="#38bdf8" />
+    <rect x="720" y="360" width="90" height="56" rx="10" fill="#e2e8f0" />
+
+    <text x="104" y="394" class="tok">t-6</text>
+    <text x="209" y="394" class="tok">t-5</text>
+    <text x="324" y="394" class="tok">t-4</text>
+    <text x="429" y="394" class="tok">t-3</text>
+    <text x="534" y="394" class="tok">t-2</text>
+    <text x="639" y="394" class="tok">t-1</text>
+    <text x="744" y="394" class="tok">t+1</text>
+  </g>
+
+  <text x="86" y="458" class="t3">Fuori finestra: puo essere troncato o riassunto</text>
+  <text x="322" y="458" class="t3">Nel contesto: influenza direttamente la risposta</text>
+  <text x="720" y="458" class="t3">Nuovo token</text>
+
+  <text x="50" y="595" class="t3">Esempio: se la finestra e di 8K token, oltre il limite il modello non "vede" il testo precedente.</text>
+</svg>

@@ -44,9 +44,9 @@ Scrivi su Miro:
 
 ```mermaid
 flowchart LR
-    A["📋 Contesto"] --> B["🎯 Compito"]
-    B --> C["⚠️ Vincoli"]
-    C --> D["📤 Formato output"]
+    A["Contesto"] --> B["Compito"]
+    B --> C["Vincoli"]
+    C --> D["Formato output"]
 ```
 
 ---
@@ -166,11 +166,12 @@ double normalize_int(int value, int min, int max) {
 
 ---
 
-# Ora 4 - Generazione C: I/O di base
+# Generazione C: I/O di base
 
-## ⏰ Connection: Hello Copilot (CLion)
+## Connection: Hello Copilot (CLion)
 
 Crea un progetto C vuoto in CLion e prova:
+
 1. Scrivi `// function that reads an integer safely`
 2. Attendi il suggerimento grigio di Copilot
 3. Accetta o rigenera
@@ -179,7 +180,7 @@ Crea un progetto C vuoto in CLion e prova:
 
 ---
 
-# Ora 4 - Generazione C: I/O di base (risultato atteso)
+# Generazione C: I/O di base (risultato atteso)
 
 ```c
 #include <stdio.h>
@@ -197,7 +198,7 @@ int read_int_safe(void) {
 
 ---
 
-# Ora 4 - Generazione C: ricerca lineare
+# Generazione C: ricerca lineare
 
 ```c
 #include <stddef.h>
@@ -219,7 +220,7 @@ int find_value(const int *values, size_t count, int target) {
 
 ---
 
-# Ora 4 - Generazione C: min/max in una passata
+# Generazione C: min/max in una passata
 
 ```c
 #include <stddef.h>
@@ -244,7 +245,7 @@ int range_min_max(const int *values, size_t count, int *out_min, int *out_max) {
 
 ---
 
-# Ora 4 - Generazione C: strutture semplici
+# Generazione C: strutture semplici
 
 ```c
 #include <stddef.h>
@@ -272,7 +273,7 @@ int find_item(const Item *items, size_t count, const char *name) {
 
 ---
 
-# Ora 4 - Gestione errori
+# Gestione errori
 
 - Sempre controllare puntatori null
 - Restituire codici di errore chiari (0, -1)
@@ -280,9 +281,9 @@ int find_item(const Item *items, size_t count, const char *name) {
 
 ---
 
-# Ora 5 - Warning comuni
+# Warning comuni
 
-## ⏰ Connection: Bug Hunt (Miro)
+## Connection: Bug Hunt (Miro)
 
 Trova il bug in ciascun snippet! Scrivi la risposta su Miro.
 
@@ -301,7 +302,7 @@ int x; printf("%d", x);  // cosa stampa?
 
 ---
 
-# Ora 5 - Warning comuni: tipi
+# Warning comuni: tipi
 
 - Implicit conversion: perdita di precisione
 - Signed/unsigned mismatch in confronti
@@ -309,7 +310,7 @@ int x; printf("%d", x);  // cosa stampa?
 
 ---
 
-# Ora 5 - Debug: ordine di lettura
+# Debug: ordine di lettura
 
 - Leggi l'errore intero, non solo la prima riga
 - Identifica file e riga coinvolta
@@ -317,7 +318,7 @@ int x; printf("%d", x);  // cosa stampa?
 
 ---
 
-# Ora 5 - Debug: schema di prompt
+# Debug: schema di prompt
 
 ```text
 Ho questo warning: ...
@@ -328,7 +329,7 @@ Restituisci solo la funzione corretta.
 
 ---
 
-# Ora 5 - Esempio di correzione
+# Esempio di correzione
 
 ```c
 int divide(int num, int den) {
@@ -343,7 +344,7 @@ int divide(int num, int den) {
 
 ---
 
-# Ora 5 - Tracciare gli input
+# Tracciare gli input
 
 - Riproduci il bug con un input minimo
 - Aggiungi printf o log temporanei
@@ -351,7 +352,7 @@ int divide(int num, int den) {
 
 ---
 
-# Ora 5 - Domande utili da fare
+# Domande utili da fare
 
 - "Che cosa succede se den è zero?"
 - "Ci sono indici fuori limite?"
@@ -359,7 +360,7 @@ int divide(int num, int den) {
 
 ---
 
-# Ora 5 - Esercizio: Debug Race (CLion)
+# Esercizio: Debug Race (CLion)
 
 In coppia, stessa funzione con bug nascosto:
 
@@ -381,7 +382,7 @@ int sum_positive(const int *arr, int count) {
 
 ---
 
-# Ora 6 - Refactoring: obiettivi
+# Refactoring: obiettivi
 
 - Leggibilità senza cambiare comportamento
 - Ridurre duplicazione
@@ -390,11 +391,11 @@ int sum_positive(const int *arr, int count) {
 ```mermaid
 flowchart LR
     subgraph Prima
-        A["📄 math_utils.c\ndichiarazioni +\nimplementazione"]
+        A["math_utils.c\ndichiarazioni +\nimplementazione"]
     end
     subgraph Dopo
-        B["📋 math_utils.h\ndichiarazioni"]
-        C["📄 math_utils.c\nimplementazione"]
+        B["math_utils.h\ndichiarazioni"]
+        C["math_utils.c\nimplementazione"]
         B --> C
     end
     Prima --> Dopo
@@ -402,7 +403,7 @@ flowchart LR
 
 ---
 
-# Ora 6 - Separare header e sorgente
+# Separare header e sorgente
 
 ```c
 // math_utils.h
@@ -432,7 +433,7 @@ int clamp_int(int value, int min, int max) {
 
 ---
 
-# Ora 6 - Rinominare in sicurezza
+# Rinominare in sicurezza
 
 - Chiedi una lista di nomi alternativi
 - Sostituisci manualmente o con assistente
@@ -440,7 +441,7 @@ int clamp_int(int value, int min, int max) {
 
 ---
 
-# Ora 6 - Commenti essenziali
+# Commenti essenziali
 
 - Spiega il perché, non il cosa
 - Mantieni commenti brevi in inglese
@@ -448,7 +449,7 @@ int clamp_int(int value, int min, int max) {
 
 ---
 
-# Ora 6 - Esercizio: Refactoring Sprint (CLion)
+# Esercizio: Refactoring Sprint (CLion)
 
 Sfida a tempo!
 
@@ -461,7 +462,7 @@ Sfida a tempo!
 
 ---
 
-# Ora 7 - Test: checklist
+# Test: checklist
 
 - Casi nominali e casi limite
 - Input null, array vuoti, indici oltre range
@@ -469,7 +470,7 @@ Sfida a tempo!
 
 ---
 
-# Ora 7 - Test manuali con assert
+# Test manuali con assert
 
 ```c
 #include <assert.h>
@@ -488,7 +489,7 @@ int main(void) {
 
 ---
 
-# Ora 7 - Test tabellari: esempio visivo
+# Test tabellari: esempio visivo
 
 | Input | Funzione | Expected | Actual | Pass? |
 |-------|----------|----------|--------|-------|
@@ -501,7 +502,7 @@ Chiedi all'assistente di generare il codice di test per ogni riga.
 
 ---
 
-# Ora 7 - Gestione degli errori
+# Gestione degli errori
 
 - Testare percorsi negativi (null pointer, count zero)
 - Verificare codici di ritorno coerenti
@@ -509,7 +510,7 @@ Chiedi all'assistente di generare il codice di test per ogni riga.
 
 ---
 
-# Ora 7 - Valutare la copertura
+# Valutare la copertura
 
 - Non serve misurare numericamente, ma copri rami principali
 - Usa input piccoli e riproducibili
@@ -517,7 +518,7 @@ Chiedi all'assistente di generare il codice di test per ogni riga.
 
 ---
 
-# Ora 7 - Esercizio: Test Factory (CLion)
+# Esercizio: Test Factory (CLion)
 
 Sfida: genera il maggior numero di **test validi** per `range_min_max` in 5 minuti!
 
@@ -530,9 +531,9 @@ Sfida: genera il maggior numero di **test validi** per `range_min_max` in 5 minu
 
 ---
 
-# Ora 8 - Workflow in team con AI
+# Workflow in team con AI
 
-## ⏰ Connection: Prompt Gallery (Miro)
+## Connection: Prompt Gallery (Miro)
 
 Condividi su Miro il tuo **miglior prompt** usato finora.
 
@@ -542,7 +543,7 @@ Vota con 👍 i prompt più efficaci degli altri!
 
 ---
 
-# Ora 8 - Lavorare in team con AI
+# Lavorare in team con AI
 
 - Condividi prompt efficaci e risultati
 - Definisci standard di stile e naming
@@ -550,15 +551,7 @@ Vota con 👍 i prompt più efficaci degli altri!
 
 ---
 
-# Ora 8 - Lavorare in team con AI
-
-- Condividi prompt efficaci e risultati
-- Definisci standard di stile e naming
-- Fai review reciproca delle proposte AI
-
----
-
-# Ora 8 - Pair programming con AI
+# Pair programming con AI
 
 - Scrivi tu la struttura, fai completare dettagli
 - Chiedi spiegazioni brevi delle scelte
@@ -567,7 +560,7 @@ Vota con 👍 i prompt più efficaci degli altri!
 
 ---
 
-# Ora 8 - Esercizio di gruppo (CLion)
+# Esercizio di gruppo (CLion)
 
 Progetto collaborativo:
 
@@ -587,12 +580,12 @@ Progetto collaborativo:
 
 Scrivi su Miro un post-it con:
 
-- 🟢 **Il mio prompt più efficace di oggi**
-- 🔴 **Cosa mi ha sorpreso dell'AI**
+- Il mio prompt più efficace di oggi
+- Cosa mi ha sorpreso dell'AI
 
 ---
 
-# ⏰ Ora 9 — Sfida aperta di laboratorio (CLion)
+# Sfida aperta di laboratorio (CLion)
 
 ## Il tuo mini-progetto
 
@@ -609,7 +602,7 @@ Usa l'AI come vuoi, ma **documenta ogni interazione** nelle note!
 
 ---
 
-# Ora 9 — Suggerimenti per il laboratorio
+# Suggerimenti per il laboratorio
 
 Idee di progetto (scegli una):
 
@@ -627,7 +620,7 @@ Idee di progetto (scegli una):
 
 ---
 
-# ⏰ Ora 10 — Teach-back (15 min)
+# Teach-back (15 min)
 
 Prima del test, consolidamento in coppia:
 
@@ -639,7 +632,7 @@ Prima del test, consolidamento in coppia:
 
 ---
 
-# ⏰ Ora 10 — Test finale
+# Test finale
 
 ## Regole
 
@@ -660,7 +653,7 @@ Prima del test, consolidamento in coppia:
 
 ---
 
-# Ora 10 — Rubrica di valutazione
+# Rubrica di valutazione
 
 | Criterio | Peso |
 |----------|------|
@@ -699,18 +692,7 @@ Prima del test, consolidamento in coppia:
 - Chiedi una patch minima, non una riscrittura
 - Verifica include e tipi mancanti
 
----
-
-# 📝 Glossario — Costruiscilo tu! (Miro)
-
-Scrivi la definizione con parole tue per:
-
-- **Patch**
-- **Edge case**
-- **Refactoring**
-- **Assert**
-
-⏱️ 3 minuti — confronta con il compagno
+-
 
 ---
 

@@ -189,6 +189,28 @@ Esempio: `"printf(\"Hello\");"` = circa 5-6 token
 - Strategia: fornire solo il codice rilevante al task corrente
 
 ---
+layout: figure-side
+figureUrl: /images/context-window-llm.svg
+figureCaption: "Schema semplificato del context window di un LLM"
+zoom: 0.9
+
+---
+
+# Context window di un LLM
+
+La **context window** e la memoria a breve termine del modello:
+
+- Contiene prompt, cronologia recente e risposta in generazione
+- Ha una capienza massima misurata in token
+- Quando il limite e superato, le parti piu vecchie escono dalla finestra
+
+## Impatto pratico
+
+- Prompt lunghi riducono lo spazio per l'output
+- Meglio inviare solo il codice rilevante
+- Utile riassumere periodicamente il contesto
+
+---
 
 # Cos'è una Chat AI
 
@@ -232,8 +254,8 @@ Sistema che cerca informazioni su web, legge documenti, scrive un report e lo in
 
 ## Confronto delle caratteristiche
 
-| Componente | Chat AI | AI Agent |
-| --------- | --------- | ---------- |
+| **Componente** | **Chat AI** | **AI Agent** |
+| --- | --- | --- |
 | Interazione | Risponde a domande | Esegue azioni |
 | Autonomia | Limitata | Elevata |
 | Strumenti | Solo LLM | LLM + tool esterni |
@@ -245,12 +267,15 @@ Sistema che cerca informazioni su web, legge documenti, scrive un report e lo in
 - **AI Agent**: per task complessi che richiedono più passi e uso di strumenti
 
 ---
+layout: figure-side
+figureUrl: /images/lmstudio1.png
+figureCaption: "LM Studio: eseguire LLM in locale"
 
-# LM Studio: eseguire LLM in locale
+---
+
+# LM Studio: eseguire LLM in locale (DEMO)
 
 LM Studio permette di scaricare ed eseguire modelli LLM sul proprio computer.
-
-![LM Studio](/images/lmstudio1.png)
 
 **Vantaggi**: privacy, nessun costo API, lavoro offline
 
@@ -259,6 +284,19 @@ LM Studio permette di scaricare ed eseguire modelli LLM sul proprio computer.
 1. Scarica da lmstudio.ai
 2. Cerca un modello (es. Llama, Mistral)
 3. Scarica e avvia una chat locale
+
+---
+
+# Privacy: perché un LLM locale è vantaggioso
+
+- Prompt e codice restano sul tuo computer: minore rischio di esposizione di dati sensibili
+- Nessun invio obbligato a servizi cloud di terze parti
+- Maggior controllo su log, conservazione dati e accessi in laboratorio o in azienda
+- Più facile rispettare policy interne e vincoli di conformità
+
+## Nota pratica
+
+- Locale non significa "sicuro di default": servono comunque backup, cifratura disco e controllo accessi
 
 ---
 
@@ -606,29 +644,6 @@ Metti in pratica la checklist:
 4. Compila, testa, correggi
 
 ⏱️ 15 minuti
-
----
-
-# 📝 Glossario — Costruiscilo tu! (Miro)
-
-Scrivi su Miro la definizione con parole tue per:
-
-- **Prompt**
-- **Token**
-- **Context window**
-- **Hallucination**
-- **LLM**
-
-⏱️ 5 minuti — confronta con il compagno
-
----
-
-# 🎫 Biglietto d'uscita — Lezione 1
-
-Scrivi su Miro un post-it con:
-
-- 🟢 **Una cosa che ho imparato oggi**
-- 🔴 **Una domanda che ho ancora**
 
 ---
 
