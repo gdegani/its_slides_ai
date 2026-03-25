@@ -707,6 +707,127 @@ Prova questi esercizi su un chatbot (locale o online):
 **Suggerimento**: applica i tre principi (chiarezza, specificità, contesto) e specifica il formato di output.
 
 ---
+
+# Prompt efficaci = CRISPE
+
+- **C**larity (Chiarezza)
+- **R**ole (Ruolo)  
+- **I**nstructions (Istruzioni)
+- **S**teps (Passi)
+- **P**arameters (Parametri)
+- **E**xpectations (Aspettative)
+
+---
+
+# Template - CRISPE Prompt
+
+- Ruolo: Sei un [ESPERTO: insegnante/developer/analista]
+- Obiettivo: [COSA FARE]
+- Istruzioni: [DETTAGLI]
+- Passi: 1. [Passo1] 2. [Passo2]
+- Parametri: [Limiti: lunghezza, tono, formato]
+- Output: [JSON/lista/tabella]
+
+## Esempio
+
+```text
+Ruolo: Insegnante di informatica per diplomati
+Obiettivo: Spiega cos'è un LLM
+Istruzioni: Usa analogie semplici, evita matematica
+Passi: 1. Definizione 2. Esempio quotidiano 3. Limiti
+Output: 3 paragrafi numerati
+```
+
+---
+
+# Prompt efficaci = CO-STAR
+
+- **C**ontext (Contesto)
+- **O**bjective (Obiettivo)  
+- **S**tyle (Stile)
+- **T**one (Tono)
+- **A**udience (Pubblico)
+- **R**esponse (Risposta strutturata)
+
+---
+
+# Template - CO-STAR Prompt
+
+- Contesto: [Background]
+- Obiettivo: [Cosa ottenere]
+- Stile: [Formale/creativo/tecnico]
+- Tono: [Amichevole/autoritario]
+- Pubblico: [Livello: diplomati/esperti]
+- Risposta: [Formato: elenco/JSON/paragrafi]
+
+---
+zoom: 1.4
+
+---
+
+# Esempio CO-STAR Prompt
+
+```text
+Contesto: Sei un assistente AI che aiuta studenti a capire 
+concetti di informatica
+Obiettivo: Spiega cos'è un LLM
+Stile: Semplice e accessibile
+Tono: Amichevole e incoraggiante
+Pubblico: Studenti delle superiori
+Risposta: 3 paragrafi numerati con esempi quotidiani
+```
+
+---
+zoom: 1.4
+
+---
+
+# Esempio: Spiegazione Didattica
+
+```text
+CRISPE: 
+Ruolo: Insegnante diplomati IT
+Obiettivo: Spiega [CONCETTO]
+Istruzioni: Analogie quotidiane, 3 esempi
+Parametri: 300 parole max, italiano semplice
+Output: 1. Definizione 2. Esempio1 3. Esempio2 4. Limiti
+
+```
+
+---
+zoom: 1.4
+
+---
+
+# Esempio:  Coding Assistant
+
+```text
+COSTAR:
+Contesto: Linguaggio Python
+Obiettivo: Scrivi funzione [FUNZIONE]
+Stile: PEP8 compliant
+Tono: Commenti chiari
+Risposta: Codice + test + docstring
+
+```
+
+---
+zoom: 1.4
+
+---
+
+# Esempio: Analisi Testo
+
+```text
+RISE:
+Ruolo: Analista dati
+Input: [TESTO]
+Passi: 1. Identifica temi 2. Sentiment 3. Keywords
+Output: JSON strutturato
+
+```
+
+---
 layout: two-cols
 
 ---
@@ -767,7 +888,14 @@ un esempio di codice compilabile.
 Spiega il codice riga per riga.
 ```
 
+::right::
+
+<br>
+<br>
+<br>
+
 ## Esempio 2: Code reviewer
+
 
 ```text
 Sei un revisore di codice C esperto.
@@ -779,7 +907,12 @@ Rispondi in italiano con suggerimenti
 concreti di correzione.
 ```
 
-::right::
+---
+layout: two-cols
+
+---
+
+# Esempi di System Prompt
 
 ## Esempio 3: Assistente minimal
 
@@ -790,6 +923,12 @@ Nessun commento nel codice.
 Se la richiesta non riguarda
 il C, rispondi "Fuori tema".
 ```
+
+::right::
+
+<br>
+<br>
+<br>
 
 ## Esempio 4: Generatore di esercizi
 
