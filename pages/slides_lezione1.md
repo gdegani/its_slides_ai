@@ -47,6 +47,7 @@ Quale è il significato di questi termini?
 layout: figure
 figureUrl: /images/AI_venn.png
 figureCaption: "Source: Wikipedia - AI, ML, DL, LLM relationship"
+title: AI, ML, DL, LLM relationship
 
 ---
 
