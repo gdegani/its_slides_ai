@@ -6,6 +6,515 @@ Ing. Giancarlo Degani
 
 ---
 
+---
+
+# Esercizio: Costruisci il Tuo Prompt
+
+Prova questi esercizi su un chatbot (locale o online):
+
+## Livello 1 – Base
+
+> Scrivi un prompt che chieda di spiegare la differenza tra `=` e `==` in C
+
+## Livello 2 – Specifico
+
+> Scrivi un prompt che chieda di generare una funzione C per contare quante volte un carattere appare in una stringa
+
+## Livello 3 – Avanzato
+
+> Riscrivi questo prompt vago in modo efficace:
+> "Fai una cosa con gli array in C"
+
+**Suggerimento**: applica i tre principi (chiarezza, specificità, contesto) e specifica il formato di output.
+
+---
+
+# Prompt efficaci = CRISPE
+
+- **C**larity (Chiarezza)
+- **R**ole (Ruolo)  
+- **I**nstructions (Istruzioni)
+- **S**teps (Passi)
+- **P**arameters (Parametri)
+- **E**xpectations (Aspettative)
+
+---
+
+# Template - CRISPE Prompt
+
+- Ruolo: Sei un [ESPERTO: insegnante/developer/analista]
+- Obiettivo: [COSA FARE]
+- Istruzioni: [DETTAGLI]
+- Passi: 1. [Passo1] 2. [Passo2]
+- Parametri: [Limiti: lunghezza, tono, formato]
+- Output: [JSON/lista/tabella]
+
+## Esempio
+
+```text
+Ruolo: Insegnante di informatica per diplomati
+Obiettivo: Spiega cos'è un LLM
+Istruzioni: Usa analogie semplici, evita matematica
+Passi: 1. Definizione 2. Esempio quotidiano 3. Limiti
+Output: 3 paragrafi numerati
+```
+
+---
+
+# Prompt efficaci = CO-STAR
+
+- **C**ontext (Contesto)
+- **O**bjective (Obiettivo)  
+- **S**tyle (Stile)
+- **T**one (Tono)
+- **A**udience (Pubblico)
+- **R**esponse (Risposta strutturata)
+
+---
+
+# Template - CO-STAR Prompt
+
+- Contesto: [Background]
+- Obiettivo: [Cosa ottenere]
+- Stile: [Formale/creativo/tecnico]
+- Tono: [Amichevole/autoritario]
+- Pubblico: [Livello: diplomati/esperti]
+- Risposta: [Formato: elenco/JSON/paragrafi]
+
+---
+zoom: 1.4
+
+---
+
+# Esempio CO-STAR Prompt
+
+```text
+Contesto: Sei un assistente AI che aiuta studenti a capire 
+concetti di informatica
+Obiettivo: Spiega cos'è un LLM
+Stile: Semplice e accessibile
+Tono: Amichevole e incoraggiante
+Pubblico: Studenti delle superiori
+Risposta: 3 paragrafi numerati con esempi quotidiani
+```
+
+---
+zoom: 1.4
+
+---
+
+# Esempio: Spiegazione Didattica
+
+```text
+CRISPE: 
+Ruolo: Insegnante diplomati IT
+Obiettivo: Spiega [CONCETTO]
+Istruzioni: Analogie quotidiane, 3 esempi
+Parametri: 300 parole max, italiano semplice
+Output: 1. Definizione 2. Esempio1 3. Esempio2 4. Limiti
+
+```
+
+---
+zoom: 1.4
+
+---
+
+# Esempio:  Coding Assistant
+
+```text
+COSTAR:
+Contesto: Linguaggio Python
+Obiettivo: Scrivi funzione [FUNZIONE]
+Stile: PEP8 compliant
+Tono: Commenti chiari
+Risposta: Codice + test + docstring
+
+```
+
+---
+zoom: 1.4
+
+---
+
+# Esempio: Analisi Testo
+
+```text
+RISE:
+Ruolo: Analista dati
+Input: [TESTO]
+Passi: 1. Identifica temi 2. Sentiment 3. Keywords
+Output: JSON strutturato
+
+```
+
+---
+layout: two-cols
+
+---
+
+# Cos'è il System Prompt?
+
+Il **system prompt** è un'istruzione nascosta che definisce il **comportamento** dell'assistente AI prima ancora che l'utente scriva qualcosa.
+
+- Viene inviato **prima** del messaggio dell'utente
+- Stabilisce ruolo, tono, vincoli e regole
+- L'utente finale di solito non lo vede
+
+::right::
+
+```mermaid
+flowchart TD
+    A["System Prompt\n(invisibile all'utente)"] --> B["LLM"]
+    C["Prompt utente"] --> B
+    B --> D["Risposta"]
+    style A fill:#e8f4fd,stroke:#000,color:#000
+    style C fill:#fff,stroke:#000,color:#000
+    style B fill:#fdf4e8,stroke:#000,color:#000
+    style D fill:#e8fde8,stroke:#000,color:#000
+```
+
+---
+
+# System Prompt: a cosa serve
+
+## Utilità principali
+
+- **Definire il ruolo**: "Sei un tutor di programmazione C per principianti"
+- **Impostare il tono**: formale, informale, tecnico, didattico
+- **Aggiungere vincoli**: "Rispondi solo in italiano", "Usa solo C99"
+- **Guidare il formato**: "Rispondi con bullet point", "Includi sempre un esempio"
+- **Limitare il perimetro**: "Non rispondere a domande fuori tema"
+
+## Perché è importante
+
+Senza system prompt, il modello risponde in modo generico. Con un system prompt ben scritto, le risposte diventano **coerenti**, **mirate** e **riutilizzabili**.
+
+---
+layout: two-cols
+
+---
+
+# Esempi di System Prompt
+
+## Esempio 1: Tutor C
+
+```text
+Sei un tutor di programmazione C
+per studenti principianti.
+Rispondi sempre in italiano.
+Usa solo C99 senza librerie esterne.
+Ogni risposta deve includere
+un esempio di codice compilabile.
+Spiega il codice riga per riga.
+```
+
+::right::
+
+<br>
+<br>
+<br>
+
+## Esempio 2: Code reviewer
+
+```text
+Sei un revisore di codice C esperto.
+Analizza il codice fornito e segnala:
+- errori logici
+- problemi di memoria
+- violazioni dello standard C99
+Rispondi in italiano con suggerimenti
+concreti di correzione.
+```
+
+---
+layout: two-cols
+
+---
+
+# Esempi di System Prompt
+
+## Esempio 3: Assistente minimal
+
+```text
+Rispondi solo con codice C.
+Nessuna spiegazione.
+Nessun commento nel codice.
+Se la richiesta non riguarda
+il C, rispondi "Fuori tema".
+```
+
+::right::
+
+<br>
+<br>
+<br>
+
+## Esempio 4: Generatore di esercizi
+
+```text
+Sei un docente di programmazione C.
+Genera esercizi di difficoltà
+crescente per studenti ITS.
+Ogni esercizio deve avere:
+- descrizione del problema
+- input e output attesi
+- suggerimento (nascosto)
+Usa solo concetti base del C.
+```
+
+---
+
+# System Prompt: prova pratica
+
+## Prova su LM Studio o qualsiasi chatbot
+
+La maggior parte dei chatbot permette di impostare un system prompt nelle impostazioni della chat.
+
+## Esercizio guidato
+
+1. Apri un chatbot (LM Studio, ChatGPT, Claude...)
+2. Imposta questo system prompt:
+
+> "Sei un tutor di C per principianti. Rispondi in italiano. Ogni risposta include un esempio compilabile e una spiegazione passo-passo."
+
+3. Chiedi: *"Come funziona un ciclo for?"*
+4. Ora rimuovi il system prompt e rifai la stessa domanda
+5. Confronta le due risposte: quale è più utile?
+
+**Osservazione**: il system prompt rende le risposte più coerenti e adatte al contesto didattico.
+
+---
+
+# Avviare il server locale per CLion
+
+## Perché serve il server
+
+CLion si collega a LM Studio tramite un'API locale compatibile con OpenAI. Serve attivare il server integrato.
+
+## Procedura
+
+1. In LM Studio vai nella sezione **Developer** (icona `</>`)
+2. Seleziona il modello **Llama-3.1-8B-Instruct-Q4_K_M** se non è già caricato
+3. Clicca **Start Server** — di default parte su `http://localhost:1234`
+4. Verifica dal terminale:
+
+```bash
+curl http://localhost:1234/v1/models
+```
+
+5. La risposta JSON deve elencare il modello caricato
+
+> Annota la porta (1234) — servirà nella configurazione di CLion.
+
+---
+
+# Privacy: perché un LLM locale è vantaggioso
+
+- Prompt e codice restano sul tuo computer: minore rischio di esposizione di dati sensibili
+- Nessun invio obbligato a servizi cloud di terze parti
+- Maggior controllo su log, conservazione dati e accessi in laboratorio o in azienda
+- Più facile rispettare policy interne e vincoli di conformità
+
+## Nota pratica
+
+- Locale non significa "sicuro di default": servono comunque backup, cifratura disco e controllo accessi
+
+---
+
+# Perché usare agent AI nello sviluppo C
+
+- Ridurre tempo di boilerplate (init, parsing, test) mantenendo focus sulla logica
+- Ottenere spiegazioni rapide di warning e bug prima del debug manuale
+- Esplorare alternative di design senza riscrivere tutto a mano
+- Mantenere coerenza di stile e naming in team
+
+---
+
+# Creare un account GitHub
+
+Per usare **GitHub Copilot** serve un account GitHub attivo.
+
+## Passaggi
+
+1. Vai su **github.com** e clicca **Sign up**
+2. Inserisci email, password e username
+3. Conferma l'email ricevuta
+4. Attiva il piano **GitHub Copilot**:
+   - Gratuito per studenti tramite **GitHub Education** (github.com/education)
+   - Oppure prova gratuita 30 giorni con piano Pro
+
+## GitHub Education (consigliato)
+
+- Vai su **github.com/education** → **Join Global Campus**
+- Usa la tua email istituzionale (es. @its...)
+- Dopo l'approvazione, Copilot è incluso gratuitamente
+
+---
+
+# Installare GitHub Copilot in CLion
+
+## Passaggi
+
+1. Apri CLion → **Settings** (`Cmd+,` su Mac, `Ctrl+Alt+S` su Windows/Linux)
+2. Vai su **Plugins** → tab **Marketplace**
+3. Cerca **"GitHub Copilot"**
+4. Clicca **Install** → **Restart IDE**
+
+## Primo accesso
+
+1. Dopo il riavvio, compare la notifica **"Sign in to GitHub"**
+2. Clicca **Sign in** → si apre il browser
+3. Autorizza l'accesso con il tuo account GitHub
+4. Torna in CLion: compare il messaggio **"Copilot is ready"**
+
+## Verifica
+
+- Apri un file `.c` e inizia a scrivere: i suggerimenti appaiono in grigio
+- Premi `Tab` per accettare, `Esc` per rifiutare
+
+---
+
+# Installare JetBrains AI Assistant in CLion
+
+## Passaggi
+
+1. Apri CLion → **Settings** → **Plugins** → **Marketplace**
+2. Cerca **"AI Assistant"** (di JetBrains)
+3. Clicca **Install** → **Restart IDE**
+
+## Primo accesso
+
+1. Dopo il riavvio, clicca sull'icona **AI** nella sidebar a destra
+2. Effettua il login con il tuo account **JetBrains**
+3. Se non hai un account, crealo su **account.jetbrains.com**
+
+## Licenza
+
+- Prova gratuita di **30 giorni** inclusa
+- Studenti: verifica se il tuo **JetBrains Student Pack** include AI Assistant
+- Dopo la prova, necessario un abbonamento a pagamento
+
+---
+layout: two-cols
+
+---
+
+# Copilot vs AI Assistant: quale usare?
+
+| | **GitHub Copilot** | **AI Assistant** |
+| --- | --- | --- |
+| Produttore | GitHub/Microsoft | JetBrains |
+| Completamento inline | Sì | Sì |
+| Chat integrata | Sì | Sì |
+| Modelli locali (LM Studio) | No | Sì |
+| Costo studenti | Gratuito (Education) | Prova 30 gg |
+
+::right::
+
+## Consiglio pratico
+
+- **Copilot**: ottimo per completamento e chat, gratis con GitHub Education
+- **AI Assistant**: necessario per collegare **LM Studio** e modelli locali
+- Si possono installare **entrambi** senza conflitti
+- Nel corso useremo entrambi a seconda del contesto
+
+---
+
+# GitHub Copilot in breve
+
+- Suggerimenti inline mentre si scrive in CLion (C, CMake, markdown)
+- Copilot Chat per spiegazioni, refactoring, generazione test e fix mirati
+- Non esegue il codice: serve sempre compilare/testare e fare review umana
+- Può proporre codice non sicuro o incompleto: verificare input, error handling, limiti
+
+---
+
+# Prerequisiti
+
+- Conoscenze di base del C (tipi, funzioni, array, puntatori semplici)
+- Esperienza iniziale con CLion: creazione progetto, build, run, debugger
+- Ambiente pronto con compilatore C (gcc/clang) e CLion installato
+
+---
+
+# Setup dell'ambiente: CLion + LM Studio
+
+Per usare un modello locale con **LM Studio** in CLion, configura **AI Assistant** con l'API OpenAI-compatible esposta dal server locale.
+
+- LM Studio espone modelli locali (es. Llama) come endpoint compatibile OpenAI
+- Integrabile nativamente in CLion tramite **AI Assistant**
+- Tutto gira in locale: massima privacy, nessun dato inviato al cloud
+
+> Ref: [JetBrains AI Assistant – Custom Models](https://www.jetbrains.com/help/ai-assistant/use-custom-models.html)
+
+---
+
+# Setup LM Studio
+
+- Avvia LM Studio > tab **Developer** > carica un modello (**Discover** → Download → Load)
+- Clic **Start Server** (default: `http://localhost:1234/v1`; annota la porta se cambia)
+- Testa il server dal terminale:
+
+```bash
+curl http://localhost:1234/v1/models
+```
+
+- La risposta JSON elenca i modelli caricati e pronti
+
+---
+
+# Config CLion AI Assistant
+
+- CLion > **Settings** (`Cmd+,`) > **Tools › AI Assistant**
+- **Third-party AI providers** › seleziona **LM Studio**
+- **Base URL**: `http://localhost:1234/v1` (aggiungi `/v1` se mancante)
+- **Model**: nome del modello dal server (es. `llama-3.1-8b`)
+- No API Key richiesta — inserisci `not-needed`
+- Clic **Test Connection** › Apply
+
+---
+
+# Uso in CLion con LM Studio
+
+- **Chat AI**: `Alt+Shift+A` oppure sidebar AI → chiedi codice, spiegazioni, debug
+- **Completions inline**: scrivi codice, l'AI suggerisce completamenti (accetta con `Tab`)
+- **Context-aware**: analizza file e repository per risposte più precise
+
+```text
+LM Studio → CLion
+├── Load model → Start Server (localhost:1234)
+├── Settings > AI > LM Studio > URL + Test Connection
+├── Usa: Chat (Alt+Shift+A), suggerimenti inline
+└── Verifica: curl http://localhost:1234/v1/models
+```
+
+---
+
+# Best Practices (LM Studio locale)
+
+- **Modello consigliato**: formato GGUF con quantizzazione Q4/Q5, 7–13B parametri (4–8 GB di VRAM)
+- **GPU**: abilita `nGPU layers` in LM Studio al massimo per il tuo hardware
+
+> **GGUF**: formato compatto per modelli quantizzati, eseguibili su hardware consumer.  
+> **VRAM**: memoria dedicata della GPU, necessaria per caricare il modello.
+
+- **Privacy**: tutto locale e offline, nessun dato trasmesso
+- **Licenza AI Assistant**: prova gratuita 30 gg; verifica student pack JetBrains
+- Punto di partenza consigliato: **Llama 3.1 8B** (equilibrio velocità/qualità)
+
+---
+
+# Riepilogo Lezione 1
+
+- Fondamenti di AI, ML, Deep Learning
+- Architettura Transformer e LLM moderni
+- Natura probabilistica degli LLM e relative implicazioni
+- Differenza tra Chat AI e AI Agent
+- Basi per strutturare prompt efficaci
+
+---
+
 # 🎯 Attività di apertura (Miro)
 
 Scrivi su Miro:
@@ -492,7 +1001,7 @@ int main(void) {
 # Test tabellari: esempio visivo
 
 | Input | Funzione | Expected | Actual | Pass? |
-|-------|----------|----------|--------|-------|
+| --- | --- | --- | --- | --- |
 | `{1,2,3}`, target=2 | `find_value` | `1` | `1` | ✅ |
 | `NULL`, target=1 | `find_value` | `-1` | `-1` | ✅ |
 | `{}`, count=0, target=1 | `find_value` | `-1` | ? | ❓ |
@@ -656,7 +1165,7 @@ Prima del test, consolidamento in coppia:
 # Rubrica di valutazione
 
 | Criterio | Peso |
-|----------|------|
+| --- | --- |
 | Corretta esecuzione dei requisiti | ⭐⭐⭐ |
 | Gestione input non validi | ⭐⭐ |
 | Chiarezza di codice e commenti | ⭐⭐ |
