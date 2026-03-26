@@ -56,4 +56,5 @@ lib-cov
 cmake-build-*/
 
 
-/reference
+/reference/
+

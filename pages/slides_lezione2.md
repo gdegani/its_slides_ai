@@ -1,38 +1,56 @@
-# Programmazione assistita dall'Intelligenza Artificiale
+# Riepilogo Lezione 1
 
-## Lezioni 2 - 3: Pratica con GitHub Copilot
-
-Ing. Giancarlo Degani
+- Fondamenti di AI, ML, Deep Learning
+- Natura probabilistica degli LLM e relative implicazioni
+- Token, embedding e context window
+- Differenza tra Chat AI e AI Agent
+- Basi per strutturare prompt efficaci
 
 ---
 
+# Attività di apertura
+
+Ripensate alla Lezione 1 e rispondete a voce:
+
+- **Una cosa che ricordo bene** dalla lezione precedente
+- **Una cosa che vorrei approfondire** oggi
+
+⏱️ 3 minuti — poi confronto rapido in aula
+
 ---
 
-# Esercizio: Costruisci il Tuo Prompt
+# Agenda Lezione 2
 
-Prova questi esercizi su un chatbot (locale o online):
+## Parte 1 — Prompt avanzati e System Prompt (~1h)
 
-## Livello 1 – Base
+- Framework CRISPE e CO-STAR
+- System prompt: cos'è, esempi, prova pratica
 
-> Scrivi un prompt che chieda di spiegare la differenza tra `=` e `==` in C
+## Parte 2 — Setup dell'ambiente (~1h)
 
-## Livello 2 – Specifico
+- LM Studio, GitHub Copilot, AI Assistant in CLion
 
-> Scrivi un prompt che chieda di generare una funzione C per contare quante volte un carattere appare in una stringa
+## Parte 3 — Generazione codice e debug assistito (~1h)
 
-## Livello 3 – Avanzato
+- Generazione C con AI, warning comuni, debug con AI
 
-> Riscrivi questo prompt vago in modo efficace:
-> "Fai una cosa con gli array in C"
+## Parte 4 — Refactoring, testing e laboratorio (~1h)
 
-**Suggerimento**: applica i tre principi (chiarezza, specificità, contesto) e specifica il formato di output.
+- Refactoring, test con assert, esercizi guidati
+
+---
+layout: section
+
+---
+
+# Parte 1 — Prompt avanzati e System Prompt
 
 ---
 
 # Prompt efficaci = CRISPE
 
 - **C**larity (Chiarezza)
-- **R**ole (Ruolo)  
+- **R**ole (Ruolo)
 - **I**nstructions (Istruzioni)
 - **S**teps (Passi)
 - **P**arameters (Parametri)
@@ -63,23 +81,12 @@ Output: 3 paragrafi numerati
 
 # Prompt efficaci = CO-STAR
 
-- **C**ontext (Contesto)
-- **O**bjective (Obiettivo)  
-- **S**tyle (Stile)
-- **T**one (Tono)
-- **A**udience (Pubblico)
-- **R**esponse (Risposta strutturata)
-
----
-
-# Template - CO-STAR Prompt
-
-- Contesto: [Background]
-- Obiettivo: [Cosa ottenere]
-- Stile: [Formale/creativo/tecnico]
-- Tono: [Amichevole/autoritario]
-- Pubblico: [Livello: diplomati/esperti]
-- Risposta: [Formato: elenco/JSON/paragrafi]
+- **C**ontext: contesto e background
+- **O**bjective: cosa ottenere
+- **S**tyle: Formale/creativo/tecnico
+- **T**one: Amichevole/autoritario
+- **A**udience: diplomati/esperti
+- **R**esponse: Formato: elenco/JSON/paragrafi
 
 ---
 zoom: 1.4
@@ -106,13 +113,12 @@ zoom: 1.4
 # Esempio: Spiegazione Didattica
 
 ```text
-CRISPE: 
+CRISPE:
 Ruolo: Insegnante diplomati IT
 Obiettivo: Spiega [CONCETTO]
 Istruzioni: Analogie quotidiane, 3 esempi
 Parametri: 300 parole max, italiano semplice
 Output: 1. Definizione 2. Esempio1 3. Esempio2 4. Limiti
-
 ```
 
 ---
@@ -120,33 +126,38 @@ zoom: 1.4
 
 ---
 
-# Esempio:  Coding Assistant
+# Esempio: Coding Assistant in C
 
 ```text
-COSTAR:
-Contesto: Linguaggio Python
+CO-STAR:
+Contesto: Linguaggio C99, niente librerie esterne
 Obiettivo: Scrivi funzione [FUNZIONE]
-Stile: PEP8 compliant
-Tono: Commenti chiari
-Risposta: Codice + test + docstring
-
+Stile: Codice leggibile, nomi descrittivi
+Tono: Commenti chiari in inglese
+Pubblico: Studenti principianti C
+Risposta: Codice + test con assert + breve spiegazione
 ```
 
 ---
-zoom: 1.4
 
----
+# Esercizio: Costruisci il Tuo Prompt
 
-# Esempio: Analisi Testo
+Prova questi esercizi su un chatbot (locale o online):
 
-```text
-RISE:
-Ruolo: Analista dati
-Input: [TESTO]
-Passi: 1. Identifica temi 2. Sentiment 3. Keywords
-Output: JSON strutturato
+## Livello 1 – Base
 
-```
+> Scrivi un prompt che chieda di spiegare la differenza tra `=` e `==` in C
+
+## Livello 2 – Specifico
+
+> Scrivi un prompt che chieda di generare una funzione C per contare quante volte un carattere appare in una stringa
+
+## Livello 3 – Avanzato
+
+> Riscrivi questo prompt vago in modo efficace:
+> "Fai una cosa con gli array in C"
+
+**Suggerimento**: applica i framework CRISPE o CO-STAR e specifica il formato di output.
 
 ---
 layout: two-cols
@@ -285,27 +296,28 @@ La maggior parte dei chatbot permette di impostare un system prompt nelle impost
 **Osservazione**: il system prompt rende le risposte più coerenti e adatte al contesto didattico.
 
 ---
+layout: section
 
-# Avviare il server locale per CLion
+---
 
-## Perché serve il server
+# Parte 2 — Setup dell'ambiente
 
-CLion si collega a LM Studio tramite un'API locale compatibile con OpenAI. Serve attivare il server integrato.
+---
 
-## Procedura
+# Prerequisiti
 
-1. In LM Studio vai nella sezione **Developer** (icona `</>`)
-2. Seleziona il modello **Llama-3.1-8B-Instruct-Q4_K_M** se non è già caricato
-3. Clicca **Start Server** — di default parte su `http://localhost:1234`
-4. Verifica dal terminale:
+- Conoscenze di base del C (tipi, funzioni, array, puntatori semplici)
+- Esperienza iniziale con CLion: creazione progetto, build, run, debugger
+- Ambiente pronto con compilatore C (gcc/clang) e CLion installato
 
-```bash
-curl http://localhost:1234/v1/models
-```
+---
 
-5. La risposta JSON deve elencare il modello caricato
+# Perché usare AI nello sviluppo C
 
-> Annota la porta (1234) — servirà nella configurazione di CLion.
+- Ridurre tempo di boilerplate (init, parsing, test) mantenendo focus sulla logica
+- Ottenere spiegazioni rapide di warning e bug prima del debug manuale
+- Esplorare alternative di design senza riscrivere tutto a mano
+- Mantenere coerenza di stile e naming in team
 
 ---
 
@@ -322,12 +334,19 @@ curl http://localhost:1234/v1/models
 
 ---
 
-# Perché usare agent AI nello sviluppo C
+# Setup LM Studio
 
-- Ridurre tempo di boilerplate (init, parsing, test) mantenendo focus sulla logica
-- Ottenere spiegazioni rapide di warning e bug prima del debug manuale
-- Esplorare alternative di design senza riscrivere tutto a mano
-- Mantenere coerenza di stile e naming in team
+- Avvia LM Studio > tab **Developer** > carica un modello (**Discover** → Download → Load)
+- Clic **Start Server** (default: `http://localhost:1234/v1`; annota la porta se cambia)
+- Testa il server dal terminale:
+
+```bash
+curl http://localhost:1234/v1/models
+```
+
+- La risposta JSON elenca i modelli caricati e pronti
+
+> **Modello consigliato**: Llama 3.1 8B in formato GGUF con quantizzazione Q4 (equilibrio velocità/qualità)
 
 ---
 
@@ -421,50 +440,7 @@ layout: two-cols
 
 ---
 
-# GitHub Copilot in breve
-
-- Suggerimenti inline mentre si scrive in CLion (C, CMake, markdown)
-- Copilot Chat per spiegazioni, refactoring, generazione test e fix mirati
-- Non esegue il codice: serve sempre compilare/testare e fare review umana
-- Può proporre codice non sicuro o incompleto: verificare input, error handling, limiti
-
----
-
-# Prerequisiti
-
-- Conoscenze di base del C (tipi, funzioni, array, puntatori semplici)
-- Esperienza iniziale con CLion: creazione progetto, build, run, debugger
-- Ambiente pronto con compilatore C (gcc/clang) e CLion installato
-
----
-
-# Setup dell'ambiente: CLion + LM Studio
-
-Per usare un modello locale con **LM Studio** in CLion, configura **AI Assistant** con l'API OpenAI-compatible esposta dal server locale.
-
-- LM Studio espone modelli locali (es. Llama) come endpoint compatibile OpenAI
-- Integrabile nativamente in CLion tramite **AI Assistant**
-- Tutto gira in locale: massima privacy, nessun dato inviato al cloud
-
-> Ref: [JetBrains AI Assistant – Custom Models](https://www.jetbrains.com/help/ai-assistant/use-custom-models.html)
-
----
-
-# Setup LM Studio
-
-- Avvia LM Studio > tab **Developer** > carica un modello (**Discover** → Download → Load)
-- Clic **Start Server** (default: `http://localhost:1234/v1`; annota la porta se cambia)
-- Testa il server dal terminale:
-
-```bash
-curl http://localhost:1234/v1/models
-```
-
-- La risposta JSON elenca i modelli caricati e pronti
-
----
-
-# Config CLion AI Assistant
+# Config CLion + LM Studio
 
 - CLion > **Settings** (`Cmd+,`) > **Tools › AI Assistant**
 - **Third-party AI providers** › seleziona **LM Studio**
@@ -473,21 +449,11 @@ curl http://localhost:1234/v1/models
 - No API Key richiesta — inserisci `not-needed`
 - Clic **Test Connection** › Apply
 
----
+## Uso in CLion con LM Studio
 
-# Uso in CLion con LM Studio
-
-- **Chat AI**: `Alt+Shift+A` oppure sidebar AI → chiedi codice, spiegazioni, debug
-- **Completions inline**: scrivi codice, l'AI suggerisce completamenti (accetta con `Tab`)
+- **Chat AI**: `Alt+Shift+A` oppure sidebar AI
+- **Completions inline**: scrivi codice, accetta con `Tab`
 - **Context-aware**: analizza file e repository per risposte più precise
-
-```text
-LM Studio → CLion
-├── Load model → Start Server (localhost:1234)
-├── Settings > AI > LM Studio > URL + Test Connection
-├── Usa: Chat (Alt+Shift+A), suggerimenti inline
-└── Verifica: curl http://localhost:1234/v1/models
-```
 
 ---
 
@@ -496,43 +462,18 @@ LM Studio → CLion
 - **Modello consigliato**: formato GGUF con quantizzazione Q4/Q5, 7–13B parametri (4–8 GB di VRAM)
 - **GPU**: abilita `nGPU layers` in LM Studio al massimo per il tuo hardware
 
-> **GGUF**: formato compatto per modelli quantizzati, eseguibili su hardware consumer.  
+> **GGUF**: formato compatto per modelli quantizzati, eseguibili su hardware consumer.
 > **VRAM**: memoria dedicata della GPU, necessaria per caricare il modello.
 
 - **Privacy**: tutto locale e offline, nessun dato trasmesso
 - **Licenza AI Assistant**: prova gratuita 30 gg; verifica student pack JetBrains
-- Punto di partenza consigliato: **Llama 3.1 8B** (equilibrio velocità/qualità)
+
+---
+layout: section
 
 ---
 
-# Riepilogo Lezione 1
-
-- Fondamenti di AI, ML, Deep Learning
-- Architettura Transformer e LLM moderni
-- Natura probabilistica degli LLM e relative implicazioni
-- Differenza tra Chat AI e AI Agent
-- Basi per strutturare prompt efficaci
-
----
-
-# 🎯 Attività di apertura (Miro)
-
-Scrivi su Miro:
-
-- 🟢 **Una cosa che ricordo dalla Lezione 1**
-- 🟡 **Una cosa che vorrei approfondire oggi**
-
-⏱️ 3 minuti — poi confronto rapido
-
----
-
-# Configurare CLion con GitHub Copilot
-
-- CLion > Settings/Preferences > Plugins > Marketplace: installa "GitHub Copilot" e "GitHub Copilot Chat"
-- Riavvia CLion, poi login GitHub quando richiesto (Authorize nel browser)
-- Settings > Tools > GitHub Copilot: abilita completamenti inline e scegli la keymap preferita
-- Settings > Tools > GitHub Copilot Chat: abilita la chat e assegna uno shortcut
-- Facoltativo: limita telemetria e riduci suggerimenti per file di grandi dimensioni
+# Parte 3 — Generazione codice e debug assistito
 
 ---
 
@@ -545,7 +486,7 @@ Scrivi su Miro:
 
 ---
 
-# Prompt efficaci: riepilogo dalla Lezione 1
+# Prompt efficaci per il codice
 
 - Specifica standard e vincoli: "usa C99, niente librerie esterne, input validato"
 - Fornisci interfacce: firme funzioni, strutture dati attese, range input
@@ -569,115 +510,9 @@ flowchart LR
 
 ---
 
-# Esempi di richieste veloci
-
-- "Scrivi una funzione C99 che normalizza un valore int in [0,1], senza float"
-- "Spiega questo warning di clang e proponi fix minimale"
-- "Genera test per questa funzione che calcola mediana, includi casi dispari/pari"
-- "Separa questo file in .h/.c mantenendo le firme"
-
----
-
-# Debug assistito
-
-- Fornisci messaggi di errore completi (compilatore o runtime)
-- Invia solo la funzione o il file minimo riproducibile
-- Chiedi spiegazioni passo-passo: cosa significa l'errore, dove guardare
-
-Esempio di prompt per un `segmentation fault`:
-
-```text
-Ho un segmentation fault in questa funzione C. Ecco la funzione e l'input che lo causa.
-Spiega la causa probabile e proponi una correzione minimale.
-```
-
----
-
-# Snippet per il debug
-
-```c
-#include <stdio.h>
-
-int read_value(const int *buffer, size_t length, size_t index) {
-    if (buffer == NULL || index >= length) {
-        return -1; // invalid access avoided
-    }
-    return buffer[index];
-}
-
-int main(void) {
-    int data[] = {3, 5, 7};
-    printf("%d\n", read_value(data, 3, 5));
-    return 0;
-}
-```
-
-- L'assistente può evidenziare l'accesso fuori limite (`index >= length`)
-- Dopo la correzione, ricompila e riesegui il test
-
----
-
-# Snippet: clamp e normalizza
-
-```c
-#include <stddef.h>
-
-int clamp_int(int value, int min, int max) {
-    if (min > max) {
-        return value; // invalid bounds, return as-is
-    }
-    if (value < min) {
-        return min;
-    }
-    if (value > max) {
-        return max;
-    }
-    return value;
-}
-
-double normalize_int(int value, int min, int max) {
-    if (min >= max) {
-        return 0.0; // avoid divide-by-zero
-    }
-
-    int clamped = clamp_int(value, min, max);
-    return (double)(clamped - min) / (double)(max - min);
-}
-```
-
-- Usabile come esempio di output generato, con controlli minimi
-- Valuta con l'assistente varianti senza double se richiesto
-
----
-
-# Refactoring con AI
-
-- Chiedi di rinominare funzioni/variabili mantenendo l'API
-- Richiedi separazione in file `.c` e `.h` indicando le firme
-- Domanda tipica: "Proponi un refactoring che migliori la leggibilità senza cambiare il comportamento"
-- Verifica con diff ridotti e compilazione
-
----
-
-# Documentazione e commenti
-
-- Domanda tipica: "Aggiungi commenti essenziali e brevi a questo file"
-- Mantieni commenti in inglese per il codice C del corso
-- Evita commenti ridondanti; privilegia il perché rispetto al cosa
-
----
-
-# Testing e validazione
-
-- Genera casi di test piccoli e mirati (input validi e edge case)
-- Automatizza dove possibile con script di build/test
-- Confronta l'output atteso con quello osservato; condividi le differenze nell'IDE
-
----
-
 # Generazione C: I/O di base
 
-## Connection: Hello Copilot (CLion)
+## Esercizio: Hello Copilot (CLion)
 
 Crea un progetto C vuoto in CLion e prova:
 
@@ -758,6 +593,7 @@ int range_min_max(const int *values, size_t count, int *out_min, int *out_max) {
 
 ```c
 #include <stddef.h>
+#include <string.h>
 
 typedef struct {
     const char *name;
@@ -769,16 +605,47 @@ int find_item(const Item *items, size_t count, const char *name) {
         return -1;
     }
     for (size_t i = 0; i < count; ++i) {
-        const char *n = items[i].name;
-        if (n != NULL && n[0] == name[0]) {
-            return (int)i; // naive match on first char
+        if (items[i].name != NULL && strcmp(items[i].name, name) == 0) {
+            return (int)i;
         }
     }
     return -1;
 }
 ```
 
-- Chiedi all'assistente di migliorare il confronto stringhe
+- Chiedi all'assistente varianti: ricerca case-insensitive, ricerca parziale
+
+---
+
+# Snippet: clamp e normalizza
+
+```c
+#include <stddef.h>
+
+int clamp_int(int value, int min, int max) {
+    if (min > max) {
+        return value; // invalid bounds, return as-is
+    }
+    if (value < min) {
+        return min;
+    }
+    if (value > max) {
+        return max;
+    }
+    return value;
+}
+
+double normalize_int(int value, int min, int max) {
+    if (min >= max) {
+        return 0.0; // avoid divide-by-zero
+    }
+
+    int clamped = clamp_int(value, min, max);
+    return (double)(clamped - min) / (double)(max - min);
+}
+```
+
+- Valuta con l'assistente varianti senza double se richiesto
 
 ---
 
@@ -790,11 +657,9 @@ int find_item(const Item *items, size_t count, const char *name) {
 
 ---
 
-# Warning comuni
+# Warning comuni: Bug Hunt
 
-## Connection: Bug Hunt (Miro)
-
-Trova il bug in ciascun snippet! Scrivi la risposta su Miro.
+Trova il bug in ciascun snippet! Discutetene in gruppo, poi verificate con Copilot.
 
 ```c
 // Snippet 1
@@ -819,11 +684,42 @@ int x; printf("%d", x);  // cosa stampa?
 
 ---
 
-# Debug: ordine di lettura
+# Debug assistito
 
-- Leggi l'errore intero, non solo la prima riga
-- Identifica file e riga coinvolta
-- Chiedi all'assistente spiegazione del warning esatto
+- Fornisci messaggi di errore completi (compilatore o runtime)
+- Invia solo la funzione o il file minimo riproducibile
+- Chiedi spiegazioni passo-passo: cosa significa l'errore, dove guardare
+
+Esempio di prompt per un `segmentation fault`:
+
+```text
+Ho un segmentation fault in questa funzione C. Ecco la funzione e l'input che lo causa.
+Spiega la causa probabile e proponi una correzione minimale.
+```
+
+---
+
+# Snippet per il debug
+
+```c
+#include <stdio.h>
+
+int read_value(const int *buffer, size_t length, size_t index) {
+    if (buffer == NULL || index >= length) {
+        return -1; // invalid access avoided
+    }
+    return buffer[index];
+}
+
+int main(void) {
+    int data[] = {3, 5, 7};
+    printf("%d\n", read_value(data, 3, 5));
+    return 0;
+}
+```
+
+- L'assistente può evidenziare l'accesso fuori limite (`index >= length`)
+- Dopo la correzione, ricompila e riesegui il test
 
 ---
 
@@ -861,7 +757,7 @@ int divide(int num, int den) {
 
 ---
 
-# Domande utili da fare
+# Domande utili da fare all'AI
 
 - "Che cosa succede se den è zero?"
 - "Ci sono indici fuori limite?"
@@ -888,6 +784,13 @@ int sum_positive(const int *arr, int count) {
 3. Chi corregge prima? Confrontate i risultati
 
 ⏱️ 10 minuti
+
+---
+layout: section
+
+---
+
+# Parte 4 — Refactoring, testing e laboratorio
 
 ---
 
@@ -942,11 +845,12 @@ int clamp_int(int value, int min, int max) {
 
 ---
 
-# Rinominare in sicurezza
+# Refactoring con AI
 
-- Chiedi una lista di nomi alternativi
-- Sostituisci manualmente o con assistente
-- Ricompila dopo ogni rinomina
+- Chiedi di rinominare funzioni/variabili mantenendo l'API
+- Richiedi separazione in file `.c` e `.h` indicando le firme
+- Domanda tipica: "Proponi un refactoring che migliori la leggibilità senza cambiare il comportamento"
+- Verifica con diff ridotti e compilazione
 
 ---
 
@@ -1011,7 +915,7 @@ Chiedi all'assistente di generare il codice di test per ogni riga.
 
 ---
 
-# Gestione degli errori
+# Gestione degli errori nei test
 
 - Testare percorsi negativi (null pointer, count zero)
 - Verificare codici di ritorno coerenti
@@ -1040,23 +944,13 @@ Sfida: genera il maggior numero di **test validi** per `range_min_max` in 5 minu
 
 ---
 
-# Workflow in team con AI
-
-## Connection: Prompt Gallery (Miro)
-
-Condividi su Miro il tuo **miglior prompt** usato finora.
-
-Vota con 👍 i prompt più efficaci degli altri!
-
-⏱️ 5 minuti
-
----
-
 # Lavorare in team con AI
 
-- Condividi prompt efficaci e risultati
-- Definisci standard di stile e naming
-- Fai review reciproca delle proposte AI
+## Attività: Prompt Gallery
+
+Condividete a voce il vostro **miglior prompt** usato finora. Votate alzando la mano i più efficaci!
+
+⏱️ 5 minuti
 
 ---
 
@@ -1082,15 +976,6 @@ Progetto collaborativo:
    - ☐ Commenti essenziali e aggiornati?
 
 ⏱️ 20 minuti
-
----
-
-# 🎫 Biglietto d'uscita — Lezione 2 (Miro)
-
-Scrivi su Miro un post-it con:
-
-- Il mio prompt più efficace di oggi
-- Cosa mi ha sorpreso dell'AI
 
 ---
 
@@ -1129,56 +1014,6 @@ Idee di progetto (scegli una):
 
 ---
 
-# Teach-back (15 min)
-
-Prima del test, consolidamento in coppia:
-
-1. **Insegna al compagno** un concetto chiave del corso (2 min ciascuno)
-2. **Scrivi su Miro** i 3 comandi/pattern più utili che hai scoperto
-3. **Raccogli** i prompt e snippet riutilizzabili
-
-⏱️ 15 minuti
-
----
-
-# Test finale
-
-## Regole
-
-- Durata: **60 minuti**, individuale
-- Puoi usare AI: chiarimenti e snippet
-- Devi verificare compilazione e correttezza
-- Indica nelle note dove hai usato l'assistente
-
-## Strategia di tempo consigliata
-
-- 10' lettura traccia e pianificazione
-- 30' implementazione con piccoli test
-- 20' verifica e pulizia
-
-## Consegna
-
-- Repository o archivio con codice e breve README
-
----
-
-# Rubrica di valutazione
-
-| Criterio | Peso |
-| --- | --- |
-| Corretta esecuzione dei requisiti | ⭐⭐⭐ |
-| Gestione input non validi | ⭐⭐ |
-| Chiarezza di codice e commenti | ⭐⭐ |
-| Uso controllato dell'AI (tracciato) | ⭐ |
-
-## Esempio di nota finale
-
-- "Ho usato l'assistente per generare skeleton di `find_value`"
-- "Ho aggiunto io controlli su null e test"
-- "Warning risolto: signed/unsigned mismatch"
-
----
-
 # FAQ - L'assistente sbaglia
 
 - Prova un prompt più breve
@@ -1201,41 +1036,24 @@ Prima del test, consolidamento in coppia:
 - Chiedi una patch minima, non una riscrittura
 - Verifica include e tipi mancanti
 
--
+---
+
+# Riepilogo Lezione 2
+
+- Framework CRISPE e CO-STAR per prompt strutturati
+- System prompt: ruolo, vincoli, formato
+- Setup completo: LM Studio + Copilot + AI Assistant in CLion
+- Generazione codice C: I/O, ricerca, min/max, struct
+- Debug assistito: warning, errori, tracciamento input
+- Refactoring: separazione .h/.c, rinomina, commenti
+- Testing: assert, test tabellari, copertura
 
 ---
 
-# Riepilogo Lezioni 2-3
+# Biglietto d'uscita — Lezione 2
 
-- Configurazione pratica di Copilot in CLion
-- Strategie di verifica e testing
-- Workflow di debug assistito
-- Refactoring e separazione header/sorgente
-- Laboratorio guidato passo-passo
-- Test finale per consolidare apprendimento
+Rispondete a voce o su un foglio:
 
----
-
-# Risorse consigliate
-
-- Documentazione CLion per C
-- Linee guida Copilot per uso sicuro
-- I prompt salvati durante il corso
-
----
-
-# 🎫 Biglietto d'uscita finale (Miro)
-
-Scrivi su Miro:
-
-- 🟢 **La cosa più utile che ho imparato nel corso**
-- 🟡 **Come userò l'AI nel prossimo progetto**
-- 🔴 **Un consiglio per chi inizia**
-
----
-
-# Suggerimenti finali
-
-- Pochi prompt, mirati e brevi
-- Compila spesso, testa casi limite
-- Mantieni traccia di cosa hai accettato dall'assistente
+- Il mio prompt più efficace di oggi
+- Cosa mi ha sorpreso dell'AI
+- Una cosa che voglio approfondire nella prossima lezione
