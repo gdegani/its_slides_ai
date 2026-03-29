@@ -1,7 +1,7 @@
 # Programmazione Assistita dall'Intelligenza Artificiale
 
-[![Build](https://github.com/gdegani/its_slides_ai/actions/workflows/build.yml/badge.svg)](https://github.com/gdegani/its_slides_ai/actions)
 [![Deploy to GitHub Pages](https://github.com/gdegani/its_slides_ai/actions/workflows/deploy.yml/badge.svg)](https://github.com/gdegani/its_slides_ai/actions)
+[![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
 
 Repository contenente le slide per il corso [**"Programmazione Assistita dall'Intelligenza Artificiale"**](https://gdegani.github.io/its_slides_ai/)tenuto presso la [**Fondazione ITS Academy Meccatronico Veneto**.](https://www.itsmeccatronico.it/)
 
