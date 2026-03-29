@@ -21,20 +21,20 @@ Ripensate alla Lezione 1 e rispondete a voce:
 
 # Agenda Lezione 2
 
-## Parte 1 — Prompt avanzati e System Prompt (~1h)
+## Parte 1 — Prompt avanzati e System Prompt
 
 - Framework CRISPE e CO-STAR
 - System prompt: cos'è, esempi, prova pratica
 
-## Parte 2 — Setup dell'ambiente (~1h)
+## Parte 2 — Setup dell'ambiente
 
 - LM Studio, GitHub Copilot, AI Assistant in CLion
 
-## Parte 3 — Generazione codice e debug assistito (~1h)
+## Parte 3 — Generazione codice e debug assistito
 
 - Generazione C con AI, warning comuni, debug con AI
 
-## Parte 4 — Refactoring, testing e laboratorio (~1h)
+## Parte 4 — Refactoring, testing e laboratorio
 
 - Refactoring, test con assert, esercizi guidati
 
@@ -48,6 +48,14 @@ layout: section
 ---
 
 # Prompt efficaci = CRISPE
+
+|*Lettera*|*Termine*|*Significato*|
+|---|---|---|
+|CR|Capacity & Role|Il ruolo o l'expertise che vuoi assegnare all'AI (es. "Sei un esperto di cybersecurity")|
+|I|Insight|Contesto, background e informazioni rilevanti che aiutano l'AI a capire la situazione|
+|S|Statement|L'istruzione chiara e specifica: cosa deve fare esattamente l'AI|
+|P|Personality|Il tono, lo stile e il carattere della risposta (formale, amichevole, tecnico, ecc.)|
+|E|Experiment|La richiesta di varianti, iterazioni o raffinamenti del risultato|
 
 - **C**larity (Chiarezza)
 - **R**ole (Ruolo)
