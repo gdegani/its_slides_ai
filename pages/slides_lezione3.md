@@ -26,17 +26,18 @@ layout: section
 
 - AI, ML, Deep Learning: relazione e differenze
 - LLM: modelli probabilistici, token, embedding, context window
-- Temperature: controllo della casualità nell'output
+- Temperature: controllo casualità nell'output
 - Chat AI vs AI Agent
 - Prompt efficaci: chiarezza, specificità, contesto
 
-## Lezione 2 — Pratica
+## Lezione 2 — Strumenti e pratica
 
 - Framework CRISPE e CO-STAR per prompt strutturati
 - System prompt: ruolo, vincoli, formato
-- Setup: LM Studio + GitHub Copilot + AI Assistant in CLion
+- Istruzioni di progetto: `copilot-instructions.md` e `AGENTS.md`
+- Skills per agenti AI: definizione e configurazione nel repo
+- Setup: LM Studio + GitHub Copilot + continue.dev in CLion
 - Generazione codice C con AI, debug assistito
-- Refactoring (.h/.c) e testing con assert
 
 ---
 layout: two-cols
@@ -46,6 +47,7 @@ layout: two-cols
 # Mappa concettuale del corso
 
 ```mermaid
+%%{init: {"theme": "base", "themeVariables": {"primaryColor": "#ffffff", "primaryTextColor": "#000000", "primaryBorderColor": "#000000", "lineColor": "#000000", "secondaryColor": "#ffffff", "tertiaryColor": "#ffffff", "background": "#ffffff", "mainBkg": "#ffffff", "nodeBorder": "#000000", "clusterBkg": "#ffffff", "titleColor": "#000000", "edgeLabelBackground": "#ffffff"}}}%%
 mindmap
   root((AI + C))
     Fondamenti
@@ -56,13 +58,17 @@ mindmap
       Chiarezza
       CRISPE / CO-STAR
       System prompt
+    Istruzioni progetto
+      copilot-instructions.md
+      AGENTS.md
+      Skills agente
     Strumenti
       LM Studio locale
       GitHub Copilot
-      AI Assistant CLion
+      continue.dev CLion
     Pratica C
       Generazione codice
-      Debug assistito
+      Debug prompt to patch
       Refactoring .h/.c
       Testing con assert
 ```
@@ -75,7 +81,8 @@ mindmap
 - Prompt migliore = risposta migliore
 - **Sempre verificare**: compilare, testare, leggere il codice
 - Privacy: LLM locale vs cloud
-- Il system prompt guida il comportamento dell'AI
+- `AGENTS.md` e skills rendono il comportamento riproducibile
+- Il system prompt guida l'AI nella sessione corrente
 
 ---
 
@@ -86,8 +93,6 @@ Consolidamento in coppia:
 1. **Insegna al compagno** un concetto chiave del corso (2 min ciascuno)
 2. Discutete i **3 comandi/pattern più utili** che avete scoperto
 3. Raccogliete i prompt e snippet riutilizzabili
-
-⏱️ 15 minuti
 
 ---
 
@@ -118,8 +123,6 @@ Consolidamento in coppia:
 
 # Risorse consigliate
 
-- Documentazione CLion per C
-- Linee guida Copilot per uso sicuro
 - I prompt e snippet salvati durante il corso
 - JetBrains AI Assistant: [jetbrains.com/help/ai-assistant](https://www.jetbrains.com/help/ai-assistant/)
 - GitHub Copilot Docs: [docs.github.com/copilot](https://docs.github.com/en/copilot)
