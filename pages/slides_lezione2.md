@@ -18,6 +18,9 @@ Ripensate alla Lezione 1 e rispondete a voce:
 ⏱️ 3 minuti — poi confronto rapido in aula
 
 ---
+hide: true
+
+---
 
 # Agenda Lezione 2
 
@@ -68,21 +71,25 @@ layout: section
 
 # Template - CRISPE Prompt
 
-- Ruolo: Sei un [ESPERTO: insegnante/developer/analista]
-- Obiettivo: [COSA FARE]
-- Istruzioni: [DETTAGLI]
-- Passi: 1. [Passo1] 2. [Passo2]
-- Parametri: [Limiti: lunghezza, tono, formato]
-- Output: [JSON/lista/tabella]
+- CR (Capacity & Role): Sei un [RUOLO] con esperienza in [AMBITO]
+- I (Insight): Contesto utile: [CLASSE/LIVELLO], [VINCOLI], [OBIETTIVO DIDATTICO]
+- S (Statement): Esegui questo compito: [RICHIESTA CHIARA]
+- P (Personality): Usa tono [DIDATTICO/TECNICO], stile [SEMPLICE/STRUTTURATO]
+- E (Experiment): Fornisci [N] varianti e indica quando usare ciascuna
 
-## Esempio
+---
+zoom: 1.4
+
+---
+
+## Esempio - CRISPE Prompt
 
 ```text
-Ruolo: Insegnante di informatica per diplomati
-Obiettivo: Spiega cos'è un LLM
-Istruzioni: Usa analogie semplici, evita matematica
-Passi: 1. Definizione 2. Esempio quotidiano 3. Limiti
-Output: 3 paragrafi numerati
+CR: Sei un tutor di programmazione C per studenti ITS principianti.
+I: La classe conosce variabili, if e for, ma non puntatori avanzati.
+S: Spiega la differenza tra = e == in C con un esempio minimo compilabile.
+P: Tono incoraggiante, linguaggio semplice, massimo 120 parole.
+E: Produci 2 versioni: una super breve e una con analogia quotidiana.
 ```
 
 ---
@@ -283,6 +290,15 @@ Usa solo concetti base del C.
 ```
 
 ---
+layout: figure
+figureUrl: /images/system-prompt.jpg
+figureCaption: "LM Studio: impostazione del System Prompt"
+title: "System Prompt: prova pratica"
+zoom: 0.5
+
+---
+
+---
 
 # System Prompt: prova pratica
 
@@ -341,12 +357,17 @@ layout: section
 - Locale non significa "sicuro di default": servono comunque backup, cifratura disco e controllo accessi
 
 ---
+layout: figure-side
+figureUrl: /images/models.png
+figureCaption: "Esempio di modelli disponibili in LM Studio"
+
+---
 
 # Setup LM Studio
 
-- Avvia LM Studio > tab **Developer** > carica un modello (**Discover** → Download → Load)
+- Avvia LM Studio > tab **Developer** > carica un modello
 - Clic **Start Server** (default: `http://localhost:1234/v1`; annota la porta se cambia)
-- Testa il server dal terminale:
+- Testa il server dal terminale (oppure usa un browser):
 
 ```bash
 curl http://localhost:1234/v1/models
@@ -354,7 +375,7 @@ curl http://localhost:1234/v1/models
 
 - La risposta JSON elenca i modelli caricati e pronti
 
-> **Modello consigliato**: Llama 3.1 8B in formato GGUF con quantizzazione Q4 (equilibrio velocità/qualità)
+**Modello consigliato**: Llama 3.1 8B con quantizzazione Q4
 
 ---
 
@@ -423,9 +444,6 @@ Per usare **GitHub Copilot** serve un account GitHub attivo.
 - Dopo la prova, necessario un abbonamento a pagamento
 
 ---
-layout: two-cols
-
----
 
 # Copilot vs AI Assistant: quale usare?
 
@@ -435,16 +453,12 @@ layout: two-cols
 | Completamento inline | Sì | Sì |
 | Chat integrata | Sì | Sì |
 | Modelli locali (LM Studio) | No | Sì |
-| Costo studenti | Gratuito (Education) | Prova 30 gg |
+| Costo studenti | Gratuito con limiti (Education) | Prova 30 gg |
 
-::right::
-
-## Consiglio pratico
-
-- **Copilot**: ottimo per completamento e chat, gratis con GitHub Education
-- **AI Assistant**: necessario per collegare **LM Studio** e modelli locali
-- Si possono installare **entrambi** senza conflitti
-- Nel corso useremo entrambi a seconda del contesto
+---
+layout: figure-side
+figureUrl: /images/clion-providers.png
+figureCaption: "Provider di AI in CLion"
 
 ---
 
@@ -462,19 +476,6 @@ layout: two-cols
 - **Chat AI**: `Alt+Shift+A` oppure sidebar AI
 - **Completions inline**: scrivi codice, accetta con `Tab`
 - **Context-aware**: analizza file e repository per risposte più precise
-
----
-
-# Best Practices (LM Studio locale)
-
-- **Modello consigliato**: formato GGUF con quantizzazione Q4/Q5, 7–13B parametri (4–8 GB di VRAM)
-- **GPU**: abilita `nGPU layers` in LM Studio al massimo per il tuo hardware
-
-> **GGUF**: formato compatto per modelli quantizzati, eseguibili su hardware consumer.
-> **VRAM**: memoria dedicata della GPU, necessaria per caricare il modello.
-
-- **Privacy**: tutto locale e offline, nessun dato trasmesso
-- **Licenza AI Assistant**: prova gratuita 30 gg; verifica student pack JetBrains
 
 ---
 layout: section
