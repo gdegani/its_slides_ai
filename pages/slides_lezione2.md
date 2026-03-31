@@ -352,7 +352,7 @@ layout: section
 
 ---
 
-# Parte 2 — Setup dell'ambiente
+# Parte 2 — Setup di CLion con AI locale
 
 ---
 
@@ -373,6 +373,19 @@ layout: section
 
 ---
 
+# Usi di Copilot secondo GitHub
+
+You can use Copilot to:
+
+- Get code suggestions as you type in your IDE.
+- Chat with Copilot to get help with your code.
+- Ask for help using the command line.
+- Organize and share context with Copilot Spaces to get more relevant answers.
+- Generate descriptions of changes in a pull request.
+- Work on code changes and create a pull request for you to review. Available in Copilot Pro+, Copilot Business, and Copilot Enterprise only.
+
+---
+
 # Privacy: perché un LLM locale è vantaggioso
 
 - Prompt e codice restano sul tuo computer: minore rischio di esposizione di dati sensibili
@@ -382,16 +395,17 @@ layout: section
 
 ## Nota pratica
 
-- Locale non significa "sicuro di default": servono comunque backup, cifratura disco e controllo accessi
+- Locale non significa "sicuro di default": servono comunque backup, cifratura disco, controllo accessi e soprattutto **consapevolezza di cosa viene eseguito e da chi**
 
 ---
 layout: figure-side
 figureUrl: /images/models.png
 figureCaption: "Esempio di modelli disponibili in LM Studio"
+hide: true
 
 ---
 
-# Setup LM Studio
+# Setup di LM Studio come server locale
 
 - Avvia LM Studio > tab **Developer** > carica un modello
 - Clic **Start Server** (default: `http://localhost:1234/v1`; annota la porta se cambia)
@@ -404,6 +418,56 @@ curl http://localhost:1234/v1/models
 - La risposta JSON elenca i modelli caricati e pronti
 
 **Modello consigliato**: Llama 3.1 8B con quantizzazione Q4
+
+---
+layout: two-cols
+
+---
+
+# Setup di LM Studio come server locale
+
+- Avvia LM Studio > tab **Developer** > carica un modello
+- Clic **Start Server** (default: `http://localhost:1234/v1`; annota la porta se cambia)
+- Testa il server dal terminale (oppure usa un browser):
+
+```bash
+curl http://localhost:1234/v1/models
+```
+
+- La risposta JSON elenca i modelli disponibili
+
+::right::
+
+```json
+{
+  "data": [
+    {
+      "id": "llama-3.2-3b-instruct",
+      "object": "model",
+      "owned_by": "organization_owner"
+    },
+    {
+      "id": "qwen/qwen3-4b-2507",
+      "object": "model",
+      "owned_by": "organization_owner"
+    },
+    {
+      "id": "mistralai/devstral-small-2-2512",
+      "object": "model",
+      "owned_by": "organization_owner"
+    },
+    {
+      "id": "text-embedding-nomic-embed-text-v1.5",
+      "object": "model",
+      "owned_by": "organization_owner"
+    }
+  ],
+  "object": "list"
+}
+```
+
+---
+hide: true
 
 ---
 
@@ -428,26 +492,78 @@ Per usare **GitHub Copilot** serve un account GitHub attivo.
 
 ---
 
-# Installare GitHub Copilot in CLion
+# I tuoi strumenti: continue.dev e GitHub Copilot
 
-## Passaggi
+## Opzione 1: continue.dev + LM Studio (locale)
+
+- **continue.dev**: IDE plugin universale per AI coding
+- Si connette a modelli **locali** in LM Studio
+- **Vantaggio**: privacy, nessun costo, offline
+- **Ideale per**: sperimentare, prototipare, imparare
+
+## Opzione 2: GitHub Copilot
+
+- Integrato in CLion (quando autorizzato)
+- Modelli Codex/GPT-4 di OpenAI in cloud
+- **Vantaggio**: preciso, di alta qualità, sempre aggiornato
+- **Requisito**: account GitHub e piano Pro (o Education)
+
+---
+layout: figure-side
+figureUrl: /images/clion-plugins2.png
+figureCaption: "CLion Plugins Marketplace: continue.dev e GitHub Copilot"
+
+---
+
+# CLion: Installare i Plugin AI
 
 1. Apri CLion → **Settings** (`Cmd+,` su Mac, `Ctrl+Alt+S` su Windows/Linux)
-2. Vai su **Plugins** → tab **Marketplace**
-3. Cerca **"GitHub Copilot"**
-4. Clicca **Install** → **Restart IDE**
+1. Vai su **Plugins** → tab **Marketplace**
+1. Cerca **"Continue"**
+1. Clicca **Install**
+1. Cerca **"GitHub Copilot"**
+1. Clicca **Install** → **Restart IDE**
+1. Autorizza GitHub Copilot account GitHub
 
-## Primo accesso
+---
+layout: figure-side
+figureUrl: /images/clion-copilot-login.png
+figureCaption: "CLion: Copilot login e autorizzazione"
 
-1. Dopo il riavvio, compare la notifica **"Sign in to GitHub"**
-2. Clicca **Sign in** → si apre il browser
-3. Autorizza l'accesso con il tuo account GitHub
-4. Torna in CLion: compare il messaggio **"Copilot is ready"**
+---
 
-## Verifica
+# CLion: Configurare GitHub Copilot
 
-- Apri un file `.c` e inizia a scrivere: i suggerimenti appaiono in grigio
-- Premi `Tab` per accettare, `Esc` per rifiutare
+1. Cliccare sull'icona Copilot in basso a destra
+2. Eseguire "Login su GitHub" e autorizzare l'accesso
+6. Attendi notifica **"Successfully logged in to GitHub for GitHub Copilot"**
+
+
+---
+layout: figure-side
+figureUrl: /images/clion-continue.png
+figureCaption: "CLion: Configurazione di continue.dev per connettersi a LM Studio"
+
+---
+
+# CLion: Configurare continue.dev per LM Studio
+
+1. Cliccare sull'icona Continue a destra
+1. Cliccare sulla rotella di ingranaggio in alto → **Settings**
+1. Cliccare su **Models**
+1. Cliccare sull'ingranaggio del modello per aprire il file di configurazione ed inserire:
+
+```json
+name: Local Config
+version: 1.0.0
+schema: v1
+models:
+  - name: llama-3.2-3b-instruct
+    provider: lmstudio
+    model: llama-3.2-3b-instruct
+    apiBase: http://localhost:1234/v1/
+
+```
 
 ---
 layout: section
