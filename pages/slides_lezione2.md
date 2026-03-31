@@ -49,23 +49,69 @@ layout: section
 # Parte 1 — Prompt avanzati e System Prompt
 
 ---
+layout: figure
+figureUrl: /images/lmstudio3.png
+FigureCaption: "LM Studio: modelli scaricati e pronti all'uso"
+title: "LM Studio: Modelli locali"
+
+---
+
+---
+layout: figure
+figureUrl: /images/lmstudio2.png
+figureCaption: "LM Studio: impostazione del del server locale e caricamento modelli"
+title: "LM Studio: Server locale e modelli"
+
+---
+
+---
+layout: figure
+figureUrl: /images/lmstudio4.png
+figureCaption: "LM Studio: chat con modello locale, risposta rapida e coerente"
+title: "LM Studio: Chat con modello locale"
+
+---
+
+---
+layout: figure
+figureUrl: /images/lmstudio6.png
+figureCaption: "LM Studio: dimensione del contesto"
+title: "LM Studio: Carica modelli"
+
+---
+
+---
 
 # Prompt efficaci = CRISPE
 
-|*Lettera*|*Termine*|*Significato*|
-|---|---|---|
-|CR|Capacity & Role|Il ruolo o l'expertise che vuoi assegnare all'AI (es. "Sei un esperto di cybersecurity")|
-|I|Insight|Contesto, background e informazioni rilevanti che aiutano l'AI a capire la situazione|
-|S|Statement|L'istruzione chiara e specifica: cosa deve fare esattamente l'AI|
-|P|Personality|Il tono, lo stile e il carattere della risposta (formale, amichevole, tecnico, ecc.)|
-|E|Experiment|La richiesta di varianti, iterazioni o raffinamenti del risultato|
+```mermaid
+graph TD
+    A["🎯 CRISPE Framework"] --> B["CR: Capacity & Role<br/>(Ruolo e competenze)"]
+    A --> C["I: Insight<br/>(Contesto)"]
+    A --> D["S: Statement<br/>(Richiesta)"]
+    A --> E["P: Personality<br/>(Tono e stile)"]
+    A --> F["E: Experiment<br/>(Iterazione)"]
+    
+    B --> B1["Chi sei? Che esperienza hai?"]
+    
 
-- **C**larity (Chiarezza)
-- **R**ole (Ruolo)
-- **I**nstructions (Istruzioni)
-- **S**teps (Passi)
-- **P**arameters (Parametri)
-- **E**xpectations (Aspettative)
+    C --> C2["Vincoli e obiettivi"]
+    
+    
+    D --> D1["Compito chiaro e specifico"]
+
+    
+    E --> E1["Che stile desideri? Formale, tecnico, didattico?"]
+    
+    F --> F1["Varianti, iterazioni, quando usarle?"]
+    
+    style A fill:#4a90e2,font-size:30px 
+    style B fill:#7ed321,font-size:24px 
+    style C fill:#f5a623,font-size:24px 
+    style D fill:#bd10e0,font-size:24px 
+    style E fill:#50e3c2,font-size:24px 
+    style F fill:#b8e986,font-size:24px 
+```
 
 ---
 
@@ -118,22 +164,6 @@ Stile: Semplice e accessibile
 Tono: Amichevole e incoraggiante
 Pubblico: Studenti delle superiori
 Risposta: 3 paragrafi numerati con esempi quotidiani
-```
-
----
-zoom: 1.4
-
----
-
-# Esempio: Spiegazione Didattica
-
-```text
-CRISPE:
-Ruolo: Insegnante diplomati IT
-Obiettivo: Spiega [CONCETTO]
-Istruzioni: Analogie quotidiane, 3 esempi
-Parametri: 300 parole max, italiano semplice
-Output: 1. Definizione 2. Esempio1 3. Esempio2 4. Limiti
 ```
 
 ---
@@ -420,62 +450,6 @@ Per usare **GitHub Copilot** serve un account GitHub attivo.
 
 - Apri un file `.c` e inizia a scrivere: i suggerimenti appaiono in grigio
 - Premi `Tab` per accettare, `Esc` per rifiutare
-
----
-
-# Installare JetBrains AI Assistant in CLion
-
-## Passaggi
-
-1. Apri CLion → **Settings** → **Plugins** → **Marketplace**
-2. Cerca **"AI Assistant"** (di JetBrains)
-3. Clicca **Install** → **Restart IDE**
-
-## Primo accesso
-
-1. Dopo il riavvio, clicca sull'icona **AI** nella sidebar a destra
-2. Effettua il login con il tuo account **JetBrains**
-3. Se non hai un account, crealo su **account.jetbrains.com**
-
-## Licenza
-
-- Prova gratuita di **30 giorni** inclusa
-- Studenti: verifica se il tuo **JetBrains Student Pack** include AI Assistant
-- Dopo la prova, necessario un abbonamento a pagamento
-
----
-
-# Copilot vs AI Assistant: quale usare?
-
-| | **GitHub Copilot** | **AI Assistant** |
-| --- | --- | --- |
-| Produttore | GitHub/Microsoft | JetBrains |
-| Completamento inline | Sì | Sì |
-| Chat integrata | Sì | Sì |
-| Modelli locali (LM Studio) | No | Sì |
-| Costo studenti | Gratuito con limiti (Education) | Prova 30 gg |
-
----
-layout: figure-side
-figureUrl: /images/clion-providers.png
-figureCaption: "Provider di AI in CLion"
-
----
-
-# Config CLion + LM Studio
-
-- CLion > **Settings** (`Cmd+,`) > **Tools › AI Assistant**
-- **Third-party AI providers** › seleziona **LM Studio**
-- **Base URL**: `http://localhost:1234/v1` (aggiungi `/v1` se mancante)
-- **Model**: nome del modello dal server (es. `llama-3.1-8b`)
-- No API Key richiesta — inserisci `not-needed`
-- Clic **Test Connection** › Apply
-
-## Uso in CLion con LM Studio
-
-- **Chat AI**: `Alt+Shift+A` oppure sidebar AI
-- **Completions inline**: scrivi codice, accetta con `Tab`
-- **Context-aware**: analizza file e repository per risposte più precise
 
 ---
 layout: section
