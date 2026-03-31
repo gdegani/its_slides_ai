@@ -538,7 +538,6 @@ figureCaption: "CLion: Copilot login e autorizzazione"
 2. Eseguire "Login su GitHub" e autorizzare l'accesso
 6. Attendi notifica **"Successfully logged in to GitHub for GitHub Copilot"**
 
-
 ---
 layout: figure-side
 figureUrl: /images/clion-continue.png
@@ -553,14 +552,14 @@ figureCaption: "CLion: Configurazione di continue.dev per connettersi a LM Studi
 1. Cliccare su **Models**
 1. Cliccare sull'ingranaggio del modello per aprire il file di configurazione ed inserire:
 
-```json
+```yaml
 name: Local Config
 version: 1.0.0
 schema: v1
 models:
-  - name: llama-3.2-3b-instruct
+  - name: Autodetect
     provider: lmstudio
-    model: llama-3.2-3b-instruct
+    model: AUTODETECT
     apiBase: http://localhost:1234/v1/
 
 ```
@@ -570,7 +569,7 @@ layout: section
 
 ---
 
-# Parte 3 — Generazione codice e debug assistito
+# Parte 3 — Vibe coding...
 
 ---
 
@@ -580,6 +579,18 @@ layout: section
 - Chat: seleziona un blocco e chiedi refactoring, test, spiegazione warning
 - Code actions: tasto destro > Copilot per documentazione o correzioni
 - Mantieni le richieste brevi e locali: un file o una funzione alla volta
+
+---
+layout: figure
+figureUrl: /images/clion-chat-ui.png
+figureCaption: "CLion: UI di chat con Copilot e continue.dev"
+
+---
+
+# CLion: Demo UI di Copilot e continue.dev
+
+---
+hide: true
 
 ---
 
@@ -597,6 +608,9 @@ flowchart LR
 ```
 
 ---
+hide: true
+
+---
 
 # Strategie di verifica
 
@@ -611,31 +625,16 @@ flowchart LR
 
 ## Esercizio: Hello Copilot (CLion)
 
-Crea un progetto C vuoto in CLion e prova:
+Crea un progetto C vuoto in CLion e prova a generare una funzione che legge un intero da input in modo sicuro:
 
-1. Scrivi `// function that reads an integer safely`
-2. Attendi il suggerimento grigio di Copilot
-3. Accetta o rigenera
+1. Apri la chat ti continue
+1. Assicurati di aver selezionato il modello corretto e la modalità agent
+1. Inserisci la richiests: ```text
+ add a new function that read safely an integer from standard input.```
+1. Attendi la modifica del file e verifica che compili senza errori
+1. Accetta o rigenera
 
 ⏱️ 5 minuti
-
----
-
-# Generazione C: I/O di base (risultato atteso)
-
-```c
-#include <stdio.h>
-
-int read_int_safe(void) {
-    int value = 0;
-    if (scanf("%d", &value) != 1) {
-        return 0; // fallback if input fails
-    }
-    return value;
-}
-```
-
-- Esercizio: chiedi all'assistente di aggiungere controllo su range
 
 ---
 
