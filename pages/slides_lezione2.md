@@ -247,13 +247,10 @@ flowchart TD
 Senza system prompt, il modello risponde in modo generico. Con un system prompt ben scritto, le risposte diventano **coerenti**, **mirate** e **riutilizzabili**.
 
 ---
-layout: two-cols
 
----
+# Esempi di System Prompt: Tutor C
 
-# Esempi di System Prompt
-
-## Esempio 1: Tutor C
+<Transform :scale="1.5">
 
 ```text
 Sei un tutor di programmazione C
@@ -265,13 +262,13 @@ un esempio di codice compilabile.
 Spiega il codice riga per riga.
 ```
 
-::right::
+</Transform>
 
-<br>
-<br>
-<br>
+---
 
-## Esempio 2: Code reviewer
+# Esempi di System Prompt: Code reviewer
+
+<Transform :scale="1.5">
 
 ```text
 Sei un revisore di codice C esperto.
@@ -283,14 +280,13 @@ Rispondi in italiano con suggerimenti
 concreti di correzione.
 ```
 
----
-layout: two-cols
+</Transform>
 
 ---
 
-# Esempi di System Prompt
+# Esempi di System Prompt: Assistente minimal
 
-## Esempio 3: Assistente minimal
+<Transform :scale="1.5">
 
 ```text
 Rispondi solo con codice C.
@@ -300,13 +296,13 @@ Se la richiesta non riguarda
 il C, rispondi "Fuori tema".
 ```
 
-::right::
+</Transform>
 
-<br>
-<br>
-<br>
+---
 
-## Esempio 4: Generatore di esercizi
+# Esempi di System Prompt: Generatore di esercizi
+
+<Transform :scale="1.5">
 
 ```text
 Sei un docente di programmazione C.
@@ -319,11 +315,13 @@ Ogni esercizio deve avere:
 Usa solo concetti base del C.
 ```
 
+</Transform>
+
 ---
 layout: figure
 figureUrl: /images/system-prompt.jpg
 figureCaption: "LM Studio: impostazione del System Prompt"
-title: "System Prompt: prova pratica"
+title: "LM Studio: System Prompt"
 zoom: 0.5
 
 ---
