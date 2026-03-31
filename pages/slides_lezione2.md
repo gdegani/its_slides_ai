@@ -653,6 +653,168 @@ int sum_positive(const int *arr, int count) {
 Suggerimento: usa la sequanza ``` come delimitatore prima e dopo un blocco di codice per inserire un blocco di codice inline nella chat.
 
 ---
+
+# Configurare GitHub Copilot nel repository
+
+Per guidare Copilot in modo coerente nel progetto usa il file:
+
+` .github/copilot-instructions.md `
+
+## Cosa inserire
+
+- Linguaggio e standard richiesti (es. C99)
+- Vincoli didattici del corso
+- Regole su stile, commenti e test
+- Cosa evitare (scope, librerie non permesse)
+
+---
+
+# Esempio: copilot-instructions.md
+
+```markdown
+# Istruzioni progetto
+
+- Rispondi in italiano nelle spiegazioni
+- Usa esempi compilabili in C99
+- Mantieni snippet brevi e focalizzati
+- Evita librerie esterne non introdotte a lezione
+- Prima di concludere, esegui lint e build delle slide
+```
+
+Suggerimento: tieni il file corto, specifico e aggiornato
+
+---
+
+# Standard cross-agent: AGENTS.md
+
+`AGENTS.md` è uno standard aperto e condiviso tra più tool AI.
+
+- È un "README per le macchine"
+- Si mette nella root del repository
+- Definisce regole operative comuni per agenti diversi
+
+Riferimenti:
+
+- <https://agentsmd.io/what-is-agents-md>
+- <https://arxiv.org/html/2602.14690v2>
+
+---
+
+# Tool e file di istruzioni
+
+| Tool | File proprietario | Supporta AGENTS.md? |
+| --- | --- | --- |
+| GitHub Copilot | `.github/copilot-instructions.md` | Sì |
+| Claude Code | `CLAUDE.md` | Sì |
+| Cursor | `.cursorrules` (deprecato) | Sì |
+| Gemini CLI | `GEMINI.md` | Sì |
+| Codex CLI | nativo | Sì |
+
+Pattern consigliato:
+
+- `AGENTS.md` come baseline condivisa
+- File tool-specifici come adapter
+
+---
+
+# AGENTS.md: contenuti essenziali
+
+- Setup progetto: build, run, dipendenze
+- Code style: naming, formattazione, pattern
+- Testing: comandi, framework, aspettative
+- Regole locali: cosa fare e non fare
+- Struttura del repo: dove trovare i file chiave
+
+---
+
+# AGENTS.md vs System Prompt (chat)
+
+| Aspetto | AGENTS.md | System prompt chat |
+| --- | --- | --- |
+| Dove vive | File nel repository | Istruzione nella singola chat |
+| Durata | Persistente, versionato con Git | Valido per la sessione corrente |
+| Scopo | Regole operative condivise tra agenti | Comportamento dell'assistente in quel contesto |
+| Riuso team | Alto: tutti i tool possono leggerlo | Basso: va reinserito o copiato |
+| Evoluzione | Tracciata con commit e review | Spesso non tracciata |
+
+In pratica:
+
+- AGENTS.md = baseline di progetto
+- System prompt = adattamento rapido per il task corrente
+
+---
+
+# Cosa sono gli Skills per AI Agent
+
+Uno skill e' un pacchetto di istruzioni riusabile che insegna a un agente come eseguire un tipo di lavoro.
+
+- Definisce quando usarlo
+- Definisce passi operativi consigliati
+- Riduce risposte incoerenti tra task simili
+- Rende il comportamento piu' prevedibile in team
+
+---
+
+# Esempi semplici di Skill
+
+## Skill: Debug C base
+
+- Input: funzione C con warning
+- Output: patch minima + spiegazione breve
+
+## Skill: Test con assert
+
+- Input: funzione C99
+- Output: 3 test (nominale, limite, errore)
+
+## Skill: Refactoring .h/.c
+
+- Input: file unico
+- Output: separazione interfaccia/implementazione senza cambiare API
+
+---
+
+# Come configurare gli Skills nel repository
+
+Struttura tipica:
+
+```text
+.agents/
+  skills/
+    debug-c/
+      SKILL.md
+    test-assert-c/
+      SKILL.md
+```
+
+Passi pratici:
+
+1. Crea una cartella per ogni skill in `.agents/skills/`
+2. Aggiungi `SKILL.md` con nome, descrizione, quando usarlo e workflow
+3. Tieni gli esempi piccoli e verificabili nel contesto del progetto
+4. Versiona tutto con Git per review e miglioramenti incrementali
+
+---
+
+# Esempio minimo di SKILL.md
+
+```markdown
+---
+name: debug-c-base
+description: Trova warning comuni in C99 e propone correzioni minime.
+---
+
+## Quando usarlo
+- Funzioni brevi con warning o bug logici
+
+## Workflow
+1. Riproduci il problema
+2. Identifica causa minima
+3. Proponi patch ridotta
+4. Verifica build/test
+```
+
+---
 layout: section
 
 ---
