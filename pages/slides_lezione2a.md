@@ -50,7 +50,7 @@ layout: section
 
 ---
 layout: figure
-figureUrl: /images/lmstudio3.png
+figureUrl: /lmstudio3.png
 FigureCaption: "LM Studio: modelli scaricati e pronti all'uso"
 title: "LM Studio: Modelli locali"
 
@@ -58,7 +58,7 @@ title: "LM Studio: Modelli locali"
 
 ---
 layout: figure
-figureUrl: /images/lmstudio2.png
+figureUrl: /lmstudio2.png
 figureCaption: "LM Studio: impostazione del del server locale e caricamento modelli"
 title: "LM Studio: Server locale e modelli"
 
@@ -66,7 +66,7 @@ title: "LM Studio: Server locale e modelli"
 
 ---
 layout: figure
-figureUrl: /images/lmstudio4.png
+figureUrl: /lmstudio4.png
 figureCaption: "LM Studio: chat con modello locale, risposta rapida e coerente"
 title: "LM Studio: Chat con modello locale"
 
@@ -74,7 +74,7 @@ title: "LM Studio: Chat con modello locale"
 
 ---
 layout: figure
-figureUrl: /images/lmstudio6.png
+figureUrl: /lmstudio6.png
 figureCaption: "LM Studio: dimensione del contesto"
 title: "LM Studio: Carica modelli"
 
@@ -319,7 +319,7 @@ Usa solo concetti base del C.
 
 ---
 layout: figure
-figureUrl: /images/system-prompt.jpg
+figureUrl: /system-prompt.jpg
 figureCaption: "LM Studio: impostazione del System Prompt"
 title: "LM Studio: System Prompt"
 zoom: 0.5
@@ -399,7 +399,7 @@ You can use Copilot to:
 
 ---
 layout: figure-side
-figureUrl: /images/models.png
+figureUrl: /models.png
 figureCaption: "Esempio di modelli disponibili in LM Studio"
 hide: true
 
@@ -510,7 +510,7 @@ Per usare **GitHub Copilot** serve un account GitHub attivo.
 
 ---
 layout: figure-side
-figureUrl: /images/clion-plugins2.png
+figureUrl: /clion-plugins2.png
 figureCaption: "CLion Plugins Marketplace: continue.dev e GitHub Copilot"
 
 ---
@@ -527,7 +527,7 @@ figureCaption: "CLion Plugins Marketplace: continue.dev e GitHub Copilot"
 
 ---
 layout: figure-side
-figureUrl: /images/clion-copilot-login.png
+figureUrl: /clion-copilot-login.png
 figureCaption: "CLion: Copilot login e autorizzazione"
 
 ---
@@ -540,7 +540,7 @@ figureCaption: "CLion: Copilot login e autorizzazione"
 
 ---
 layout: figure-side
-figureUrl: /images/clion-continue2.png
+figureUrl: /clion-continue2.png
 figureCaption: "CLion: Configurazione di continue.dev per connettersi a LM Studio"
 
 ---
@@ -582,7 +582,7 @@ layout: section
 
 ---
 layout: figure
-figureUrl: /images/clion-chat-ui.png
+figureUrl: /clion-chat-ui.png
 figureCaption: "CLion: UI di chat con Copilot e continue.dev"
 
 ---

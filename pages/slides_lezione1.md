@@ -15,7 +15,7 @@ vai su slido.com e inserisci il codice:
 
 ::right::
 
-![QR Code](/images/qr-code-its-1.png)
+![QR Code](/qr-code-its-1.png)
 
 <!-- https://wall.sli.do/event/4JqN2FQ25AgprK61sixSzx?section=935314ea-1825-4ca1-bd24-50111172a8c6&integration=shared-present-mode&utm_source=slidoadmin -->
 
@@ -45,7 +45,7 @@ Quale è il significato di questi termini?
 
 ---
 layout: figure
-figureUrl: /images/AI_venn.png
+figureUrl: /AI_venn.png
 figureCaption: "Source: Wikipedia - AI, ML, DL, LLM relationship"
 title: AI, ML, DL, LLM relationship
 
@@ -358,7 +358,7 @@ Esempio: `"printf(\"Hello\");"` = circa 5-6 token
 
 ---
 layout: figure-side
-figureUrl: /images/context-window-llm.svg
+figureUrl: /context-window-llm.svg
 figureCaption: "Schema semplificato del context window di un LLM"
 zoom: 0.9
 
@@ -436,7 +436,7 @@ Sistema che cerca informazioni su web, legge documenti, scrive un report e lo in
 
 ---
 layout: figure-side
-figureUrl: /images/lmstudio1.png
+figureUrl: /lmstudio1.png
 figureCaption: "LM Studio: eseguire LLM in locale"
 
 ---
