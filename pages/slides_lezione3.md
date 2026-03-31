@@ -12,13 +12,6 @@
 - Test finale (60 minuti)
 
 ---
-layout: section
-
----
-
-# Parte 1 — Ripasso e consolidamento
-
----
 
 # Riepilogo del corso
 
@@ -38,9 +31,6 @@ layout: section
 - Skills per agenti AI: definizione e configurazione nel repo
 - Setup: LM Studio + GitHub Copilot + continue.dev in CLion
 - Generazione codice C con AI, debug assistito
-
----
-layout: two-cols
 
 ---
 
@@ -73,9 +63,9 @@ mindmap
       Testing con assert
 ```
 
-::right::
+---
 
-## Concetti chiave da ricordare
+# Concetti chiave da ricordare
 
 - L'AI **non comprende**: predice il token successivo
 - Prompt migliore = risposta migliore
@@ -135,4 +125,3 @@ Consolidamento in coppia:
 - Compila spesso, testa casi limite
 - Mantieni traccia di cosa hai accettato dall'assistente
 - Il system prompt rende le risposte più coerenti
-- Separa sempre .h e .c nei progetti reali
