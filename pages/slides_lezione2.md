@@ -540,7 +540,7 @@ figureCaption: "CLion: Copilot login e autorizzazione"
 
 ---
 layout: figure-side
-figureUrl: /images/clion-continue.png
+figureUrl: /images/clion-continue2.png
 figureCaption: "CLion: Configurazione di continue.dev per connettersi a LM Studio"
 
 ---
@@ -549,8 +549,9 @@ figureCaption: "CLion: Configurazione di continue.dev per connettersi a LM Studi
 
 1. Cliccare sull'icona Continue a destra
 1. Cliccare sulla rotella di ingranaggio in alto → **Settings**
-1. Cliccare su **Models**
-1. Cliccare sull'ingranaggio del modello per aprire il file di configurazione ed inserire:
+1. Cliccare su **Models** -> **Add Model**
+1. Selezionare LM Studio come provider
+1. Cliccando sull'ingranaggio del modello verrà mostrato il seguente file di configurazione:
 
 ```yaml
 name: Local Config
@@ -561,7 +562,6 @@ models:
     provider: lmstudio
     model: AUTODETECT
     apiBase: http://localhost:1234/v1/
-
 ```
 
 ---
@@ -590,36 +590,6 @@ figureCaption: "CLion: UI di chat con Copilot e continue.dev"
 # CLion: Demo UI di Copilot e continue.dev
 
 ---
-hide: true
-
----
-
-# Prompt efficaci per il codice
-
-- Specifica standard e vincoli: "usa C99, niente librerie esterne, input validato"
-- Fornisci interfacce: firme funzioni, strutture dati attese, range input
-- Chiedi output in un formato: "solo codice", "spiega in 3 bullet", "mostra patch"
-
-```mermaid
-flowchart LR
-    A["Contesto"] --> B["Compito"]
-    B --> C["Vincoli"]
-    C --> D["Formato output"]
-```
-
----
-hide: true
-
----
-
-# Strategie di verifica
-
-- Compila sempre dopo ogni suggerimento accettato
-- Aggiungi assert e controlli su input/null pointer prima di fidarti
-- Confronta la patch proposta con un diff piccolo e leggibile
-- Esegui test su casi limite (array vuoti, overflow, indici out-of-range)
-
----
 
 # Generazione C: I/O di base
 
@@ -629,193 +599,21 @@ Crea un progetto C vuoto in CLion e prova a generare una funzione che legge un i
 
 1. Apri la chat ti continue
 1. Assicurati di aver selezionato il modello corretto e la modalità agent
-1. Inserisci la richiests: ```text
+1. Inserisci la richiesta: ```text
  add a new function that read safely an integer from standard input.```
 1. Attendi la modifica del file e verifica che compili senza errori
-1. Accetta o rigenera
-
-⏱️ 5 minuti
+1. Accetta le modifiche o rigenera
 
 ---
 
-# Generazione C: ricerca lineare
+# Esercizi
 
-```c
-#include <stddef.h>
+Chiedi all'agent (continue.dev o Copilot Chat) di generare:
 
-int find_value(const int *values, size_t count, int target) {
-    if (values == NULL) {
-        return -1; // invalid input
-    }
-    for (size_t i = 0; i < count; ++i) {
-        if (values[i] == target) {
-            return (int)i;
-        }
-    }
-    return -1; // not found
-}
-```
-
-- Prompt l'assistente per varianti con early exit
-
----
-
-# Generazione C: min/max in una passata
-
-```c
-#include <stddef.h>
-
-int range_min_max(const int *values, size_t count, int *out_min, int *out_max) {
-    if (values == NULL || out_min == NULL || out_max == NULL || count == 0) {
-        return -1; // invalid input
-    }
-    int min_v = values[0];
-    int max_v = values[0];
-    for (size_t i = 1; i < count; ++i) {
-        if (values[i] < min_v) min_v = values[i];
-        if (values[i] > max_v) max_v = values[i];
-    }
-    *out_min = min_v;
-    *out_max = max_v;
-    return 0;
-}
-```
-
-- Esercizio: chiedi test per array vuoti e valori ripetuti
-
----
-
-# Generazione C: strutture semplici
-
-```c
-#include <stddef.h>
-#include <string.h>
-
-typedef struct {
-    const char *name;
-    int value;
-} Item;
-
-int find_item(const Item *items, size_t count, const char *name) {
-    if (items == NULL || name == NULL) {
-        return -1;
-    }
-    for (size_t i = 0; i < count; ++i) {
-        if (items[i].name != NULL && strcmp(items[i].name, name) == 0) {
-            return (int)i;
-        }
-    }
-    return -1;
-}
-```
-
-- Chiedi all'assistente varianti: ricerca case-insensitive, ricerca parziale
-
----
-
-# Snippet: clamp e normalizza
-
-```c
-#include <stddef.h>
-
-int clamp_int(int value, int min, int max) {
-    if (min > max) {
-        return value; // invalid bounds, return as-is
-    }
-    if (value < min) {
-        return min;
-    }
-    if (value > max) {
-        return max;
-    }
-    return value;
-}
-
-double normalize_int(int value, int min, int max) {
-    if (min >= max) {
-        return 0.0; // avoid divide-by-zero
-    }
-
-    int clamped = clamp_int(value, min, max);
-    return (double)(clamped - min) / (double)(max - min);
-}
-```
-
-- Valuta con l'assistente varianti senza double se richiesto
-
----
-
-# Gestione errori
-
-- Sempre controllare puntatori null
-- Restituire codici di errore chiari (0, -1)
-- Commentare i casi eccezionali in inglese
-
----
-
-# Warning comuni: Bug Hunt
-
-Trova il bug in ciascun snippet! Discutetene in gruppo, poi verificate con Copilot.
-
-```c
-// Snippet 1
-int a = 3.14;  // quale warning?
-
-// Snippet 2
-for (int i = 0; i < -1u; i++) {}  // perché loop infinito?
-
-// Snippet 3
-int x; printf("%d", x);  // cosa stampa?
-```
-
-⏱️ 5 minuti — poi verifica con Copilot
-
----
-
-# Warning comuni: tipi
-
-- Implicit conversion: perdita di precisione
-- Signed/unsigned mismatch in confronti
-- Variabili non inizializzate
-
----
-
-# Debug assistito
-
-- Fornisci messaggi di errore completi (compilatore o runtime)
-- Invia solo la funzione o il file minimo riproducibile
-- Chiedi spiegazioni passo-passo: cosa significa l'errore, dove guardare
-
-Esempio di prompt per un `segmentation fault`:
-
-```text
-Ho un segmentation fault in questa funzione C. Ecco la funzione e l'input che lo causa.
-Spiega la causa probabile e proponi una correzione minimale.
-```
-
----
-
-# Snippet per il debug
-
-```c
-#include <stdio.h>
-
-int read_value(const int *buffer, size_t length, size_t index) {
-    if (buffer == NULL || index >= length) {
-        return -1; // invalid access avoided
-    }
-    return buffer[index];
-}
-
-int main(void) {
-    int data[] = {3, 5, 7};
-    printf("%d\n", read_value(data, 3, 5));
-    return 0;
-}
-```
-
-- L'assistente può evidenziare l'accesso fuori limite (`index >= length`)
-- Dopo la correzione, ricompila e riesegui il test
+- Una funzione che conta quante volte un carattere appare in una stringa
+- Una funzione che trova il minimo e massimo in un array di interi
+- Una funzione che ordina un array di interi usando bubble sort
+- Una funzione che legge N interi da input e li memorizza in un array
 
 ---
 
@@ -830,40 +628,17 @@ Restituisci solo la funzione corretta.
 
 ---
 
-# Esempio di correzione
-
-```c
-int divide(int num, int den) {
-    if (den == 0) {
-        return 0; // avoid divide-by-zero
-    }
-    return num / den;
-}
-```
-
-- Prompt: chiedi all'assistente di gestire overflow e remainder
-
----
-
-# Tracciare gli input
-
-- Riproduci il bug con un input minimo
-- Aggiungi printf o log temporanei
-- Rimuovi il logging dopo la fix
-
----
-
 # Domande utili da fare all'AI
 
-- "Che cosa succede se den è zero?"
+- "Che cosa succede se la variabile `den` è zero?"
 - "Ci sono indici fuori limite?"
 - "Serve cast esplicito qui?"
 
 ---
 
-# Esercizio: Debug Race (CLion)
+# Esercizio: Debug  (CLion)
 
-In coppia, stessa funzione con bug nascosto:
+Chiedi all'AI di identificare i problemi in questa funzione:
 
 ```c
 int sum_positive(const int *arr, int count) {
@@ -875,11 +650,7 @@ int sum_positive(const int *arr, int count) {
 }
 ```
 
-1. **Giocatore A**: trova i bug senza AI
-2. **Giocatore B**: usa Copilot Chat
-3. Chi corregge prima? Confrontate i risultati
-
-⏱️ 10 minuti
+Suggerimento: usa la sequanza ``` come delimitatore prima e dopo un blocco di codice per inserire un blocco di codice inline nella chat.
 
 ---
 layout: section
