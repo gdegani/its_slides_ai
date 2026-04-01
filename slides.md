@@ -46,5 +46,6 @@ title: Lezione 2 parte b
 ---
 src: ./pages/slides_lezione3.md
 title: Lezione 3 - Ripasso e verifica (2 ore)
+hide: true
 
 ---
