@@ -37,7 +37,6 @@
 # Mappa concettuale del corso
 
 ```mermaid
-%%{init: {"theme": "base", "themeVariables": {"primaryColor": "#ffffff", "primaryTextColor": "#000000", "primaryBorderColor": "#000000", "lineColor": "#000000", "secondaryColor": "#ffffff", "tertiaryColor": "#ffffff", "background": "#ffffff", "mainBkg": "#ffffff", "nodeBorder": "#000000", "clusterBkg": "#ffffff", "titleColor": "#000000", "edgeLabelBackground": "#ffffff"}}}%%
 mindmap
   root((AI + C))
     Fondamenti
@@ -49,7 +48,7 @@ mindmap
       CRISPE / CO-STAR
       System prompt
     Istruzioni progetto
-      copilot-instructions.md
+        copilot-instructions.md
       AGENTS.md
       Skills agente
     Strumenti
