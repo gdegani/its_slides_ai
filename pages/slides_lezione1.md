@@ -170,11 +170,6 @@ flowchart LR
     A --> C["(&quot;"]
     A --> D["Hello"]
     A --> E["&quot;);"]
-    style A fill:#fff,stroke:#000,color:#000
-    style B fill:#e8f4fd,stroke:#000,color:#000
-    style C fill:#fde8e8,stroke:#000,color:#000
-    style D fill:#e8fde8,stroke:#000,color:#000
-    style E fill:#fdf4e8,stroke:#000,color:#000
 ```
 
 - Il **tokenizer** divide il testo in pezzi chiamati token
@@ -240,12 +235,6 @@ flowchart LR
     B -->|Vocabolario| C["ID numerico"]
     A2["&quot;Il gatto dorme&quot;"] -->|split| B2["Il | gatto | dorme"]
     B2 -->|lookup| C2["1529 | 38201 | 9847"]
-    style A fill:#fff,stroke:#000,color:#000
-    style B fill:#e8f4fd,stroke:#000,color:#000
-    style C fill:#e8fde8,stroke:#000,color:#000
-    style A2 fill:#fff,stroke:#000,color:#000
-    style B2 fill:#e8f4fd,stroke:#000,color:#000
-    style C2 fill:#e8fde8,stroke:#000,color:#000
 ```
 
 - Il vocabolario è fisso (es. GPT-4 ha circa 100.000 token)
@@ -264,8 +253,6 @@ Un **embedding** è la rappresentazione di un token come **vettore di numeri rea
 ```mermaid
 flowchart TD
     A["Token ID: 1529"] -->|Matrice embedding| B["Vettore:\n[0.12, -0.45, 0.78, ...]"]
-    style A fill:#e8f4fd,stroke:#000,color:#000
-    style B fill:#e8fde8,stroke:#000,color:#000
 ```
 
 - Ogni token diventa un punto nello spazio
@@ -308,9 +295,6 @@ flowchart LR
         B["Roma - Italia + Francia ≈ Parigi"]
         C["int - C + Python ≈ int"]
     end
-    style A fill:#fff,stroke:#000,color:#000
-    style B fill:#fff,stroke:#000,color:#000
-    style C fill:#fff,stroke:#000,color:#000
 ```
 
 ## Pipeline completa: dal testo alla predizione
@@ -321,11 +305,6 @@ flowchart LR
     B --> C["Embedding\n(vettori)"]
     C --> D["Rete neurale\n(trasformazioni)"]
     D --> E["Predizione\ntoken successivo"]
-    style A fill:#fff,stroke:#000,color:#000
-    style B fill:#e8f4fd,stroke:#000,color:#000
-    style C fill:#e8fde8,stroke:#000,color:#000
-    style D fill:#fdf4e8,stroke:#000,color:#000
-    style E fill:#fde8e8,stroke:#000,color:#000
 ```
 
 Ogni volta che un LLM genera una parola, attraversa tutta questa pipeline.

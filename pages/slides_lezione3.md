@@ -1,17 +1,3 @@
-# Agenda Lezione 3
-
-## Parte 1 — Ripasso e consolidamento (~30 min)
-
-- Riepilogo del corso (Lezione 1 + Lezione 2)
-- Teach-back in coppia
-- FAQ e suggerimenti finali
-
-## Parte 2 — Preparazione e test finale (~30 min + 60 min)
-
-- Regole e rubrica di valutazione
-- Test finale (60 minuti)
-
----
 
 # Riepilogo del corso
 
@@ -75,46 +61,32 @@ mindmap
 
 ---
 
-# Teach-back
-
-Consolidamento in coppia:
-
-1. **Insegna al compagno** un concetto chiave del corso (2 min ciascuno)
-2. Discutete i **3 comandi/pattern più utili** che avete scoperto
-3. Raccogliete i prompt e snippet riutilizzabili
-
----
-
-# FAQ - L'assistente sbaglia
-
-- Prova un prompt più breve e specifico
-- Chiedi di spiegare passo-passo
-- Cambia vincoli (es. rimuovi malloc) e rigenera
-- Non fidarti: verifica sempre compilando e testando
-
----
-
-# FAQ - Output troppo lungo
-
-- Chiedi "solo codice"
-- Specifica numero di righe o blocchi
-- Separa la richiesta in due prompt più piccoli
-
----
-
-# FAQ - Codice non compila
-
-- Incolla l'errore preciso nel prompt
-- Chiedi una patch minima, non una riscrittura
-- Verifica include e tipi mancanti
-
----
-
 # Risorse consigliate
 
 - I prompt e snippet salvati durante il corso
-- JetBrains AI Assistant: [jetbrains.com/help/ai-assistant](https://www.jetbrains.com/help/ai-assistant/)
 - GitHub Copilot Docs: [docs.github.com/copilot](https://docs.github.com/en/copilot)
+- LM Studio: [lmstudio.ai](https://lmstudio.ai/)
+- Anthropic Documentation: [docs.anthropic.com](https://docs.anthropic.com/)
+
+---
+
+# Esercitazione CLion
+
+Rifare con l'aiuto di Copilot l'esercizio visto nel corso di C:
+
+> ## Esercizio: indovina il numero
+>
+> - Scrivere un programma “Indovina il numero” che:
+> - chiede all’utente il valore massimo e il numero massimo di tentativi
+> - genera un numero casuale in [0, max]
+> - richiede i tentativi all’utente indicando se il numero inserito è troppo alto o troppo basso
+> - termina con messaggio di successo o di esaurimento tentativi mostrando la soluzione
+>
+>```c
+>   srand(time(NULL)); // Seed the random number generator
+>    number = rand() % (max_number + 1); // Generate a random number between 0 and max_number
+>
+>```
 
 ---
 

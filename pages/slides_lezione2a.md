@@ -105,12 +105,6 @@ graph TD
     
     F --> F1["Varianti, iterazioni, quando usarle?"]
     
-    style A fill:#4a90e2,font-size:30px 
-    style B fill:#7ed321,font-size:24px 
-    style C fill:#f5a623,font-size:24px 
-    style D fill:#bd10e0,font-size:24px 
-    style E fill:#50e3c2,font-size:24px 
-    style F fill:#b8e986,font-size:24px 
 ```
 
 ---
@@ -224,10 +218,6 @@ flowchart TD
     A["System Prompt\n(invisibile all'utente)"] --> B["LLM"]
     C["Prompt utente"] --> B
     B --> D["Risposta"]
-    style A fill:#e8f4fd,stroke:#000,color:#000
-    style C fill:#fff,stroke:#000,color:#000
-    style B fill:#fdf4e8,stroke:#000,color:#000
-    style D fill:#e8fde8,stroke:#000,color:#000
 ```
 
 ---
